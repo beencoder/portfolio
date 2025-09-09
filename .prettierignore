@@ -1,0 +1,18 @@
+# 빌드 산출물
+.next
+out
+dist
+.build
+
+# 종속성
+node_modules
+
+# 환경/로그
+.env*
+*.log
+
+# 기타
+coverage
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
