@@ -1,0 +1,81 @@
+@use 'base/variables' as *;
+@use 'base/mixins' as *;
+@use 'base/reset';
+
+:root {
+  --color-bg: #{$color-bg};
+  --color-text: #{$color-text};
+  --color-primary: #{$color-primary};
+  --radius-md: #{$radius-md};
+  --shadow-sm: #{$shadow-sm};
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: $font-sans;
+  font-size: 1.6rem;
+  line-height: 1.6;
+  color: var(--color-text);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  @media (hover: hover) {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+  line-height: 1.25;
+}
+p + p {
+  margin-top: 1em;
+}
+
+/* layout */
+.container {
+  width: min(100% - 3.2rem, 120rem);
+  margin-inline: auto;
+}
+
+/* 접근성: 스크린리더 전용 */
+.sr-only {
+  @include sr-only;
+}
+
+/* util */
+.center {
+  @include flex-center;
+}
+.truncate {
+  @include truncate;
+}
+
+/* 반응형 */
+.responsive-title {
+  @include fluid-type(1.8rem, 2.8rem);
+}

@@ -1,0 +1,55 @@
+/* font */
+$font-sans: -apple-system, BlinkMacSystemFont, 'Pretendard', 'Inter', 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+  'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+$font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+/* color palette */
+$color-bg: #1d1a1b; // 배경
+$color-text: #eae6df; // 본문 텍스트
+$color-primary: #d2ad75; // 포인트
+$color-muted: #b9b0a6;
+$color-border: #2a2627;
+
+$color-success: #2ecc71;
+$color-warning: #f1c40f;
+$color-danger: #e74c3c;
+
+/* space (4px 기준) */
+$space-0: 0;
+$space-1: 0.4rem; // 4px
+$space-2: 0.8rem; // 8px
+$space-3: 1.2rem; // 12px
+$space-4: 1.6rem; // 16px
+$space-5: 2rem; // 20px
+$space-6: 2.4rem; // 24px
+$space-8: 3.2rem; // 32px
+$space-10: 4rem; // 40px
+$space-12: 4.8rem; // 48px
+
+/* radius & shadow */
+$radius-sm: 6px;
+$radius-md: 12px;
+$radius-lg: 20px;
+
+$shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.18);
+$shadow-md: 0 6px 20px rgba(0, 0, 0, 0.25);
+$shadow-lg: 0 18px 40px rgba(0, 0, 0, 0.35);
+
+/* z-index */
+$z-stack: (
+  'base': 1,
+  'dropdown': 1000,
+  'sticky': 1100,
+  'overlay': 1200,
+  'modal': 1300,
+  'toast': 1400,
+  'tooltip': 1500,
+);
+
+/* break-point */
+$breakpoints: (
+  'sm': 480px,
+  'md': 768px,
+  'lg': 1024px,
+  'xl': 1280px,
+);
