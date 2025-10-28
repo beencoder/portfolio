@@ -27,11 +27,11 @@ body {
 a {
   color: var(--color-primary);
   text-decoration: none;
-  @media (hover: hover) {
-    &:hover {
-      text-decoration: underline;
-    }
-  }
+  // @media (hover: hover) {
+  //   &:hover {
+  //     text-decoration: underline;
+  //   }
+  // }
 }
 
 img,
@@ -58,8 +58,9 @@ p + p {
 
 /* layout */
 .container {
-  width: min(100% - 3.2rem, 120rem);
-  margin-inline: auto;
+  max-width: 1200px;
+  height: 100%;
+  margin: 0 auto;
 }
 
 /* 접근성: 스크린리더 전용 */
