@@ -1,9 +1,35 @@
 @use 'sass:map';
+@use 'sass:math';
 @use 'variables' as *;
 
-/* px → rem (10px = 1rem 가정용) */
+/* px → rem */
 @function rem($px) {
-  @return ($px / 10) * 1rem;
+  @return math.div($px, 10) * 1rem;
+}
+
+/* 폰트 */
+@mixin font($size, $color: null, $weight: 400, $lineheight: null) {
+  font-size: rem($size);
+  @if $color {
+    color: $color;
+  }
+  font-weight: $weight;
+  @if $lineheight {
+    line-height: rem($lineheight);
+  }
+}
+
+@mixin font12($color: #000, $weight: 400, $lineheight: 18) {
+  @include font($font-size-12, $color, $weight, $lineheight);
+}
+@mixin font14($color: #000, $weight: 400, $lineheight: 20) {
+  @include font($font-size-14, $color, $weight, $lineheight);
+}
+@mixin font16($color: #000, $weight: 400, $lineheight: 24) {
+  @include font($font-size-16, $color, $weight, $lineheight);
+}
+@mixin font20($color: #000, $weight: 600, $lineheight: 28) {
+  @include font($font-size-20, $color, $weight, $lineheight);
 }
 
 /* z-index 레이어 헬퍼 */
@@ -62,9 +88,21 @@
   padding: 0;
   border: 0;
   clip: rect(0 0 0 0);
-  clip-path: inset(50%);
   overflow: hidden;
   white-space: nowrap;
+}
+@mixin sr-only-focus {
+  position: static !important;
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 0.5rem 0.75rem;
+  clip: auto;
+  background: #000;
+  color: #fff;
+  border-radius: 0.25rem;
+  outline: 2px solid #fff;
+  z-index: 1000;
 }
 
 /* 버튼 스타일 샘플 */

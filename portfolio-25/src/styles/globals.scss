@@ -66,6 +66,11 @@ p + p {
 /* 접근성: 스크린리더 전용 */
 .sr-only {
   @include sr-only;
+
+  &:focus,
+  &:focus-visible {
+    @include sr-only-focus;
+  }
 }
 
 /* util */
