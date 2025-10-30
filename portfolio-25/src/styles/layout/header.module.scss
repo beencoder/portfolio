@@ -1,5 +1,15 @@
+@use '../index' as *;
+
 .header {
   position: sticky;
   top: 0;
+  left: 0;
+  border-bottom: 1px solid $color-surface;
   backdrop-filter: blur(6px);
+  &-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: rem(14) 0;
+  }
 }

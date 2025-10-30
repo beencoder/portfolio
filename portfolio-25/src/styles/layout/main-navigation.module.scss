@@ -1,19 +1,24 @@
+@use '../index' as *;
+
 .nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: var(--space-3) 0;
-}
-.logo {
-  font-weight: 700;
-  letter-spacing: 0.3px;
-}
-.menu {
-  display: flex;
-  gap: var(--space-3);
-}
-.is-active {
-  background-color: red;
-  text-decoration: underline;
-  text-underline-offset: 4px;
+
+  .menu {
+    display: flex;
+    gap: var(--space-3);
+
+    &-item {
+      padding: 0 rem(10);
+
+      a {
+        &.is-active {
+          text-decoration: underline;
+          text-underline-offset: 4px;
+        }
+      }
+    }
+  }
 }
