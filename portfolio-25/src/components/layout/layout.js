@@ -7,7 +7,9 @@ export default function Layout(props) {
   return (
     <Fragment>
       <Header />
-      <main>{props.children}</main>
+      <main id="main" tabIndex={-1}>
+        {props.children}
+      </main>
       <Footer />
     </Fragment>
   );

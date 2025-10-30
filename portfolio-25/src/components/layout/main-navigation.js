@@ -15,7 +15,7 @@ export default function MainNavigation({ navItems = [] }) {
   const pathname = router?.pathname || '';
   const [activeSection, setActiveSection] = useState('');
 
-  // 홈이 아니면 page 타입만 남기기
+  // 홈이 아니면 page 타입 버튼만 필터링
   const visibleItems = useMemo(() => {
     if (pathname === '/') return navItems;
 
@@ -24,7 +24,7 @@ export default function MainNavigation({ navItems = [] }) {
   }, [pathname, navItems]);
 
   useEffect(() => {
-    const sections = visibleItems
+    const sectionItems = visibleItems
       .filter((item) => item.type === 'section')
       .map((item) => {
         const el = document.querySelector(item.href);
@@ -32,15 +32,15 @@ export default function MainNavigation({ navItems = [] }) {
       })
       .filter(Boolean);
 
-    if (!sections.length) return;
+    if (!sectionItems.length) return;
 
-    // 스크롤 시 활성화된 section 갱신
-    const onScroll = () => {
+    // 스크롤 시 화면 중앙과 가장 가까운 섹션을 감지해 activeSection 상태 업데이트
+    const updateActiveSection = () => {
       const viewportCenter = window.innerHeight / 2;
-      let closestId = sections[0].id;
+      let closestId = sectionItems[0].id;
       let minDist = Infinity;
 
-      for (const section of sections) {
+      for (const section of sectionItems) {
         const rect = section.el.getBoundingClientRect();
         const sectionCenter = rect.top + rect.height / 2;
         const dist = Math.abs(sectionCenter - viewportCenter);
@@ -52,18 +52,19 @@ export default function MainNavigation({ navItems = [] }) {
       setActiveSection(closestId);
     };
 
-    onScroll(); // 초기 init
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
+    updateActiveSection(); // 초기 init
+    window.addEventListener('scroll', updateActiveSection, { passive: true });
+    window.addEventListener('resize', updateActiveSection);
     return () => {
-      window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', onScroll);
+      window.removeEventListener('scroll', updateActiveSection);
+      window.removeEventListener('resize', updateActiveSection);
     };
   }, [navItems]);
 
   // 메뉴 클릭 시 스크롤 이동
   const onMenuClick = (e, href) => {
     e.preventDefault();
+
     const el = document.querySelector(href);
     if (!el) return;
 
@@ -78,7 +79,7 @@ export default function MainNavigation({ navItems = [] }) {
           if (item.type === 'section') {
             const isActive = activeSection === item.href;
             return (
-              <li key={item.href}>
+              <li key={item.href} className={styles['menu-item']}>
                 <a
                   href={item.href}
                   onClick={(e) => onMenuClick(e, item.href)}
@@ -92,7 +93,7 @@ export default function MainNavigation({ navItems = [] }) {
 
           const isActive = isPageActive(pathname, item.href);
           return (
-            <li key={item.href}>
+            <li key={item.href} className={styles['menu-item']}>
               <Link
                 href={item.href}
                 className={isActive ? styles['is-active'] : undefined}

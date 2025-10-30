@@ -28,9 +28,11 @@ export default function Header() {
         본문 바로가기
       </a>
       <div className="container">
-        <h1 className="sr-only">다빈의 포트폴리오 사이트</h1>
-        <Logo />
-        <MainNavigation navItems={navItems} />
+        <div className={styles['header-inner']}>
+          <h1 className="sr-only">다빈의 포트폴리오 사이트</h1>
+          <Logo />
+          <MainNavigation navItems={navItems} />
+        </div>
       </div>
     </header>
   );
