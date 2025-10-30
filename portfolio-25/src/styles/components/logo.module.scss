@@ -4,16 +4,13 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  text-transform: uppercase;
-  @include m.font20(var(--color-grey-50), 600);
+  @include m.font20($weight: 600);
 
   .image-wrap {
     position: relative;
-    width: 4rem;
+    width: 2rem;
   }
 }
 
 @media (min-width: 768px) {
-  .logo {
-  }
 }
