@@ -1,7 +1,12 @@
-import Head from 'next/head';
-import Image from 'next/image';
+import { Fragment } from 'react';
 import { Geist, Geist_Mono } from 'next/font/google';
+
 import styles from '@/styles/main.module.scss';
+import IntroSection from '@/components/sections/intro';
+import AboutSection from '@/components/sections/about';
+import SkillsSection from '@/components/sections/skills';
+import WorksSection from '@/components/sections/works';
+import ContactSection from '@/components/sections/contact';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -15,14 +20,12 @@ const geistMono = Geist_Mono({
 
 export default function Home() {
   return (
-    <>
-      <section className={styles.section} id="intro">
-        <div className="container"></div>
-      </section>
-      <section className={styles.section} id="about"></section>
-      <section className={styles.section} id="skills"></section>
-      <section className={styles.section} id="works"></section>
-      <section className={styles.section} id="contact"></section>
-    </>
+    <Fragment>
+      <IntroSection id="intro" />
+      <AboutSection id="about" />
+      <SkillsSection id="skills" />
+      <WorksSection id="works" />
+      <ContactSection id="contact" />
+    </Fragment>
   );
 }
