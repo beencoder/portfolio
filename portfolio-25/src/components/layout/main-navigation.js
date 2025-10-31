@@ -68,8 +68,12 @@ export default function MainNavigation({ navItems = [] }) {
     const el = document.querySelector(href);
     if (!el) return;
 
-    const top = el.getBoundingClientRect().top + window.scrollY - 72;
+    const top = el.getBoundingClientRect().top + window.scrollY - 65;
     window.scrollTo({ top, behavior: 'smooth' });
+
+    setTimeout(() => {
+      el.focus({ preventScroll: true });
+    }, 600);
   };
 
   return (

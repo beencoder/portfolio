@@ -17,7 +17,7 @@ export default function Header() {
 
     const mainEl = document.getElementById('main');
     if (mainEl) {
-      window.scrollTo({ top: mainEl.offsetTop, behavior: 'smooth' });
+      mainEl.scrollIntoView({ behavior: 'smooth' });
       mainEl.focus({ preventScroll: true });
     }
   };
