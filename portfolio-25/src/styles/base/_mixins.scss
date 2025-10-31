@@ -1,35 +1,33 @@
 @use 'sass:map';
-@use 'sass:math';
+@use 'functions' as fn;
 @use 'variables' as *;
 
-/* px → rem */
-@function rem($px) {
-  @return math.div($px, 10) * 1rem;
-}
-
-/* 폰트 */
+/* 기본 폰트 */
 @mixin font($size, $color: null, $weight: 400, $lineheight: null) {
-  font-size: rem($size);
+  font-size: fn.rem($size);
   @if $color {
     color: $color;
   }
   font-weight: $weight;
   @if $lineheight {
-    line-height: rem($lineheight);
+    line-height: fn.rem($lineheight);
   }
 }
 
-@mixin font12($color: #000, $weight: 400, $lineheight: 18) {
+@mixin font12($color: $color-text, $weight: 400, $lineheight: 18) {
   @include font($font-size-12, $color, $weight, $lineheight);
 }
-@mixin font14($color: #000, $weight: 400, $lineheight: 20) {
+@mixin font14($color: $color-text, $weight: 400, $lineheight: 20) {
   @include font($font-size-14, $color, $weight, $lineheight);
 }
-@mixin font16($color: #000, $weight: 400, $lineheight: 24) {
+@mixin font16($color: $color-text, $weight: 400, $lineheight: 24) {
   @include font($font-size-16, $color, $weight, $lineheight);
 }
-@mixin font20($color: #000, $weight: 600, $lineheight: 28) {
+@mixin font20($color: $color-text, $weight: 600, $lineheight: 30) {
   @include font($font-size-20, $color, $weight, $lineheight);
+}
+@mixin font24($color: $color-text, $weight: 600, $lineheight: 36) {
+  @include font($font-size-24, $color, $weight, $lineheight);
 }
 
 /* z-index 레이어 헬퍼 */
@@ -48,13 +46,24 @@
   }
 }
 
-/* 유동 타이포그래피: clamp(min, vw 기반, max) */
+/* 유동 타이포그래피 */
 @mixin fluid-type($min, $max, $min-vw: 360px, $max-vw: 1280px) {
+  $minNum: fn.strip-unit($min);
+  $maxNum: fn.strip-unit($max);
+  $minV: fn.strip-unit($min-vw);
+  $maxV: fn.strip-unit($max-vw);
+
   font-size: clamp(
     #{$min},
-    calc(#{$min} + (#{strip-unit($max - $min)} * ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}))),
+    calc(#{$min} + (#{$maxNum - $minNum} * ((100vw - #{$min-vw}) / #{$maxV - $minV}))),
     #{$max}
   );
+}
+
+/* 포커스 링 */
+@mixin focus-ring {
+  outline: 2px solid var(--color-primary, #{$color-primary});
+  outline-offset: 4px;
 }
 
 /* 중앙 정렬 */
@@ -71,7 +80,7 @@
   white-space: nowrap;
 }
 
-/* N줄 말줄임: @include multiline-truncate(2); */
+/* N줄 말줄임 */
 @mixin multiline-truncate($lines: 2) {
   display: -webkit-box;
   -webkit-line-clamp: $lines;
@@ -79,7 +88,7 @@
   overflow: hidden;
 }
 
-/* 스크린리더 전용 (접근성) */
+/* 스크린리더 전용 */
 @mixin sr-only {
   position: absolute !important;
   width: 1px;
@@ -105,22 +114,23 @@
   z-index: 1000;
 }
 
-/* 버튼 스타일 샘플 */
+/* 버튼 베이스 */
 @mixin button-base {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.6rem;
   padding: 0.8rem 1.6rem;
-  border-radius: $radius-md;
-  border: 1px solid $color-border;
+  border-radius: var(--radius-md, #{$radius-md});
+  border: 1px solid var(--color-border, #{$color-border});
   background: transparent;
-  color: $color-text;
-  box-shadow: $shadow-sm;
+  color: var(--color-text, #{$color-text});
+  box-shadow: var(--shadow-sm, #{$shadow-sm});
   transition: transform 0.08s ease, box-shadow 0.2s ease, background 0.2s ease;
+
   @media (hover: hover) {
     &:hover {
-      box-shadow: $shadow-md;
+      box-shadow: var(--shadow-md, #{$shadow-md});
     }
   }
   &:active {
@@ -128,8 +138,8 @@
   }
 }
 
-/* 컨테이너 util */
-@mixin container($max: 1200px, $gutter: 1.6rem) {
-  width: min(100% - $gutter * 2, $max);
+/* 컨테이너 유틸 */
+@mixin container($max: var(--container-max, #{$container-max}), $gutter: var(--space-4, #{$space-4})) {
+  width: min(100% - #{$gutter} * 2, #{$max});
   margin-inline: auto;
 }

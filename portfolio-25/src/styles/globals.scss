@@ -1,37 +1,62 @@
-@use 'base/variables' as *;
-@use 'base/mixins' as *;
+@use 'index' as *;
 @use 'base/reset';
 
 :root {
   --color-bg: #{$color-bg};
   --color-text: #{$color-text};
+  --color-text-muted: #{$color-text-muted};
   --color-primary: #{$color-primary};
+  --color-primary-hover: #{$color-primary-hover};
+  --color-primary-active: #{$color-primary-active};
+  --color-border: #{$color-border};
+  --color-surface: #{$color-surface};
+  --color-surface-alt: #{$color-surface-alt};
+  --color-on-primary: #{$color-on-primary};
+  --color-on-surface: #{$color-on-surface};
+  --color-on-surface-alt: #{$color-on-surface-alt};
+
+  --space-1: #{$space-1};
+  --space-2: #{$space-2};
+  --space-3: #{$space-3};
+  --space-4: #{$space-4};
+  --space-5: #{$space-5};
+  --space-6: #{$space-6};
+  --space-8: #{$space-8};
+  --space-10: #{$space-10};
+  --space-12: #{$space-12};
+
+  --container-max: #{$container-max};
+  --header-offset: #{$header-offset};
+  --grid-gap: #{$grid-gap};
+  --space-section: #{$space-section};
+
+  --radius-sm: #{$radius-sm};
   --radius-md: #{$radius-md};
+  --radius-lg: #{$radius-lg};
   --shadow-sm: #{$shadow-sm};
+  --shadow-md: #{$shadow-md};
+  --shadow-lg: #{$shadow-lg};
 }
 
 html {
   font-size: 62.5%;
+  /* 전역 스크롤 동작 */
+  scroll-padding-top: var(--header-offset);
+  scroll-behavior: smooth;
 }
-
 body {
   font-family: $font-sans;
   font-size: 1.6rem;
-  line-height: 1.6;
-  color: var(--color-text);
-  background: var(--color-bg);
+  line-height: 1.5;
+  color: var(--color-text, #{$color-text});
+  background: var(--color-bg, #{$color-bg});
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 a {
-  color: var(--color-primary);
+  color: var(--color-on-primary, #{$color-on-primary});
   text-decoration: none;
-  // @media (hover: hover) {
-  //   &:hover {
-  //     text-decoration: underline;
-  //   }
-  // }
 }
 
 img,
@@ -57,13 +82,27 @@ p + p {
 }
 
 /* layout */
+.main {
+  scroll-margin-top: var(--header-offset);
+}
+.section {
+  min-height: 80vh;
+  border-bottom: 1px solid red;
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+
+  &:not(:first-of-type) {
+    padding-block: var(--space-section, #{$space-section});
+  }
+}
 .container {
-  max-width: 1200px;
+  @include container();
   height: 100%;
-  margin: 0 auto;
 }
 
-/* 접근성: 스크린리더 전용 */
+/* 스크린리더 전용 */
 .sr-only {
   @include sr-only;
 
@@ -80,8 +119,6 @@ p + p {
 .truncate {
   @include truncate;
 }
-
-/* 반응형 */
 .responsive-title {
   @include fluid-type(1.8rem, 2.8rem);
 }

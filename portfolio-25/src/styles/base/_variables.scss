@@ -1,4 +1,4 @@
-/* font */
+/* fonts */
 $font-sans: -apple-system, BlinkMacSystemFont, 'Pretendard', 'Inter', 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
   'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
 $font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
@@ -7,30 +7,47 @@ $font-size-12: 12;
 $font-size-14: 14;
 $font-size-16: 16;
 $font-size-20: 20;
+$font-size-24: 24;
 $font-size-28: 28;
 
 /* color palette */
-$color-bg: #1d1a1b; // 배경
-$color-text: #eae6df; // 본문 텍스트
-$color-primary: #d2ad75; // 포인트
-$color-muted: #b9b0a6;
-$color-border: #2a2627;
+/* base */
+$color-bg: #ffffff;
+$color-surface: #1e1e1e;
+$color-surface-alt: #f3f3f3;
+$color-border: #dcdcdc;
+/* text */
+$color-text: #2e2e2e;
+$color-text-muted: rgba($color-text, 0.65);
+$color-text-inverse: #ffffff;
+/* accent */
+$color-primary: #a3d9a5;
+$color-primary-hover: #92c995;
+$color-primary-active: #7bb77f;
+/* states */
+$color-success: #8fcf84;
+$color-warning: #f2c76e;
+$color-error: #e46a6a;
+$color-info: #7cb7e6;
+/* shadow / overlay */
+$color-shadow: rgba(0, 0, 0, 0.6);
+$color-overlay: rgba(18, 18, 18, 0.8);
+/* on-colors */
+$color-on-primary: #2e2e2e;
+$color-on-surface: #ffffff;
+$color-on-surface-alt: #2e2e2e;
 
-$color-success: #2ecc71;
-$color-warning: #f1c40f;
-$color-danger: #e74c3c;
-
-/* space (4px 기준) */
+/* space */
 $space-0: 0;
-$space-1: 0.4rem; // 4px
-$space-2: 0.8rem; // 8px
-$space-3: 1.2rem; // 12px
-$space-4: 1.6rem; // 16px
-$space-5: 2rem; // 20px
-$space-6: 2.4rem; // 24px
-$space-8: 3.2rem; // 32px
-$space-10: 4rem; // 40px
-$space-12: 4.8rem; // 48px
+$space-1: 0.4rem;
+$space-2: 0.8rem;
+$space-3: 1.2rem;
+$space-4: 1.6rem;
+$space-5: 2rem;
+$space-6: 2.4rem;
+$space-8: 3.2rem;
+$space-10: 4rem;
+$space-12: 4.8rem;
 
 /* radius & shadow */
 $radius-sm: 6px;
@@ -52,10 +69,16 @@ $z-stack: (
   'tooltip': 1500,
 );
 
-/* break-point */
+/* breakpoints */
 $breakpoints: (
   'sm': 480px,
   'md': 768px,
   'lg': 1024px,
   'xl': 1280px,
 );
+
+/* layout 상수 */
+$container-max: 1200px;
+$header-offset: 6.5rem;
+$grid-gap: 1.6rem;
+$space-section: 7.2rem;

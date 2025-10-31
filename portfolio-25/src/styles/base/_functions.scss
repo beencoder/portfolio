@@ -1,0 +1,13 @@
+@use 'sass:math';
+
+@function strip-unit($value) {
+  @if type-of($value) != 'number' {
+    @error 'strip-unit() expects a number.';
+  }
+  @return math.div($value, $value * 0 + 1);
+}
+
+/* px → rem (10px = 1rem 기준) */
+@function rem($px) {
+  @return math.div($px, 10) * 1rem;
+}
