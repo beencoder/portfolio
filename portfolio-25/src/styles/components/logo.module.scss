@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  @include m.font20($weight: 600);
+  @include m.font20($weight: 700);
 
   .image-wrap {
     position: relative;
