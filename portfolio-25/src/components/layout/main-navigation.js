@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useMemo, useState } from 'react';
 
+import useScrambleHover from '@/lib/useScrambleHover';
 import styles from '@/styles/layout/main-navigation.module.scss';
 
 function isPageActive(pathname, href) {
@@ -11,6 +12,8 @@ function isPageActive(pathname, href) {
 }
 
 export default function MainNavigation({ navItems = [] }) {
+  useScrambleHover();
+
   const router = useRouter();
   const pathname = router?.pathname || '';
   const [activeSection, setActiveSection] = useState('');
@@ -88,7 +91,8 @@ export default function MainNavigation({ navItems = [] }) {
                   href={item.href}
                   onClick={(e) => onMenuClick(e, item.href)}
                   className={isActive ? styles['is-active'] : undefined}
-                  aria-current={isActive ? 'true' : undefined}>
+                  aria-current={isActive ? 'true' : undefined}
+                  data-scramble>
                   {item.label}
                 </a>
               </li>
@@ -101,7 +105,8 @@ export default function MainNavigation({ navItems = [] }) {
               <Link
                 href={item.href}
                 className={isActive ? styles['is-active'] : undefined}
-                aria-current={isActive ? 'page' : undefined}>
+                aria-current={isActive ? 'page' : undefined}
+                data-scramble>
                 {item.label}
               </Link>
             </li>
