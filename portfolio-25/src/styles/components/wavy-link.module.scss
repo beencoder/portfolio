@@ -1,0 +1,117 @@
+/* styles/components/wavy-link.module.scss */
+.link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  font-weight: 500;
+  line-height: 1;
+  transition: color 0.4s;
+  isolation: isolate;
+  --char-delay: 28ms; // 문자 간 지연
+  --dur: 320ms; // 한 글자 이동 시간
+  --easing: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --slideY: 110%; // 위/아래 이동량
+  --bracket-gap: 0.35em; // 대괄호 벌어짐 정도
+
+  &:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 4px;
+    border-radius: 4px;
+  }
+  &.is-active {
+    color: var(--color-primary-active);
+  }
+}
+
+.text-inner {
+  position: relative;
+  display: inline-grid;
+  grid-template-rows: auto;
+  grid-template-columns: auto;
+  line-height: 1;
+
+  .text {
+    grid-row: 1 / 2;
+    grid-column: 1 / 2;
+    display: inline-flex;
+    height: 1em;
+    overflow: hidden;
+
+    &.top .char {
+      transform: translateY(0);
+    }
+    &.bottom .char {
+      transform: translateY(var(--slideY));
+    }
+  }
+  .char {
+    display: inline-block;
+    transform: translateY(0);
+    will-change: transform;
+    transition: transform var(--dur) var(--easing);
+    transition-delay: calc(var(--i) * var(--char-delay));
+  }
+}
+.link:hover .top .char,
+.link:focus-visible .top .char,
+.link.is-active .top .char,
+.is-active .top .char {
+  transform: translateY(calc(var(--slideY) * -1));
+}
+.link:hover .bottom .char,
+.link:focus-visible .bottom .char,
+.link.is-active .bottom .char,
+.is-active .bottom .char {
+  transform: translateY(0);
+}
+
+.with-brackets {
+  position: relative;
+  padding-inline: 0.5em;
+
+  &::before,
+  &::after {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: 500;
+    opacity: 0.85;
+    transition: transform var(--dur) var(--easing), opacity 200ms ease;
+    pointer-events: none;
+    will-change: transform;
+  }
+  &::before {
+    content: '[';
+    left: -0.25em;
+  }
+  &::after {
+    content: ']';
+    right: -0.25em;
+  }
+}
+.link:hover .with-brackets::before,
+.link:focus-visible .with-brackets::before,
+.link.is-active .with-brackets::before,
+.is-active .with-brackets::before {
+  transform: translate(calc(-1 * var(--bracket-gap)), -50%);
+  opacity: 1;
+}
+.link:hover .with-brackets::after,
+.link:focus-visible .with-brackets::after,
+.link.is-active .with-brackets::after,
+.is-active .with-brackets::after {
+  transform: translate(var(--bracket-gap), -50%);
+  opacity: 1;
+}
+
+/* 접근성: 모션 최소화 환경 */
+@media (prefers-reduced-motion: reduce) {
+  .char {
+    transition: none;
+    transform: none !important;
+  }
+  .with-brackets::before,
+  .with-brackets::after {
+    transition: none;
+  }
+}
