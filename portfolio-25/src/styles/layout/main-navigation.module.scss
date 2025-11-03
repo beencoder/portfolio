@@ -1,35 +1,10 @@
-@use '../index' as *;
-
 .nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: var(--space-3) 0;
-
   .menu {
     display: flex;
-    gap: var(--space-3);
+    gap: var(--space-8);
 
-    &-item {
-      margin: 0 rem(10);
-
-      a {
-        font-weight: 500;
-        transition: color 0.4s;
-
-        &.is-active {
-          color: var(--color-primary-active);
-          text-decoration: underline;
-          text-underline-offset: 4px;
-        }
-      }
-    }
     &:has(.menu-item:hover, .menu-item:focus-within) .menu-item:not(:hover):not(:focus-within) a {
       color: var(--color-text-muted);
-
-      &.is-active {
-        text-decoration: none;
-      }
     }
   }
 }

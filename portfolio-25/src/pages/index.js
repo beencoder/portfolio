@@ -1,7 +1,6 @@
 import { Fragment } from 'react';
 import { Geist, Geist_Mono } from 'next/font/google';
 
-import styles from '@/styles/main.module.scss';
 import IntroSection from '@/components/sections/intro';
 import AboutSection from '@/components/sections/about';
 import SkillsSection from '@/components/sections/skills';

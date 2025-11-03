@@ -1,8 +1,7 @@
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useMemo, useState } from 'react';
 
-import useScrambleHover from '@/lib/useScrambleHover';
+import WavyLink from '@/components/ui/wavy-link';
 import styles from '@/styles/layout/main-navigation.module.scss';
 
 function isPageActive(pathname, href) {
@@ -12,8 +11,6 @@ function isPageActive(pathname, href) {
 }
 
 export default function MainNavigation({ navItems = [] }) {
-  useScrambleHover();
-
   const router = useRouter();
   const pathname = router?.pathname || '';
   const [activeSection, setActiveSection] = useState('');
@@ -27,6 +24,7 @@ export default function MainNavigation({ navItems = [] }) {
   }, [pathname, navItems]);
 
   useEffect(() => {
+    // 현재 렌더링에서 실제 존재하는 섹션 타입 버튼만 필터링
     const sectionItems = visibleItems
       .filter((item) => item.type === 'section')
       .map((item) => {
@@ -62,53 +60,17 @@ export default function MainNavigation({ navItems = [] }) {
       window.removeEventListener('scroll', updateActiveSection);
       window.removeEventListener('resize', updateActiveSection);
     };
-  }, [navItems]);
-
-  // 메뉴 클릭 시 스크롤 이동
-  const onMenuClick = (e, href) => {
-    e.preventDefault();
-
-    const el = document.querySelector(href);
-    if (!el) return;
-
-    const top = el.getBoundingClientRect().top + window.scrollY - 65;
-    window.scrollTo({ top, behavior: 'smooth' });
-
-    setTimeout(() => {
-      el.focus({ preventScroll: true });
-    }, 600);
-  };
+  }, [visibleItems]);
 
   return (
     <nav className={styles.nav} aria-label="Primary">
       <ul className={styles.menu}>
         {visibleItems.map((item) => {
-          if (item.type === 'section') {
-            const isActive = activeSection === item.href;
-            return (
-              <li key={item.href} className={styles['menu-item']}>
-                <a
-                  href={item.href}
-                  onClick={(e) => onMenuClick(e, item.href)}
-                  className={isActive ? styles['is-active'] : undefined}
-                  aria-current={isActive ? 'true' : undefined}
-                  data-scramble>
-                  {item.label}
-                </a>
-              </li>
-            );
-          }
+          const isActive = item.type === 'section' ? activeSection === item.href : isPageActive(pathname, item.href);
 
-          const isActive = isPageActive(pathname, item.href);
           return (
             <li key={item.href} className={styles['menu-item']}>
-              <Link
-                href={item.href}
-                className={isActive ? styles['is-active'] : undefined}
-                aria-current={isActive ? 'page' : undefined}
-                data-scramble>
-                {item.label}
-              </Link>
+              <WavyLink href={item.href} label={item.label} isActive={isActive} />
             </li>
           );
         })}
