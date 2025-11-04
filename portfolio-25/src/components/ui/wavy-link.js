@@ -10,6 +10,7 @@ export default function WavyLink({
   isActive = false,
   brackets = true,
   offset = 65,
+  onAfterNavigate,
   ...restProps
 }) {
   const isHashLink = typeof href === 'string' && href.startsWith('#');
@@ -19,6 +20,7 @@ export default function WavyLink({
 
   const onPageLinkClick = (e) => {
     if (e.currentTarget instanceof HTMLElement) e.currentTarget.blur();
+    if (onAfterNavigate) setTimeout(() => onAfterNavigate(), 0);
   };
 
   const onHashLinkClick = (e) => {
@@ -32,6 +34,7 @@ export default function WavyLink({
     setTimeout(
       () => {
         if (typeof el.focus === 'function') el.focus({ preventScroll: true });
+        if (onAfterNavigate) onAfterNavigate();
       },
       prefersReduced ? 0 : 450,
     );
