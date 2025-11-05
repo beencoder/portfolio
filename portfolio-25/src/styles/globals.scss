@@ -1,5 +1,6 @@
-@use 'index' as *;
+@use 'base/fonts';
 @use 'base/reset';
+@use 'index' as *;
 
 :root {
   --color-bg: #{$color-bg};
@@ -44,8 +45,13 @@ html {
   scroll-padding-top: var(--header-offset);
   scroll-behavior: smooth;
 }
+html.is-scroll-locked {
+  overflow: hidden;
+}
+
 body {
-  font-family: $font-sans;
+  font-family: 'Lato', 'Spoqa Han Sans Neo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
+    Arial, 'Noto Sans KR', sans-serif;
   font-size: 1.6rem;
   line-height: 1.5;
   color: var(--color-text, #{$color-text});
@@ -55,8 +61,14 @@ body {
 }
 
 a {
-  color: var(--color-on-primary, #{$color-on-primary});
+  color: var(--color-primary);
   text-decoration: none;
+}
+a,
+button {
+  &:focus-visible {
+    @include focus-ring;
+  }
 }
 
 img,
@@ -86,13 +98,12 @@ p + p {
   scroll-margin-top: var(--header-offset);
 }
 .section {
-  min-height: 80vh;
-  border-bottom: 1px solid red;
+  position: relative;
+  min-height: 100dvh;
 
   &:focus-visible {
     @include focus-ring;
   }
-
   &:not(:first-of-type) {
     padding-block: var(--space-section, #{$space-section});
   }
@@ -120,5 +131,6 @@ p + p {
   @include truncate;
 }
 .responsive-title {
-  @include fluid-type(1.8rem, 2.8rem);
+  @include fluid-type(18, 28);
 }
+// .responsive-title { @include fluid-type-range(18, 28); }
