@@ -1,29 +1,27 @@
-$wrap-open-duration: 360ms; /* menu-wrap 내려오는 시간 */
-$wrap-close-duration: 280ms; /* menu-wrap 올라가는 시간 */
-$item-duration: 280ms; /* 아이템 in/out 기본 시간 */
-$item-stagger-open: 40ms; /* 열릴 때 스태거 간격 (1→N) */
-$item-stagger-close: 24ms; /* 닫힐 때 스태거 간격 (N→1) */
-$item-count: 12; /* 최대 아이템 수 가정 */
-$item-start-lag: 60ms; /* wrap 거의 끝날 때 아이템 시작(열기) */
-
-.nav {
-  position: relative;
-}
+/* ===== 모션 타이밍 ===== */
+$wrap-open-duration: 520ms;
+$wrap-close-duration: 420ms;
+$item-duration: 450ms;
+$item-stagger-open: 70ms;
+$item-stagger-close: 40ms;
+$item-count: 6;
+$item-start-lag: 120ms;
+$base-open-delay: $wrap-open-duration - ($item-start-lag * 2);
 
 .toggle-btn {
+  display: none;
   position: relative;
-  display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  width: 38px;
+  height: 38px;
   border-radius: 12px;
   border: 1px solid var(--color-border, currentColor);
   background: transparent;
   cursor: pointer;
   z-index: 4;
 
-  &.is-open .icon {
+  &.is-open .icon-group .icon {
     &.menu {
       transform: translateY(-100%);
     }
@@ -31,130 +29,114 @@ $item-start-lag: 60ms; /* wrap 거의 끝날 때 아이템 시작(열기) */
       transform: translateY(0%);
     }
   }
-}
+  .icon-group {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    overflow: hidden;
 
-.icon-group {
-  position: relative;
-  width: 24px;
-  height: 24px;
-  overflow: hidden;
+    .icon {
+      position: absolute;
+      inset: 0;
+      transition: transform 400ms cubic-bezier(0.22, 1, 0.36, 1);
 
-  .icon {
-    position: absolute;
-    inset: 0;
-    display: grid;
-    place-items: center;
-    transform: translateY(0);
-    transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
-
-    &.menu {
-      transform: translateY(0%);
-    }
-    &.close {
-      transform: translateY(100%);
+      &.menu {
+        transform: translateY(0);
+      }
+      &.close {
+        transform: translateY(100%);
+      }
     }
   }
 }
 
 .menu-wrap {
-  position: fixed;
-  inset: 0;
-  background: var(--color-surface, #111);
-  color: var(--color-text-inverse, #fff);
+  position: relative;
+  visibility: visible;
   z-index: 3;
-  transform: translateY(-100%);
-  opacity: 1;
-  visibility: hidden;
 
-  &[data-state='open'] {
-    // width: 100%;
-    // height: 100dvh;
-    visibility: visible;
-    transform: translateY(0);
-    transition: transform $wrap-open-duration cubic-bezier(0.22, 1, 0.36, 1), visibility 0s;
-  }
-  &[data-state='closing-items'] {
-    transform: translateY(0);
-    visibility: visible;
-    transition: none;
-  }
-  &[data-state='closing'] {
-    transform: translateY(-100%);
-    visibility: hidden;
-    transition: transform $wrap-close-duration cubic-bezier(0.4, 0, 0.2, 1), visibility 0s linear $wrap-close-duration;
-  }
-}
-.menu-list {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-8, 16px);
-  padding: 96px 24px 32px;
-  max-width: 960px;
-  margin: 0 auto;
-
-  /* hover mute 효과 유지 */
-  &:has(.menu-item:hover, .menu-item:focus-within) .menu-item:not(:hover):not(:focus-within) a {
-    color: var(--color-text-muted);
-  }
-  .menu-item a {
-    transform: translateX(-12px);
-    opacity: 0;
-    transition: transform $item-duration cubic-bezier(0.22, 1, 0.36, 1),
-      opacity $item-duration cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
-  $base-open-delay: $wrap-open-duration - $item-start-lag;
-  [data-state='open'] & .menu-item {
-    @for $i from 1 through $item-count {
-      &:nth-child(#{$i}) a {
-        transition-delay: $base-open-delay + ($item-stagger-open * ($i - 1));
-        transform: translateX(0);
-        opacity: 1;
-      }
-    }
-  }
-  [data-state='closing-items'] & .menu-item {
-    /* 역스태거: 마지막이 0ms, 첫번째가 가장 길게 */
-    @for $i from 1 through $item-count {
-      /* 역순 인덱스 nRev = itemCount - i */
-      $nRev: $item-count - $i;
-      &:nth-child(#{$i}) a {
-        transition-delay: $item-stagger-close * $nRev;
-        transform: translateX(-12px);
-        opacity: 0;
-      }
-    }
-  }
-}
-
-/* 데스크탑 */
-@media (min-width: 768px) {
-  .toggle-btn {
-    display: none;
-  }
-  .menu-wrap {
-    position: static;
-    transform: none;
-    opacity: 1;
-    visibility: visible;
-    background: transparent;
-    transition: none;
-    height: auto;
-  }
   .menu-list {
+    display: flex;
     flex-direction: row;
     align-items: center;
-    gap: var(--space-8, 16px);
-    padding: 0;
+    gap: var(--space-8);
 
-    .menu-item a {
-      transform: none;
-      opacity: 1;
-      transition: none;
+    &:has(.menu-item:hover, .menu-item:focus-within) .menu-item:not(:hover):not(:focus-within) a {
+      color: var(--color-text-muted);
     }
   }
 }
 
+/* ===== 모바일 ===== */
+@media (max-width: 767px) {
+  .toggle-btn {
+    display: inline-flex;
+  }
+
+  .menu-wrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100dvh;
+    background-color: var(--color-bg);
+    color: var(--color-text-inverse, #fff);
+    transform: translateY(-100%);
+    visibility: hidden;
+
+    &[data-state='open'] {
+      visibility: visible;
+      transform: translateY(0);
+      transition: transform $wrap-open-duration cubic-bezier(0.22, 1, 0.36, 1), visibility 0s;
+
+      .menu-list .menu-item {
+        @for $i from 1 through $item-count {
+          &:nth-child(#{$i}) a {
+            transition-delay: $base-open-delay + ($item-stagger-open * ($i - 1));
+            transform: translateX(0);
+            opacity: 1;
+          }
+        }
+      }
+    }
+    &[data-state='closing-items'] {
+      transform: translateY(0);
+      visibility: visible;
+      height: 100dvh;
+      transition: none;
+
+      .menu-list .menu-item {
+        @for $i from 1 through $item-count {
+          $nRev: $item-count - $i;
+          &:nth-child(#{$i}) a {
+            transition-delay: $item-stagger-close * $nRev;
+            transform: translateX(24px);
+            opacity: 0;
+          }
+        }
+      }
+    }
+    &[data-state='closing'] {
+      transform: translateY(-100%);
+      visibility: hidden;
+      transition: transform $wrap-close-duration cubic-bezier(0.4, 0, 0.2, 1), visibility 0s linear $wrap-close-duration;
+    }
+    .menu-list {
+      flex-direction: column;
+      gap: var(--space-8, 16px);
+      padding: 96px 24px 32px;
+
+      .menu-item a {
+        transform: translateX(24px);
+        opacity: 0;
+        transition: transform $item-duration cubic-bezier(0.22, 1, 0.36, 1),
+          opacity $item-duration cubic-bezier(0.22, 1, 0.36, 1);
+      }
+    }
+  }
+}
+
+/* ===== 접근성: 모션 최소화 환경 ===== */
 @media (prefers-reduced-motion: reduce) {
   .menu-wrap,
   .menu-list .menu-item a,

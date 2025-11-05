@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
+import useScrollLock from '@/hooks/useScrollLock';
 import WavyLink from '@/components/ui/wavy-link';
 import styles from '@/styles/layout/main-navigation.module.scss';
 
@@ -36,11 +37,10 @@ export default function MainNavigation({ navItems = [] }) {
   const isDesktop = useMedia('(min-width: 768px)');
 
   // ===== 모바일 메뉴 모션 타이밍 상수 =====
-  const OPEN_WRAP_MS = 360;
-  const CLOSE_WRAP_MS = 280;
-  const ITEM_MS = 280;
-  const ITEM_STAGGER_CLOSE = 24;
-  const ITEM_COUNT_FOR_CLOSE = 12;
+  const CLOSE_WRAP_MS = 420;
+  const ITEM_MS = 450;
+  const ITEM_STAGGER_CLOSE = 40;
+  const ITEM_COUNT_FOR_CLOSE = 6;
 
   // 데스크탑 전환 시 오버레이 강제 닫기
   useEffect(() => {
@@ -52,6 +52,9 @@ export default function MainNavigation({ navItems = [] }) {
     document.documentElement.style.overflow = isOpen ? 'hidden' : '';
     return () => (document.documentElement.style.overflow = '');
   }, [isOpen]);
+
+  // 오버레이 상태에 따른 스크롤락 전환
+  useScrollLock(!isDesktop && isOpen);
 
   // 홈이 아니면 page 타입 버튼만 필터링
   const visibleItems = useMemo(() => {
@@ -102,19 +105,22 @@ export default function MainNavigation({ navItems = [] }) {
 
   // 모바일 메뉴 관련
   const openMenu = useCallback(() => {
+    if (isDesktop) return;
+
     setTimeout(() => setIsOpen(true), 0);
-  }, []);
+  }, [isDesktop]);
 
   const closeMenu = useCallback(() => {
+    if (isDesktop) return;
+
     const wrap = document.getElementById('primary-menu');
     if (!wrap) {
       setIsOpen(false);
       return;
     }
-
     wrap.setAttribute('data-state', 'closing-items');
 
-    const totalItemOut = ITEM_MS + (ITEM_COUNT_FOR_CLOSE - 1) * ITEM_STAGGER_CLOSE;
+    const totalItemOut = ITEM_MS + (ITEM_COUNT_FOR_CLOSE - 4) * ITEM_STAGGER_CLOSE;
 
     setTimeout(() => {
       wrap.setAttribute('data-state', 'closing');
@@ -123,13 +129,13 @@ export default function MainNavigation({ navItems = [] }) {
         setIsOpen(false);
       }, CLOSE_WRAP_MS);
     }, totalItemOut);
-  }, []);
+  }, [isDesktop]);
 
-  // 토글 버튼
+  // 토글 버튼 동작
   const onToggleClick = useCallback(() => {
     if (isOpen) closeMenu();
     else openMenu();
-  }, [isOpen, openMenu, closeMenu]);
+  }, [isDesktop, isOpen, openMenu, closeMenu]);
 
   return (
     <nav className={styles.nav} aria-label="Primary">
@@ -161,7 +167,7 @@ export default function MainNavigation({ navItems = [] }) {
       <div
         id="primary-menu"
         className={styles['menu-wrap']}
-        data-state={isDesktop ? 'open' : isOpen ? 'open' : 'closing'}>
+        data-state={isDesktop ? 'open' : isOpen ? 'open' : 'closed'}>
         <ul className={styles['menu-list']} role="list">
           {visibleItems.map((item) => {
             const isActive = item.type === 'section' ? activeSection === item.href : isPageActive(pathname, item.href);
@@ -174,7 +180,7 @@ export default function MainNavigation({ navItems = [] }) {
                   isActive={isActive}
                   brackets={isDesktop}
                   offset={65}
-                  onAfterNavigate={closeMenu}
+                  onAfterNavigate={!isDesktop ? closeMenu : undefined}
                 />
               </li>
             );
