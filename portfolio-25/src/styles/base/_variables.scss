@@ -12,30 +12,31 @@ $font-size-28: 28;
 
 /* color palette */
 /* base */
-$color-bg: #ffffff;
-$color-surface: #1e1e1e;
-$color-surface-alt: #f3f3f3;
-$color-border: #dcdcdc;
+$color-bg: #e7dcc3;
+$color-surface: #b49a7a;
+$color-surface-alt: #f2ecdf;
+$color-border: #c8bda8;
 /* text */
-$color-text: #2e2e2e;
-$color-text-muted: rgba($color-text, 0.5);
-$color-text-inverse: #ffffff;
+$color-text: #4a4233;
+$color-text-muted: rgba(#4a4233, 0.5);
+$color-text-inverse: #f8f6f2;
 /* accent */
-$color-primary: #a3d9a5;
-$color-primary-hover: #92c995;
-$color-primary-active: #7bb77f;
+$color-primary: #7c7158;
+$color-primary-hover: #6a604a;
+$color-primary-active: #584f3f;
+$color-secondary: #d3a86c;
 /* states */
-$color-success: #8fcf84;
-$color-warning: #f2c76e;
-$color-error: #e46a6a;
-$color-info: #7cb7e6;
+$color-success: #94b785;
+$color-warning: #e2b267;
+$color-error: #c76b5a;
+$color-info: #8aa1a8;
 /* shadow / overlay */
-$color-shadow: rgba(0, 0, 0, 0.6);
-$color-overlay: rgba(18, 18, 18, 0.8);
+$color-shadow: rgba(0, 0, 0, 0.25);
+$color-overlay: rgba(60, 55, 40, 0.65);
 /* on-colors */
-$color-on-primary: #2e2e2e;
-$color-on-surface: #ffffff;
-$color-on-surface-alt: #2e2e2e;
+$color-on-primary: #f5f1eb;
+$color-on-surface: #3e3528;
+$color-on-surface-alt: #4a4233;
 
 /* space */
 $space-0: 0;
