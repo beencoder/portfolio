@@ -1,4 +1,6 @@
 @use 'sass:map';
+@use 'sass:math';
+@use 'sass:meta';
 @use 'functions' as fn;
 @use 'variables' as *;
 
@@ -47,16 +49,27 @@
 }
 
 /* 유동 타이포그래피 */
-@mixin fluid-type($min, $max, $min-vw: 360px, $max-vw: 1280px) {
+/* (1) 기본형
+  - slope 고정: 1rem + 1.2vw
+  - 인자로 최소/최대 폰트(px)를 받는다 (10px = 1rem 기준)
+*/
+@mixin fluid-type($min, $max) {
+  font-size: clamp($min, calc(1rem + 1.2vw), $max);
+}
+/* 2) 범위 제어형
+  - 360px ~ 1280px 구간에서 부드럽게 스케일
+  - $min/$max는 px 숫자, 10px=1rem 기준
+*/
+@mixin fluid-type-range($min, $max, $min-vw: 360px, $max-vw: 1280px) {
   $minNum: fn.strip-unit($min);
   $maxNum: fn.strip-unit($max);
   $minV: fn.strip-unit($min-vw);
   $maxV: fn.strip-unit($max-vw);
 
   font-size: clamp(
-    #{$min},
-    calc(#{$min} + (#{$maxNum - $minNum} * ((100vw - #{$min-vw}) / #{$maxV - $minV}))),
-    #{$max}
+    fn.rem($min),
+    calc(#{fn.rem($min)} + (#{$maxNum - $minNum} * ((100vw - #{$min-vw}) / #{$maxV - $minV}))),
+    fn.rem($max)
   );
 }
 
@@ -139,7 +152,7 @@
 }
 
 /* 컨테이너 유틸 */
-@mixin container($max: var(--container-max, #{$container-max}), $gutter: var(--space-4, #{$space-4})) {
+@mixin container($max: var(--container-max, #{$container-max}), $gutter: var(--space-5, #{$space-5})) {
   width: min(100% - #{$gutter} * 2, #{$max});
   margin-inline: auto;
 }

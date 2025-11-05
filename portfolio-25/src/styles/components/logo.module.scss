@@ -4,6 +4,7 @@
   display: flex;
   align-items: center;
   gap: 1rem;
+  z-index: 4;
   @include m.font20($weight: 700);
 
   .image-wrap {

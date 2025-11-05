@@ -1,10 +1,12 @@
 @use 'sass:math';
+@use 'sass:meta';
 
+/* 숫자에서 단위 제거 */
 @function strip-unit($value) {
-  @if type-of($value) != 'number' {
-    @error 'strip-unit() expects a number.';
+  @if meta.type-of($value) == number {
+    @return math.div($value, $value * 0 + 1);
   }
-  @return math.div($value, $value * 0 + 1);
+  @return $value;
 }
 
 /* px → rem (10px = 1rem 기준) */

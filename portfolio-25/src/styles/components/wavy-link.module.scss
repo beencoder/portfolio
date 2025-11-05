@@ -98,7 +98,7 @@
   opacity: 1;
 }
 
-/* 접근성: 모션 최소화 환경 */
+/* ===== 접근성: 모션 최소화 환경 ===== */
 @media (prefers-reduced-motion: reduce) {
   .char {
     transition: none;
