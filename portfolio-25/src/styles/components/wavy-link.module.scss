@@ -1,16 +1,18 @@
+@use '@/styles/base/mixins' as *;
+
 .link {
   position: relative;
   display: inline-flex;
   align-items: center;
-  font-weight: 500;
-  line-height: 1;
+  @include font14();
+  text-transform: uppercase;
   transition: color 0.4s;
   isolation: isolate;
-  --char-delay: 28ms; // 문자 간 지연
-  --dur: 320ms; // 한 글자 이동 시간
+  --char-delay: 28ms;
+  --dur: 320ms;
   --easing: cubic-bezier(0.2, 0.7, 0.2, 1);
-  --slideY: 110%; // 위/아래 이동량
-  --bracket-gap: var(--space-1); // 대괄호 벌어짐 정도
+  --slideY: 110%;
+  --bracket-gap: var(--space-1);
 
   &.is-active {
     color: var(--color-primary-active);
@@ -28,7 +30,6 @@
     grid-row: 1 / 2;
     grid-column: 1 / 2;
     display: inline-flex;
-    height: 1em;
     overflow: hidden;
 
     &.top .char {
@@ -61,14 +62,14 @@
 
 .with-brackets {
   position: relative;
-  padding-inline: 0.5em;
+  padding-inline: var(--space-4);
 
   &::before,
   &::after {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    font-weight: 500;
+    font-weight: 300;
     opacity: 0.85;
     transition: transform var(--dur) var(--easing), opacity 200ms ease;
     pointer-events: none;
@@ -76,17 +77,18 @@
   }
   &::before {
     content: '[';
-    left: -0.25em;
+    left: 0.4rem;
   }
   &::after {
     content: ']';
-    right: -0.25em;
+    right: 0.4rem;
   }
 }
 .link:hover .with-brackets::before,
 .link:focus-visible .with-brackets::before,
 .link.is-active .with-brackets::before,
 .is-active .with-brackets::before {
+  font-weight: 700;
   transform: translate(calc(-1 * var(--bracket-gap)), -50%);
   opacity: 1;
 }
@@ -94,6 +96,7 @@
 .link:focus-visible .with-brackets::after,
 .link.is-active .with-brackets::after,
 .is-active .with-brackets::after {
+  font-weight: 700;
   transform: translate(var(--bracket-gap), -50%);
   opacity: 1;
 }

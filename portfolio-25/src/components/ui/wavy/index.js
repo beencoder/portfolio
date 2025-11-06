@@ -1,10 +1,41 @@
 import Link from 'next/link';
 import clsx from 'clsx';
 
-import WavyLabel from './wavy-label';
 import styles from '@/styles/components/wavy-link.module.scss';
 
-export default function WavyLink({
+function splitChars(label = '') {
+  return Array.from(label).map((ch) => (ch === ' ' ? '\u00A0' : ch));
+}
+
+export function WavyLabel({ label = '', brackets = true, srOnlyText }) {
+  const chars = splitChars(label);
+
+  return (
+    <span className={clsx(styles['text-inner'], brackets && styles['with-brackets'])}>
+      {srOnlyText ? <span className="sr-only">{srOnlyText}</span> : null}
+
+      {/* 시각용 레이어 (위) */}
+      <span className={clsx(styles.text, styles.top)} aria-hidden="true">
+        {chars.map((ch, i) => (
+          <span key={`t-${i}`} className={styles.char} style={{ ['--i']: i }}>
+            {ch}
+          </span>
+        ))}
+      </span>
+
+      {/* 시각용 레이어 (아래) */}
+      <span className={clsx(styles.text, styles.bottom)} aria-hidden="true">
+        {chars.map((ch, i) => (
+          <span key={`b-${i}`} className={styles.char} style={{ ['--i']: i }}>
+            {ch}
+          </span>
+        ))}
+      </span>
+    </span>
+  );
+}
+
+export function WavyLink({
   href = '#',
   label = '',
   isActive = false,
@@ -62,5 +93,20 @@ export default function WavyLink({
       {...restProps}>
       <WavyLabel label={label} brackets={brackets} srOnlyText={label} />
     </Link>
+  );
+}
+
+export function WavyButton({
+  label = '',
+  type = 'button',
+  brackets = true,
+  isActive = false,
+  className,
+  ...restProps
+}) {
+  return (
+    <button type={type} className={clsx(styles.link, isActive && styles['is-active'], className)} {...restProps}>
+      <WavyLabel label={label} brackets={brackets} srOnlyText={label} />
+    </button>
   );
 }
