@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Image from 'next/image';
 
 import styles from '@/styles/components/logo.module.scss';
 
@@ -9,7 +8,11 @@ export default function Logo() {
       <div className={styles['image-wrap']}>
         <img src="/images/common/logo.png" alt="다빈의 포트폴리오 사이트 로고" />
       </div>
-      DakongTree
+      <div className={styles['text-wrap']}>
+        <div className={styles['text-inner']}>
+          <span className={styles.text}>DakongTree</span>
+        </div>
+      </div>
     </Link>
   );
 }

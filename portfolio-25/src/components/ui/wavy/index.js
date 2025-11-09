@@ -11,7 +11,7 @@ export function WavyLabel({ label = '', brackets = true, srOnlyText }) {
   const chars = splitChars(label);
 
   return (
-    <span className={clsx(styles['text-inner'], brackets && styles['with-brackets'])}>
+    <span className={clsx(styles['text-inner'], { [styles['with-brackets']]: brackets })}>
       {srOnlyText ? <span className="sr-only">{srOnlyText}</span> : null}
 
       {/* 시각용 레이어 (위) */}
@@ -40,7 +40,8 @@ export function WavyLink({
   label = '',
   isActive = false,
   brackets = true,
-  offset = 65,
+  offset = 72,
+  closeFirst = false,
   onAfterNavigate,
   ...restProps
 }) {
@@ -54,28 +55,41 @@ export function WavyLink({
     if (onAfterNavigate) setTimeout(() => onAfterNavigate(), 0);
   };
 
-  const onHashLinkClick = (e) => {
-    e.preventDefault();
+  // 측정/스크롤 함수 분리
+  const scrollToTarget = () => {
     const el = document.querySelector(href);
     if (!el) return;
-
     const top = el.getBoundingClientRect().top + window.scrollY - offset;
     window.scrollTo({ top, behavior: prefersReduced ? 'auto' : 'smooth' });
-
     setTimeout(
       () => {
         if (typeof el.focus === 'function') el.focus({ preventScroll: true });
-        if (onAfterNavigate) onAfterNavigate();
       },
-      prefersReduced ? 0 : 450,
+      prefersReduced ? 0 : 300,
     );
+  };
+
+  const onHashLinkClick = (e) => {
+    e.preventDefault();
+
+    if (closeFirst && onAfterNavigate) {
+      // 오버레이 즉시 닫기 요청
+      onAfterNavigate({ immediate: true });
+      // 레이아웃이 닫힘 상태로 안정화되도록 2프레임 대기 후 정확히 측정/스크롤
+      requestAnimationFrame(() => requestAnimationFrame(scrollToTarget));
+    } else {
+      scrollToTarget();
+      if (onAfterNavigate) {
+        setTimeout(() => onAfterNavigate(), prefersReduced ? 0 : 450);
+      }
+    }
   };
 
   if (isHashLink) {
     return (
       <a
         href={href}
-        className={clsx(styles.link, isActive && styles['is-active'])}
+        className={clsx(styles.link, { [styles['is-active']]: isActive })}
         aria-current={isActive ? 'true' : undefined}
         onClick={onHashLinkClick}
         {...restProps}>
@@ -87,7 +101,7 @@ export function WavyLink({
   return (
     <Link
       href={href}
-      className={clsx(styles.link, isActive && styles['is-active'])}
+      className={clsx(styles.link, { [styles['is-active']]: isActive })}
       aria-current={isActive ? 'page' : undefined}
       onClick={onPageLinkClick}
       {...restProps}>
@@ -96,16 +110,9 @@ export function WavyLink({
   );
 }
 
-export function WavyButton({
-  label = '',
-  type = 'button',
-  brackets = true,
-  isActive = false,
-  className,
-  ...restProps
-}) {
+export function WavyButton({ label = '', type = 'button', brackets = false, isActive = false, ...restProps }) {
   return (
-    <button type={type} className={clsx(styles.link, isActive && styles['is-active'], className)} {...restProps}>
+    <button type={type} className={clsx(styles.link, 'btn', { [styles['is-active']]: isActive })} {...restProps}>
       <WavyLabel label={label} brackets={brackets} srOnlyText={label} />
     </button>
   );

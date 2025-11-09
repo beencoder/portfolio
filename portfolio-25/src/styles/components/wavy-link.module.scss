@@ -100,15 +100,3 @@
   transform: translate(var(--bracket-gap), -50%);
   opacity: 1;
 }
-
-/* ===== 접근성: 모션 최소화 환경 ===== */
-@media (prefers-reduced-motion: reduce) {
-  .char {
-    transition: none;
-    transform: none !important;
-  }
-  .with-brackets::before,
-  .with-brackets::after {
-    transition: none;
-  }
-}

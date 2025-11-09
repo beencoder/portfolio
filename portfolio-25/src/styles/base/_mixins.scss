@@ -25,13 +25,16 @@
 @mixin font16($color: $color-text, $weight: 400, $lineheight: 24) {
   @include font($font-size-16, $color, $weight, $lineheight);
 }
-@mixin font20($color: $color-text, $weight: 600, $lineheight: 30) {
+@mixin font20($color: $color-text, $weight: 700, $lineheight: 30) {
   @include font($font-size-20, $color, $weight, $lineheight);
 }
-@mixin font24($color: $color-text, $weight: 600, $lineheight: 36) {
+@mixin font24($color: $color-text, $weight: 700, $lineheight: 36) {
   @include font($font-size-24, $color, $weight, $lineheight);
 }
 
+@mixin font40($color: $color-text, $weight: 900, $lineheight: 60) {
+  @include font($font-size-40, $color, $weight, $lineheight);
+}
 /* z-index 레이어 헬퍼 */
 @function layer($name) {
   @return map.get($z-stack, $name);
@@ -127,27 +130,62 @@
   z-index: 1000;
 }
 
-/* 버튼 베이스 */
+/* 버튼 */
 @mixin button-base {
   display: inline-flex;
-  align-items: center;
   justify-content: center;
-  gap: 0.6rem;
-  padding: 0.8rem 1.6rem;
-  border-radius: var(--radius-md, #{$radius-md});
-  border: 1px solid var(--color-border, #{$color-border});
-  background: transparent;
-  color: var(--color-text, #{$color-text});
-  box-shadow: var(--shadow-sm, #{$shadow-sm});
-  transition: transform 0.08s ease, box-shadow 0.2s ease, background 0.2s ease;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+  font-weight: 700;
+  text-transform: uppercase;
+  overflow: hidden;
 
-  @media (hover: hover) {
-    &:hover {
-      box-shadow: var(--shadow-md, #{$shadow-md});
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    height: 0.1rem;
+    background-color: var(--color-primary-active);
+    transition: transform 0.8s var(--transition-main);
+  }
+  &::before {
+    transform-origin: left;
+    transform: scaleX(1);
+    transition-delay: 0.1s;
+  }
+  &::after {
+    transform-origin: right;
+    transform: scale(0);
+    transition-delay: 0s;
+  }
+  &:hover {
+    &::before {
+      transform-origin: right;
+      transform: scale(0);
+      transition: transform 0.3s var(--transition-main);
+      transition-delay: 0;
+    }
+    &::after {
+      transform-origin: left;
+      transform: scaleX(1);
+      transition-delay: 0.1s;
     }
   }
-  &:active {
-    transform: translateY(1px);
+  .icon {
+    // flex-shrink: 0;
+    width: 1em;
+    height: 1em;
+    transition: transform 0.5s var(--transition-main);
+  }
+  &:hover,
+  &.is-active {
+    .icon {
+      transform: rotate(45deg);
+    }
   }
 }
 

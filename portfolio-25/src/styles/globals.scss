@@ -37,6 +37,8 @@
   --shadow-sm: #{$shadow-sm};
   --shadow-md: #{$shadow-md};
   --shadow-lg: #{$shadow-lg};
+
+  --transition-main: cubic-bezier(0.11, 0.82, 0.39, 0.92);
 }
 
 html {
@@ -71,15 +73,6 @@ button {
   }
 }
 
-img,
-picture,
-video,
-canvas,
-svg {
-  display: block;
-  max-width: 100%;
-}
-
 h1,
 h2,
 h3,
@@ -112,6 +105,10 @@ p + p {
   @include container();
   height: 100%;
 }
+.icon {
+  width: 100%;
+  height: auto;
+}
 
 /* 스크린리더 전용 */
 .sr-only {
@@ -134,3 +131,6 @@ p + p {
   @include fluid-type(18, 28);
 }
 // .responsive-title { @include fluid-type-range(18, 28); }
+.btn {
+  @include button-base;
+}

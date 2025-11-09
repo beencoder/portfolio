@@ -7,7 +7,7 @@ const navItems = [
   { type: 'section', href: '#about', label: 'Who I Am' },
   { type: 'section', href: '#skills', label: 'Skills' },
   { type: 'section', href: '#works', label: 'Works' },
-  { type: 'page', href: '/posts', label: 'Notes' },
+  { type: 'page', href: '/posts', label: 'Guestbook' },
   { type: 'section', href: '#contact', label: 'Let’s Talk' },
 ];
 

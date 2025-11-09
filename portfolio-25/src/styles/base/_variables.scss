@@ -9,6 +9,7 @@ $font-size-16: 16;
 $font-size-20: 20;
 $font-size-24: 24;
 $font-size-28: 28;
+$font-size-40: 40;
 
 /* color palette */
 /* base */
@@ -79,7 +80,7 @@ $breakpoints: (
 );
 
 /* layout 상수 */
-$container-max: 1200px;
-$header-offset: 6.5rem;
+$container-max: 1440px;
+$header-offset: 7.2rem;
 $grid-gap: 1.6rem;
-$space-section: 7.2rem;
+$space-section: 5rem;

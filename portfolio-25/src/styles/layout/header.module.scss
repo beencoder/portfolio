@@ -11,6 +11,16 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-block: var(--space-4);
+    gap: var(--space-10);
+    width: 100%;
+    padding-block: var(--space-5);
+  }
+}
+
+@media (max-width: 767px) {
+  .header {
+    &-inner {
+      padding-block: var(--space-4);
+    }
   }
 }
