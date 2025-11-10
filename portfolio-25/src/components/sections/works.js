@@ -1,3 +1,5 @@
+import common from '@/styles/pages/home/common.module.scss';
+import styles from '@/styles/pages/works/works.module.scss';
 import ProjectCard from '@/components/ui/project-card';
 
 const projectItems = [
@@ -26,9 +28,9 @@ export default function WorksSection({ id }) {
         </h2>
 
         <div>
-          {projectItems.map((project) => (
+          {/* {projectItems.map((project) => (
             <ProjectCard key={project.id} projectItem={project} />
-          ))}
+          ))} */}
         </div>
       </div>
     </section>

@@ -1,14 +1,21 @@
+import common from '@/styles/pages/home/common.module.scss';
+import styles from '@/styles/pages/home/intro.module.scss';
+
 export default function IntroSection({ id }) {
   return (
-    <section id={id} className="section" aria-labelledby={`${id}-title`} tabIndex={-1}>
-      <div className="container">
-        <h2 id={`${id}-title`} className="section-title" style={{ fontSize: 'var(--fs-h1)' }}>
-          운영형 UI에 강한 웹퍼블+프론트엔드, 다콩
-        </h2>
-        <p>접근성과 크로스브라우징에 강한 퍼블리싱 · 반응형 최적화</p>
+    <section id={id} className={`section ${styles.intro}`} aria-labelledby={`${id}-title`} tabIndex={-1}>
+      <div className={styles.center}>
+        <h1 id={`${id}-title`} className={`${styles.title} ${styles.appear}`}>
+          Detail-driven Web Publisher
+        </h1>
+        <p className={`${styles.sub} ${styles.appearDelay}`}>Precision meets warmth in every line of code.</p>
         <div>
-          <a href="/resume.pdf">Resume</a>
-          <a href="#works">View Work</a>
+          <a href="/resume.pdf" className={styles.cta} target="_blank" rel="noopener noreferrer">
+            Resume
+          </a>
+          <a href="#works" className={styles.cta}>
+            View Work
+          </a>
         </div>
       </div>
     </section>
