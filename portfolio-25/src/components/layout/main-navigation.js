@@ -3,6 +3,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import clsx from 'clsx';
 import { TextAlignJustify, X } from 'lucide-react';
 
+import useFocusTrap from '@/hooks/useFocusTrap';
 import useScrollLock from '@/hooks/useScrollLock';
 import styles from '@/styles/layout/main-navigation.module.scss';
 import { WavyLink } from '@/components/ui/wavy';
@@ -39,6 +40,8 @@ export default function MainNavigation({ navItems = [] }) {
   const [isOpen, setIsOpen] = useState(false);
   const isDesktop = useMedia('(min-width: 768px)');
   const immediateCloseRef = useRef(false);
+  const toggleBtnRef = useRef(null);
+  const menuWrapRef = useRef(null);
 
   // ===== 모바일 메뉴 모션 타이밍 상수 =====
   const CLOSE_WRAP_MS = 420;
@@ -129,6 +132,13 @@ export default function MainNavigation({ navItems = [] }) {
   // 오버레이 상태에 따른 스크롤락 전환
   useScrollLock(!isDesktop && isOpen);
 
+  // 모바일 포커스 트랩
+  useFocusTrap(menuWrapRef, !isDesktop && isOpen, {
+    initial: 'first',
+    returnTo: toggleBtnRef,
+    onEscape: () => closeMenu(),
+  });
+
   // 모바일 메뉴 관련
   const openMenu = useCallback(() => {
     if (!isDesktop) {
@@ -201,6 +211,7 @@ export default function MainNavigation({ navItems = [] }) {
       {showSectionLinks && (
         <button
           type="button"
+          ref={toggleBtnRef}
           className={clsx(styles['toggle-btn'], { [styles['is-active']]: isOpen })}
           aria-expanded={isOpen ? 'true' : 'false'}
           aria-controls="primary-menu"
@@ -222,9 +233,17 @@ export default function MainNavigation({ navItems = [] }) {
       {/* 모바일 메뉴 오버레이 */}
       <div
         id="primary-menu"
+        ref={menuWrapRef}
         className={styles['menu-wrap']}
         data-state={showSectionLinks ? (isDesktop ? 'open' : isOpen ? 'open' : 'closed') : 'closed'}
-        aria-hidden={!showSectionLinks}>
+        aria-hidden={!(showSectionLinks && (!isDesktop ? isOpen : true))}
+        role={!isDesktop && isOpen ? 'dialog' : undefined}
+        aria-modal={!isDesktop && isOpen ? 'true' : undefined}
+        aria-labelledby={!isDesktop && isOpen ? 'primary-menu-title' : undefined}>
+        <h2 id="primary-menu-title" className="sr-only">
+          메인 메뉴
+        </h2>
+
         {showSectionLinks && (
           <ul className={styles['menu-list']} role="list">
             {sectionLinks.map((item) => {
@@ -237,7 +256,7 @@ export default function MainNavigation({ navItems = [] }) {
                     label={item.label}
                     isActive={isActive}
                     brackets={isDesktop}
-                    offset={72}
+                    offset={isDesktop ? 79 : 70}
                     closeFirst={!isDesktop}
                     onAfterNavigate={
                       !isDesktop
@@ -259,7 +278,6 @@ export default function MainNavigation({ navItems = [] }) {
             })}
           </ul>
         )}
-
         <ul className={clsx(styles['menu-list'], styles['has-btn'])} role="list">
           {pageLinks.map((item) => {
             const isActive = isPageActive(pathname, item.href);
