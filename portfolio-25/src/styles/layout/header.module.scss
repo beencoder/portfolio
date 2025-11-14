@@ -17,7 +17,7 @@
   }
 }
 
-@media (max-width: 767px) {
+@include respond(max, md) {
   .header {
     &-inner {
       padding-block: 18px;

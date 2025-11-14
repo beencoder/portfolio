@@ -40,18 +40,30 @@
   @return map.get($z-stack, $name);
 }
 
-/* 반응형 미디어쿼리: @include respond(md) { ... } */
-@mixin respond($bp) {
-  $value: map.get($breakpoints, $bp);
-  @if $value == null {
-    @error "Unknown breakpoint `#{$bp}`. Use #{map.keys($breakpoints)}";
-  }
-  @media (min-width: $value) {
-    @content;
+/* ===== 반응형 미디어쿼리 ===== */
+// break point
+@function bp($key) {
+  @if meta.type-of($key) == 'number' {
+    @return $key;
+  } // 768px 같이 직접 값
+  @return map.get($breakpoints, $key); // 'md' 같이 키
+}
+@mixin respond($mode, $from, $to: null) {
+  $min: bp($from);
+  $max: if($to != null, bp($to), null);
+
+  @if $mode == min {
+    @media (min-width: $min) {
+      @content;
+    }
+  } @else if $mode == max {
+    @media (max-width: ($min - 0.02px)) {
+      @content;
+    }
   }
 }
 
-/* 유동 타이포그래피 */
+/* ===== 유동 타이포그래피 ===== */
 /* (1) 기본형
   - slope 고정: 1rem + 1.2vw
   - 인자로 최소/최대 폰트(px)를 받는다 (10px = 1rem 기준)
@@ -75,7 +87,6 @@
     fn.rem($max)
   );
 }
-
 @mixin fluid-step($minPx, $maxPx, $minVW: 360px, $maxVW: 1660px) {
   $min: fn.strip-unit($minPx);
   $max: fn.strip-unit($maxPx);

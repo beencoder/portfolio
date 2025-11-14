@@ -77,14 +77,14 @@ $base-open-delay: $wrap-open-duration - ($item-start-lag * 2);
   }
 }
 
-@media (min-width: 768px) {
+@include respond(min, md) {
   :global(html.is-scrolled) .menu-wrap .menu-list.has-btn {
     opacity: 1;
     pointer-events: auto;
   }
 }
 
-@media (max-width: 767px) {
+@include respond(max, md) {
   .nav {
     width: auto;
   }

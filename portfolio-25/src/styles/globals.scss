@@ -114,7 +114,7 @@ p + p {
 }
 .section {
   position: relative;
-  min-height: 100dvh;
+  min-height: calc(100dvh - var(--header-offset));
 
   &:focus-visible {
     @include focus-ring;
@@ -155,7 +155,7 @@ p + p {
   @include button-base;
 }
 
-@media (max-width: 1024px) {
+@include respond(max, lg) {
   .container {
     @include container($gutter: 20px);
   }

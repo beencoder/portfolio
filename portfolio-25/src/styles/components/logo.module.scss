@@ -35,5 +35,5 @@
   grid-template-columns: 0fr;
 }
 
-@media (max-width: 767px) {
+@include respond(max, md) {
 }
