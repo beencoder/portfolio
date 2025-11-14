@@ -63,24 +63,22 @@ $base-open-delay: $wrap-open-duration - ($item-start-lag * 2);
   .menu-list {
     display: flex;
     align-items: center;
-    gap: var(--space-5);
+    gap: 20px;
 
     &:has(.menu-item:hover, .menu-item:focus-within) .menu-item:not(:hover):not(:focus-within) a {
       color: var(--color-text-muted);
     }
     &.has-btn {
-      max-width: 0;
       margin-left: auto;
       opacity: 0;
       pointer-events: none;
-      transition: max-width 0.6s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+      transition: opacity 0.5s cubic-bezier(0.77, 0, 0.175, 1);
     }
   }
 }
 
 @media (min-width: 768px) {
   :global(html.is-scrolled) .menu-wrap .menu-list.has-btn {
-    max-width: 13rem;
     opacity: 1;
     pointer-events: auto;
   }

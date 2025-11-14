@@ -8,14 +8,13 @@
 
   .image-wrap {
     position: relative;
-    width: 2rem;
+    width: clamp(20px, 20px + 0.4vw, 24px);
   }
   .text-wrap {
     display: grid;
     grid-template-columns: 1fr;
-    line-height: 1;
     overflow: hidden;
-    transition: all 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+    transition: grid-template-columns 0.6s cubic-bezier(0.77, 0, 0.175, 1);
 
     .text-inner {
       width: 100%;
@@ -23,10 +22,11 @@
       overflow: hidden;
     }
     .text {
-      display: inline-block;
+      display: block;
       width: auto;
-      margin-left: 1rem;
-      @include font20($weight: 900);
+      padding-left: 10px;
+      font-size: 20px;
+      font-weight: 900;
       overflow: hidden;
     }
   }

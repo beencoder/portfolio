@@ -4,7 +4,7 @@
   position: relative;
   display: inline-flex;
   align-items: center;
-  @include font14();
+  font-size: 1.1rem;
   text-transform: uppercase;
   transition: color 0.4s;
   isolation: isolate;
@@ -62,7 +62,7 @@
 
 .with-brackets {
   position: relative;
-  padding-inline: var(--space-4);
+  padding-inline: 16px;
 
   &::before,
   &::after {
@@ -77,11 +77,11 @@
   }
   &::before {
     content: '[';
-    left: 0.4rem;
+    left: 4px;
   }
   &::after {
     content: ']';
-    right: 0.4rem;
+    right: 4px;
   }
 }
 .link:hover .with-brackets::before,
