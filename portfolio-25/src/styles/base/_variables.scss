@@ -80,7 +80,17 @@ $breakpoints: (
 );
 
 /* layout 상수 */
-$container-max: 1440px;
-$header-offset: 7.2rem;
+$container-max: 1800px;
+$header-offset: 79px;
 $grid-gap: 1.6rem;
 $space-section: 5rem;
+
+/* fluid (rem 유동화) */
+$fluid-min-vw: 360px;
+$fluid-max-vw: 1660px;
+$fluid-min-root: 10px;
+$fluid-max-root: 16px;
+
+@media (max-width: 767px) {
+  $header-offset: 70px;
+}

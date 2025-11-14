@@ -31,10 +31,10 @@
 @mixin font24($color: $color-text, $weight: 700, $lineheight: 36) {
   @include font($font-size-24, $color, $weight, $lineheight);
 }
-
 @mixin font40($color: $color-text, $weight: 900, $lineheight: 60) {
   @include font($font-size-40, $color, $weight, $lineheight);
 }
+
 /* z-index 레이어 헬퍼 */
 @function layer($name) {
   @return map.get($z-stack, $name);
@@ -72,6 +72,19 @@
   font-size: clamp(
     fn.rem($min),
     calc(#{fn.rem($min)} + (#{$maxNum - $minNum} * ((100vw - #{$min-vw}) / #{$maxV - $minV}))),
+    fn.rem($max)
+  );
+}
+
+@mixin fluid-step($minPx, $maxPx, $minVW: 360px, $maxVW: 1660px) {
+  $min: fn.strip-unit($minPx);
+  $max: fn.strip-unit($maxPx);
+  $minV: fn.strip-unit($minVW);
+  $maxV: fn.strip-unit($maxVW);
+
+  font-size: clamp(
+    fn.rem($min),
+    calc(#{fn.rem($min)} + (#{$max - $min}) * ((100vw - #{$minVW}) / #{$maxV - $minV})),
     fn.rem($max)
   );
 }
@@ -137,6 +150,7 @@
   align-items: center;
   gap: 1rem;
   position: relative;
+  font-size: 1.2rem;
   font-weight: 700;
   text-transform: uppercase;
   overflow: hidden;
@@ -190,7 +204,8 @@
 }
 
 /* 컨테이너 유틸 */
-@mixin container($max: var(--container-max, #{$container-max}), $gutter: var(--space-5, #{$space-5})) {
-  width: min(100% - #{$gutter} * 2, #{$max});
-  margin-inline: auto;
+@mixin container($max: var(--container-max, #{$container-max}), $gutter: 70px) {
+  max-width: min(100% - #{$gutter} * 2, #{$max});
+  height: 100%;
+  margin: 0 auto;
 }

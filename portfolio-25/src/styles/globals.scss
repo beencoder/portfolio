@@ -39,23 +39,45 @@
   --shadow-lg: #{$shadow-lg};
 
   --transition-main: cubic-bezier(0.11, 0.82, 0.39, 0.92);
+
+  --step--1: 0.875rem;
+  --step-0: 1rem;
+  --step-1: 1.25rem;
+  --step-2: 1.5rem;
+  --step-3: 2rem;
+  --step-4: 2.75rem;
+  --lh-tight: 1.2;
+  --lh-normal: 1.5;
+  --lh-loose: 1.7;
 }
 
 html {
-  font-size: 62.5%;
-  /* 전역 스크롤 동작 */
+  font-size: clamp(
+    #{$fluid-min-root},
+    calc(
+      #{$fluid-min-root} + (#{$fluid-max-root - $fluid-min-root}) * ((100vw - #{$fluid-min-vw}) /
+            (#{$fluid-max-vw - $fluid-min-vw}))
+    ),
+    #{$fluid-max-root}
+  );
+  // 전역 스크롤 동작
   scroll-padding-top: var(--header-offset);
   scroll-behavior: smooth;
 }
 html.is-scroll-locked {
   overflow: hidden;
 }
+@supports not (font-size: clamp(1px, 2px, 3px)) {
+  html {
+    font-size: #{$fluid-min-root};
+  }
+}
 
 body {
   font-family: 'Lato', 'Spoqa Han Sans Neo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
     Arial, 'Noto Sans KR', sans-serif;
-  font-size: 1.6rem;
-  line-height: 1.5;
+  font-size: var(--step-0);
+  line-height: var(--lh-normal);
   color: var(--color-text, #{$color-text});
   background: var(--color-bg, #{$color-bg});
   -webkit-font-smoothing: antialiased;
@@ -63,7 +85,7 @@ body {
 }
 
 a {
-  color: var(--color-primary);
+  color: var(--color-text);
   text-decoration: none;
 }
 a,
@@ -103,7 +125,6 @@ p + p {
 }
 .container {
   @include container();
-  height: 100%;
 }
 .icon {
   width: 100%;
@@ -130,7 +151,12 @@ p + p {
 .responsive-title {
   @include fluid-type(18, 28);
 }
-// .responsive-title { @include fluid-type-range(18, 28); }
 .btn {
   @include button-base;
+}
+
+@media (max-width: 1024px) {
+  .container {
+    @include container($gutter: 20px);
+  }
 }

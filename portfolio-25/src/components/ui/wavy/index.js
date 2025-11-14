@@ -40,7 +40,7 @@ export function WavyLink({
   label = '',
   isActive = false,
   brackets = true,
-  offset = 72,
+  offset = 79,
   closeFirst = false,
   onAfterNavigate,
   ...restProps
