@@ -5,10 +5,9 @@ import MainNavigation from './main-navigation';
 const navItems = [
   { type: 'section', href: '#intro', label: 'Start' },
   { type: 'section', href: '#about', label: 'Who I Am' },
-  { type: 'section', href: '#skills', label: 'Skills' },
   { type: 'section', href: '#works', label: 'Works' },
-  { type: 'page', href: '/posts', label: 'Guestbook' },
   { type: 'section', href: '#contact', label: 'Let’s Talk' },
+  { type: 'page', href: '/posts', label: 'Guestbook' },
 ];
 
 export default function Header() {

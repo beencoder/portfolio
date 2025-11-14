@@ -3,7 +3,6 @@ import { Geist, Geist_Mono } from 'next/font/google';
 
 import IntroSection from '@/components/sections/intro';
 import AboutSection from '@/components/sections/about';
-import SkillsSection from '@/components/sections/skills';
 import WorksSection from '@/components/sections/works';
 import ContactSection from '@/components/sections/contact';
 
@@ -22,7 +21,6 @@ export default function Home() {
     <Fragment>
       <IntroSection id="intro" />
       <AboutSection id="about" />
-      <SkillsSection id="skills" />
       <WorksSection id="works" />
       <ContactSection id="contact" />
     </Fragment>
