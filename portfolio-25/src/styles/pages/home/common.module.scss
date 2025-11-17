@@ -1,0 +1,13 @@
+@use '../../base/mixins' as *;
+
+.section-title {
+  overflow: hidden;
+}
+.section-title-letter {
+  display: inline-block;
+  will-change: transform;
+  font-family: 'Playfair Display';
+  @include fluid-step(36, 100);
+  font-weight: 600;
+  text-transform: uppercase;
+}

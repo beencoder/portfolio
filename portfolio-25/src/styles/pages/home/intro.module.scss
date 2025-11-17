@@ -1,43 +1,32 @@
 @use '../../base/mixins' as *;
 
-/* ====== Intro ===== */
 .intro {
-  display: grid;
-  grid-template-rows: 1fr auto 1fr; // 위/중앙/아래 공간 균형
-  padding: 8vw clamp(16px, 4vw, 48px);
-  isolation: isolate;
-
-  // 은은한 그라데이션 + 그레인
-  background: radial-gradient(1200px 800px at 20% 10%, rgba(197, 185, 152, 0.25), transparent 60%),
-    radial-gradient(900px 700px at 80% 70%, rgba(93, 80, 68, 0.16), transparent 60%), var(--color-bg);
-
-  &::after {
-    // 아주 미세한 그레인 느낌
-    content: '';
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: -1;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160"><filter id="f"><feTurbulence type="fractalNoise" baseFrequency="0.9" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23f)" opacity="0.035"/></svg>');
-    background-size: 320px 320px;
-    mix-blend-mode: multiply;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
-.center {
-  align-self: center;
-  max-width: 1100px;
+.title-inner {
+  width: calc(100vw - 140px);
+  max-width: 1920px;
+  height: 25vw;
   margin-inline: auto;
-}
 
-.title {
-  font-family: var(--ff-en);
-  @include fluid-type(28px, 60px);
-  line-height: var(--lh-tight);
-  letter-spacing: 0.01em;
-  color: var(--color-ink);
-  margin: 0 0 12px;
-  text-wrap: balance;
+  .title {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    font-family: 'Playfair Display';
+    @include fluid-step(36, 140);
+    font-weight: 700;
+    line-height: var(--lh-tight);
+    text-transform: uppercase;
+    letter-spacing: -0.1rem;
+
+    .bottom {
+      position: absolute;
+      inset: auto 0 0 auto;
+    }
+  }
 }
 
 .sub {
@@ -115,16 +104,8 @@
   animation: floatY 7s ease-in-out infinite;
 }
 
-/* ====== About ===== */
-/* ====== Skills ===== */
-/* ====== Works ===== */
-/* ====== Contact ===== */
-
-// 사용자 모션 선호도 반영
-@media (prefers-reduced-motion: reduce) {
-  .appear,
-  .appearDelay,
-  .float {
-    animation: none;
+@include respond(max, sm) {
+  .title-inner {
+    width: calc(100vw - 40px);
   }
 }

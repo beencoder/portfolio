@@ -1,5 +1,6 @@
 import common from '@/styles/pages/home/common.module.scss';
 import styles from '@/styles/pages/works/works.module.scss';
+import SectionTitle from '@/components/ui/section-title';
 import ProjectCard from '@/components/ui/project-card';
 
 const projectItems = [
@@ -23,9 +24,7 @@ export default function WorksSection({ id }) {
   return (
     <section id={id} className="section" aria-labelledby={`${id}-title`} tabIndex={-1}>
       <div className="container">
-        <h2 id={`${id}-title`} className="section-title">
-          Works
-        </h2>
+        <SectionTitle id={`${id}-title`}>Works</SectionTitle>
 
         <div>
           {/* {projectItems.map((project) => (
