@@ -6,7 +6,9 @@ export default function ContactSection({ id }) {
   return (
     <section id={id} className="section" aria-labelledby={`${id}-title`} tabIndex={-1}>
       <div className="container">
-        <SectionTitle id={`${id}-title`}>Contact</SectionTitle>
+        <SectionTitle id={`${id}-title`} className={common['section-title']}>
+          Let's Talk
+        </SectionTitle>
         <div>
           <a href="https://github.com/you" target="_blank">
             GitHub

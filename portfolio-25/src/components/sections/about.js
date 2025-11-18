@@ -6,7 +6,9 @@ export default function AboutSection({ id }) {
   return (
     <section id={id} className="section" aria-labelledby={`${id}-title`} tabIndex={-1}>
       <div className="container">
-        <SectionTitle id={`${id}-title`}>About Me</SectionTitle>
+        <SectionTitle id={`${id}-title`} className={common['section-title']}>
+          Who I Am
+        </SectionTitle>
 
         <div className={styles.temp}>
           <div className={styles['img-area']}></div>

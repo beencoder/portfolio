@@ -17,10 +17,6 @@
     height: 100%;
     font-family: 'Playfair Display';
     @include fluid-step(36, 140);
-    font-weight: 700;
-    line-height: var(--lh-tight);
-    text-transform: uppercase;
-    letter-spacing: -0.1rem;
 
     .bottom {
       position: absolute;
@@ -94,9 +90,6 @@
   }
 }
 
-.appear {
-  animation: fadeUp 0.9s cubic-bezier(0.2, 0.75, 0.2, 1) both;
-}
 .appearDelay {
   animation: fadeUp 0.9s 0.15s cubic-bezier(0.2, 0.75, 0.2, 1) both;
 }

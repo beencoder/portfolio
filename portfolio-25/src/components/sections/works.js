@@ -24,7 +24,9 @@ export default function WorksSection({ id }) {
   return (
     <section id={id} className="section" aria-labelledby={`${id}-title`} tabIndex={-1}>
       <div className="container">
-        <SectionTitle id={`${id}-title`}>Works</SectionTitle>
+        <SectionTitle id={`${id}-title`} className={common['section-title']}>
+          Works
+        </SectionTitle>
 
         <div>
           {/* {projectItems.map((project) => (

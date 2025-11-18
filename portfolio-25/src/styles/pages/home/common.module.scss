@@ -1,13 +1,20 @@
 @use '../../base/mixins' as *;
 
 .section-title {
+  @include fluid-step(36, 100);
+  font-weight: 600;
   overflow: hidden;
+
+  span:not(.char) {
+    margin-inline: 0.5rem;
+  }
 }
-.section-title-letter {
+.char {
   display: inline-block;
   will-change: transform;
   font-family: 'Playfair Display';
-  @include fluid-step(36, 100);
-  font-weight: 600;
+  font-size: inherit;
+  font-weight: inherit;
   text-transform: uppercase;
+  letter-spacing: -0.1rem;
 }
