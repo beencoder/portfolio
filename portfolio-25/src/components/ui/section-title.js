@@ -1,4 +1,3 @@
-// src/components/common/SectionTitle.jsx
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
@@ -14,11 +13,13 @@ export default function SectionTitle({ id, className, mode = 'scroll', children 
     const el = titleRef.current;
     if (!el) return;
 
-    const text = el.dataset.rawText || el.textContent.trim();
-    if (!text) return;
+    // 원래 html 구조 저장 (data-raw-html 캐싱)
+    const rawHtml = el.dataset.rawHtml || el.innerHTML;
+    el.dataset.rawHtml = rawHtml;
+    el.innerHTML = rawHtml;
 
-    // 중복 split 방지
-    if (el.dataset.split === 'true') return;
+    const text = el.textContent.replace(/\s+/g, ' ').trim();
+    if (!text) return;
 
     // 글자 단위로 쪼개기
     const splitElementText = (targetEl) => {
@@ -59,8 +60,6 @@ export default function SectionTitle({ id, className, mode = 'scroll', children 
     } else {
       splitElementText(el);
     }
-
-    el.dataset.split = 'true';
 
     // GSAP 애니메이션 적용
     const letters = el.querySelectorAll(`.${common['char']}`);
@@ -149,7 +148,7 @@ export default function SectionTitle({ id, className, mode = 'scroll', children 
     }, el);
 
     return () => {
-      ctx.revert();
+      ctx.revert(); // tween/ScrollTrigger 제거
     };
   }, [mode]);
 
