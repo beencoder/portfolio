@@ -32,27 +32,6 @@
   max-width: 46ch;
 }
 
-// 버튼/CTA 예시 (필요하면 사용)
-.cta {
-  margin-top: 28px;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 16px;
-  border-radius: 999px;
-  border: 1px solid var(--color-border);
-  background: linear-gradient(180deg, #fff, #f9f6f0);
-  box-shadow: 0 6px 20px var(--color-shadow);
-  color: var(--color-ink);
-  text-decoration: none;
-  font-weight: 600;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  &:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 10px 28px var(--color-shadow);
-  }
-}
-
 // 데코 오브젝트 래퍼
 .objects {
   position: absolute;
@@ -88,13 +67,6 @@
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-.appearDelay {
-  animation: fadeUp 0.9s 0.15s cubic-bezier(0.2, 0.75, 0.2, 1) both;
-}
-.float {
-  animation: floatY 7s ease-in-out infinite;
 }
 
 @include respond(max, sm) {

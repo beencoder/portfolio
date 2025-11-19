@@ -7,7 +7,7 @@ import useFocusTrap from '@/hooks/useFocusTrap';
 import useScrollLock from '@/hooks/useScrollLock';
 import styles from '@/styles/layout/main-navigation.module.scss';
 import { WavyLink } from '@/components/ui/wavy';
-import Button from '../ui/button';
+import { LinkButton } from '../ui/button';
 
 function isPageActive(pathname, href) {
   if (!pathname || !href) return false;
@@ -171,22 +171,21 @@ export default function MainNavigation({ navItems = [] }) {
   }, [isDesktop]);
 
   // 토글 버튼 동작
-  const onToggleClick = useCallback(() => {
+  const handleToggleBtnClick = useCallback(() => {
     if (isOpen) closeMenu();
     else openMenu();
   }, [isDesktop, isOpen, openMenu, closeMenu]);
 
-  // pages 버튼 클릭 시 라우팅
-  const onPageClick = useCallback(
+  // pages 버튼 클릭 시
+  const handleLinkBtnClick = useCallback(
     (href) => () => {
       if (!isDesktop && isOpen) {
         // 애니메이션 스킵
         immediateCloseRef.current = true;
         setImmediateCloseOn();
       }
-      router.push(href);
     },
-    [router, isDesktop, isOpen],
+    [isDesktop, isOpen],
   );
 
   // 라우트 완료 시 플래그/속성 정리
@@ -215,7 +214,7 @@ export default function MainNavigation({ navItems = [] }) {
           className={clsx(styles['toggle-btn'], { [styles['is-active']]: isOpen })}
           aria-expanded={isOpen ? 'true' : 'false'}
           aria-controls="primary-menu"
-          onClick={onToggleClick}>
+          onClick={handleToggleBtnClick}>
           <span className="sr-only">{isOpen ? '메뉴 닫기' : '메뉴 열기'}</span>
 
           {/* 아이콘 */}
@@ -284,10 +283,11 @@ export default function MainNavigation({ navItems = [] }) {
 
             return (
               <li key={item.href} className={styles['menu-item']}>
-                <Button
+                <LinkButton
+                  href={item.href}
                   label={item.label}
                   isActive={isActive}
-                  onClick={onPageClick(item.href)}
+                  onClick={handleLinkBtnClick(item.href)}
                   aria-current={isActive ? 'page' : undefined}
                 />
               </li>

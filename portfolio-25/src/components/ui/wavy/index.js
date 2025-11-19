@@ -2,6 +2,7 @@ import Link from 'next/link';
 import clsx from 'clsx';
 
 import styles from '@/styles/components/wavy-link.module.scss';
+import { getPrefersReducedMotion, scrollToHashTarget } from '@/lib/dom';
 
 function splitChars(label = '') {
   return Array.from(label).map((ch) => (ch === ' ' ? '\u00A0' : ch));
@@ -47,39 +48,34 @@ export function WavyLink({
 }) {
   const isHashLink = typeof href === 'string' && href.startsWith('#');
 
-  const prefersReduced =
-    typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  const onPageLinkClick = (e) => {
-    if (e.currentTarget instanceof HTMLElement) e.currentTarget.blur();
-    if (onAfterNavigate) setTimeout(() => onAfterNavigate(), 0);
+  // 페이지 이동(Link) 클릭 시
+  const handlePageLinkClick = (e) => {
+    if (e.currentTarget instanceof HTMLElement) {
+      e.currentTarget.blur();
+    }
+    if (typeof onAfterNavigate === 'function') {
+      setTimeout(() => onAfterNavigate(), 0);
+    }
   };
 
-  // 측정/스크롤 함수 분리
-  const scrollToTarget = () => {
-    const el = document.querySelector(href);
-    if (!el) return;
-    const top = el.getBoundingClientRect().top + window.scrollY - offset;
-    window.scrollTo({ top, behavior: prefersReduced ? 'auto' : 'smooth' });
-    setTimeout(
-      () => {
-        if (typeof el.focus === 'function') el.focus({ preventScroll: true });
-      },
-      prefersReduced ? 0 : 300,
-    );
-  };
-
-  const onHashLinkClick = (e) => {
+  // 해시 링크 클릭 시
+  const handleHashLinkClick = (e) => {
     e.preventDefault();
 
-    if (closeFirst && onAfterNavigate) {
-      // 오버레이 즉시 닫기 요청
+    if (closeFirst && typeof onAfterNavigate === 'function') {
       onAfterNavigate({ immediate: true });
-      // 레이아웃이 닫힘 상태로 안정화되도록 2프레임 대기 후 정확히 측정/스크롤
-      requestAnimationFrame(() => requestAnimationFrame(scrollToTarget));
+
+      // 레이아웃이 닫힌 이후 위치 기준으로 다시 측정
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          scrollToHashTarget(href, { offset });
+        });
+      });
     } else {
-      scrollToTarget();
-      if (onAfterNavigate) {
+      scrollToHashTarget(href, { offset });
+
+      if (typeof onAfterNavigate === 'function') {
+        const prefersReduced = getPrefersReducedMotion();
         setTimeout(() => onAfterNavigate(), prefersReduced ? 0 : 450);
       }
     }
@@ -91,7 +87,7 @@ export function WavyLink({
         href={href}
         className={clsx(styles.link, { [styles['is-active']]: isActive })}
         aria-current={isActive ? 'true' : undefined}
-        onClick={onHashLinkClick}
+        onClick={handleHashLinkClick}
         {...restProps}>
         <WavyLabel label={label} brackets={brackets} srOnlyText={label} />
       </a>
@@ -103,17 +99,40 @@ export function WavyLink({
       href={href}
       className={clsx(styles.link, { [styles['is-active']]: isActive })}
       aria-current={isActive ? 'page' : undefined}
-      onClick={onPageLinkClick}
+      onClick={handlePageLinkClick}
       {...restProps}>
       <WavyLabel label={label} brackets={brackets} srOnlyText={label} />
     </Link>
   );
 }
 
-export function WavyButton({ label = '', type = 'button', brackets = false, isActive = false, ...restProps }) {
+export function WavyButton({ label = '', type = 'button', ...restProps }) {
   return (
-    <button type={type} className={clsx(styles.link, 'btn', { [styles['is-active']]: isActive })} {...restProps}>
-      <WavyLabel label={label} brackets={brackets} srOnlyText={label} />
+    <button type={type} className={clsx(styles.link, styles.btn)} {...restProps}>
+      <WavyLabel label={label} brackets={false} srOnlyText={label} />
     </button>
+  );
+}
+
+export function WavyLinkButton({ href = '#', label = '', offset = 79, ...restProps }) {
+  const isHashLink = typeof href === 'string' && href.startsWith('#');
+
+  if (isHashLink) {
+    const handleClick = (e) => {
+      e.preventDefault();
+      scrollToHashTarget(href, { offset });
+    };
+
+    return (
+      <a href={href} className={clsx(styles.link, styles.btn)} onClick={handleClick} {...restProps}>
+        <WavyLabel label={label} brackets={false} srOnlyText={label} />
+      </a>
+    );
+  }
+
+  return (
+    <Link href={href} className={clsx(styles.link, styles.btn)} {...restProps}>
+      <WavyLabel label={label} brackets={false} srOnlyText={label} />
+    </Link>
   );
 }

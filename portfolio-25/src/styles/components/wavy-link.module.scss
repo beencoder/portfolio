@@ -100,3 +100,11 @@
   transform: translate(var(--bracket-gap), -50%);
   opacity: 1;
 }
+
+.btn {
+  padding: 1rem 2rem;
+  color: var(--color-surface-alt);
+  border-radius: 4px;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-primary);
+}
