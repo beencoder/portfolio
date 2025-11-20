@@ -102,8 +102,11 @@ h4,
 h5,
 h6 {
   font-weight: 400;
-  line-height: 1.25;
+  line-height: var(--lh-tight);
 }
+// p {
+//   white-space: pre-line;
+// }
 
 /* layout */
 .main {
@@ -117,7 +120,7 @@ h6 {
     @include focus-ring;
   }
   &:not(:first-of-type) {
-    padding-block: var(--space-section, #{$space-section});
+    padding-block: var(--space-section);
   }
 }
 .container {

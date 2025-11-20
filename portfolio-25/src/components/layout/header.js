@@ -3,7 +3,7 @@ import Logo from '../ui/logo';
 import MainNavigation from './main-navigation';
 
 const navItems = [
-  { type: 'section', href: '#intro', label: 'Start' },
+  { type: 'section', href: '#hero', label: 'Start' },
   { type: 'section', href: '#about', label: 'Who I Am' },
   { type: 'section', href: '#works', label: 'Works' },
   { type: 'section', href: '#contact', label: 'Let’s Talk' },

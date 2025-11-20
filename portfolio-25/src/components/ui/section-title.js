@@ -66,7 +66,7 @@ export default function SectionTitle({ id, className, mode = 'scroll', children 
     if (!letters.length) return;
 
     const ctx = gsap.context(() => {
-      if (mode === 'intro') {
+      if (mode === 'hero') {
         // 위/아래 줄 span
         const lines = Array.from(el.children).filter((node) => node.nodeType === Node.ELEMENT_NODE);
         const topLine = lines[0] || el;

@@ -1,0 +1,84 @@
+@use '../../base/mixins' as *;
+
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  overflow: hidden;
+}
+.contents {
+  position: relative;
+
+  .title-inner {
+    width: calc(100vw - 140px);
+    max-width: 1920px;
+    height: 23vw;
+    margin-inline: auto;
+    z-index: 1;
+
+    .title {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      font-family: 'Playfair Display';
+      @include fluid-step(36, 140);
+
+      .bottom {
+        position: absolute;
+        inset: auto 0 0 auto;
+      }
+    }
+  }
+  .sub-title {
+    margin-bottom: -2%;
+    @include fluid-step(10, 14);
+    font-weight: 700;
+    color: rgba(46, 42, 38, 0.85);
+    z-index: 1;
+  }
+  .tagline {
+    margin-top: -0.4%;
+    text-align: right;
+    @include fluid-step(10, 12);
+  }
+}
+.btn-wrap {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  width: 50%;
+  margin-top: 5rem;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  aspect-ratio: 1;
+
+  .layer {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    will-change: transform;
+
+    img {
+      pointer-events: none;
+    }
+  }
+}
+
+@include respond(max, md) {
+  .contents {
+    .title-inner {
+      width: calc(100vw - 40px);
+    }
+  }
+}

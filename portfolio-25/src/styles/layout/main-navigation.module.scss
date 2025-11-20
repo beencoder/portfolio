@@ -71,6 +71,7 @@ $base-open-delay: $wrap-open-duration - ($item-start-lag * 2);
     &.has-btn {
       margin-left: auto;
       opacity: 0;
+      visibility: hidden;
       pointer-events: none;
       transition: opacity 0.5s cubic-bezier(0.77, 0, 0.175, 1);
     }
@@ -78,8 +79,10 @@ $base-open-delay: $wrap-open-duration - ($item-start-lag * 2);
 }
 
 @include respond(min, md) {
-  :global(html.is-scrolled) .menu-wrap .menu-list.has-btn {
+  :global(html.is-scrolled) .menu-wrap .menu-list.has-btn,
+  .menu-wrap .menu-list.has-btn:focus-within {
     opacity: 1;
+    visibility: visible;
     pointer-events: auto;
   }
 }
@@ -123,6 +126,7 @@ $base-open-delay: $wrap-open-duration - ($item-start-lag * 2);
       .menu-list.has-btn {
         max-width: 50rem;
         opacity: 1;
+        visibility: visible;
         pointer-events: auto;
         transition-delay: $base-open-delay + ($item-stagger-open * 5);
       }

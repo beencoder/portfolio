@@ -10,7 +10,7 @@ export default function Logo() {
       </div>
       <div className={styles['text-wrap']}>
         <div className={styles['text-inner']}>
-          <span className={styles.text}>DakongTree</span>
+          <span className={styles.text}>DaBeeneee</span>
         </div>
       </div>
     </Link>
