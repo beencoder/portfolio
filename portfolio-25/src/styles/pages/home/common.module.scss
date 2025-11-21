@@ -2,7 +2,7 @@
 
 .section-title {
   @include fluid-step(36, 100);
-  font-weight: 600;
+  text-align: center;
   overflow: hidden;
 
   span:not(.char) {
@@ -14,13 +14,21 @@
   will-change: transform;
   font-family: 'Playfair Display';
   font-size: inherit;
-  font-weight: inherit;
+  font-weight: 500;
   text-transform: uppercase;
   letter-spacing: -0.1rem;
 }
 
-.btn-wrap {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
+/* ===== util ===== */
+.text-block {
+  display: block;
+}
+.text-gap-sm {
+  margin-top: 0.5rem;
+}
+.text-gap-md {
+  margin-top: 1rem;
+}
+.text-gap-lg {
+  margin-top: 1.5rem;
 }

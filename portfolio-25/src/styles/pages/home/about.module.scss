@@ -1,0 +1,32 @@
+@use '../../base/mixins' as *;
+
+.contents {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-4);
+
+  .layer-area {
+    position: relative;
+    width: calc(100% - var(--space-4));
+    aspect-ratio: 1;
+
+    .layer {
+      position: absolute;
+      inset: 0;
+      will-change: transform;
+    }
+  }
+
+  .text-area {
+    width: calc(100% - var(--space-4));
+
+    .about-title {
+      font-family: 'Marck Script';
+      @include fluid-step(20, 30);
+    }
+    .text-wrap {
+      margin-top: 3rem;
+    }
+  }
+}
