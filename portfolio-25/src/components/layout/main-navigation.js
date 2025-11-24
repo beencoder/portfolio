@@ -205,7 +205,7 @@ export default function MainNavigation({ navItems = [] }) {
   }, [router.events]);
 
   return (
-    <nav className={styles.nav} aria-label="Primary">
+    <nav className={styles.nav} aria-label="Primary" ref={menuWrapRef}>
       {/* 토글 버튼 (모바일 && 홈에서만 노출) */}
       {showSectionLinks && (
         <button
@@ -232,7 +232,6 @@ export default function MainNavigation({ navItems = [] }) {
       {/* 모바일 메뉴 오버레이 */}
       <div
         id="primary-menu"
-        ref={menuWrapRef}
         className={styles['menu-wrap']}
         data-state={showSectionLinks ? (isDesktop ? 'open' : isOpen ? 'open' : 'closed') : 'closed'}
         aria-hidden={!(showSectionLinks && (!isDesktop ? isOpen : true))}
