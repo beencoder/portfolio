@@ -166,6 +166,9 @@
   text-transform: uppercase;
   overflow: hidden;
 
+  &.medium {
+    font-size: 1.5rem;
+  }
   &::before,
   &::after {
     content: '';

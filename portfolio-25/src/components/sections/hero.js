@@ -5,7 +5,7 @@ import { gsap } from 'gsap';
 import common from '@/styles/pages/home/common.module.scss';
 import styles from '@/styles/pages/home/hero.module.scss';
 import SectionTitle from '../ui/section-title';
-import { WavyLinkButton } from '../ui/wavy';
+import { LinkButton } from '../ui/button';
 
 export default function HeroSection({ id }) {
   const bgRef = useRef(null);
@@ -70,8 +70,8 @@ export default function HeroSection({ id }) {
         </div>
 
         <div className={styles['btn-wrap']}>
-          <WavyLinkButton href="/resume.pdf" target="_blank" rel="noopener noreferrer" label="Resume" />
-          <WavyLinkButton href="#works" label="View Works" />
+          <LinkButton href="/resume.pdf" label="Resume" size="medium" target="_blank" rel="noopener noreferrer" />
+          <LinkButton href="/posts" label="Recent Work" size="medium" />
         </div>
       </div>
     </section>

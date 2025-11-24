@@ -63,17 +63,17 @@ $base-open-delay: $wrap-open-duration - ($item-start-lag * 2);
   .menu-list {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 1.5rem;
 
-    &:has(.menu-item:hover, .menu-item:focus-within) .menu-item:not(:hover):not(:focus-within) a {
-      color: var(--color-text-muted);
-    }
     &.has-btn {
       margin-left: auto;
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
       transition: opacity 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+    }
+    .menu-item a {
+      transition: color 0.3s;
     }
   }
 }
@@ -84,6 +84,10 @@ $base-open-delay: $wrap-open-duration - ($item-start-lag * 2);
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
+  }
+
+  .menu-list:has(.menu-item:hover, .menu-item:focus-within) .menu-item:not(:hover):not(:focus-within) a {
+    color: var(--color-text-muted);
   }
 }
 
@@ -142,7 +146,7 @@ $base-open-delay: $wrap-open-duration - ($item-start-lag * 2);
           $nRev: $item-count - $i;
           &:nth-child(#{$i}) a {
             transition-delay: $item-stagger-close * $nRev;
-            transform: translateX(24px);
+            transform: translateX(4rem);
             opacity: 0;
           }
         }
@@ -156,6 +160,7 @@ $base-open-delay: $wrap-open-duration - ($item-start-lag * 2);
     .menu-list {
       flex-direction: column;
       align-items: flex-start;
+      gap: 3rem;
 
       &.has-btn {
         margin-top: auto;
@@ -166,8 +171,10 @@ $base-open-delay: $wrap-open-duration - ($item-start-lag * 2);
         }
       }
       .menu-item a {
-        @include font40();
-        transform: translateX(24px);
+        font-size: 4rem;
+        font-weight: 900;
+        line-height: 6rem;
+        transform: translateX(4rem);
         opacity: 0;
         transition: transform $item-duration cubic-bezier(0.22, 1, 0.36, 1),
           opacity $item-duration cubic-bezier(0.22, 1, 0.36, 1);

@@ -10,6 +10,7 @@ function splitChars(label = '') {
 
 export function WavyLabel({ label = '', brackets = true, srOnlyText }) {
   const chars = splitChars(label);
+  const lastIndex = chars.length - 1;
 
   return (
     <span className={clsx(styles['text-inner'], { [styles['with-brackets']]: brackets })}>
@@ -18,7 +19,7 @@ export function WavyLabel({ label = '', brackets = true, srOnlyText }) {
       {/* 시각용 레이어 (위) */}
       <span className={clsx(styles.text, styles.top)} aria-hidden="true">
         {chars.map((ch, i) => (
-          <span key={`t-${i}`} className={styles.char} style={{ ['--i']: i }}>
+          <span key={`t-${i}`} className={styles.char} style={{ ['--i']: lastIndex - i }}>
             {ch}
           </span>
         ))}
@@ -27,7 +28,7 @@ export function WavyLabel({ label = '', brackets = true, srOnlyText }) {
       {/* 시각용 레이어 (아래) */}
       <span className={clsx(styles.text, styles.bottom)} aria-hidden="true">
         {chars.map((ch, i) => (
-          <span key={`b-${i}`} className={styles.char} style={{ ['--i']: i }}>
+          <span key={`b-${i}`} className={styles.char} style={{ ['--i']: lastIndex - i }}>
             {ch}
           </span>
         ))}

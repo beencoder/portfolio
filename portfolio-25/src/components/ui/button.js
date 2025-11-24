@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
+import clsx from 'clsx';
 
 export function Button({ label, isActive, ...restProps }) {
   return (
@@ -10,9 +11,9 @@ export function Button({ label, isActive, ...restProps }) {
   );
 }
 
-export function LinkButton({ href, label, isActive, ...restProps }) {
+export function LinkButton({ href, label, size = null, isActive = false, ...restProps }) {
   return (
-    <Link href={href} className={`btn ${isActive && 'is-active'}`} {...restProps}>
+    <Link href={href} className={clsx('btn', size && size, { 'is-active': isActive })} {...restProps}>
       {label}
       <ArrowUpRight className="icon" aria-hidden />
     </Link>
