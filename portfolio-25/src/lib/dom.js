@@ -15,8 +15,10 @@ export function scrollToHashTarget(href, options = {}) {
   if (!el) return;
 
   const prefersReduced = getPrefersReducedMotion();
-  const rect = el.getBoundingClientRect();
-  const top = rect.top + window.scrollY - offset;
+  const targetRect = el.getBoundingClientRect();
+  const targetStyle = window.getComputedStyle(el);
+  const targetPaddingTop = parseFloat(targetStyle.paddingTop) || 0;
+  const top = targetRect.top + window.scrollY + targetPaddingTop - offset;
 
   window.scrollTo({
     top,
