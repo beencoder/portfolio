@@ -129,7 +129,7 @@ export default function MainNavigation({ navItems = [] }) {
     if (isDesktop && isOpen) setIsOpen(false);
   }, [isDesktop, isOpen]);
 
-  // 오버레이 상태에 따른 스크롤락 전환
+  // 스크롤락 적용
   useScrollLock(!isDesktop && isOpen);
 
   // 모바일 포커스 트랩

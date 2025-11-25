@@ -65,7 +65,7 @@ html {
   scroll-behavior: smooth;
 }
 html.is-scroll-locked {
-  overflow: hidden;
+  overflow-y: hidden;
 }
 @supports not (font-size: clamp(1px, 2px, 3px)) {
   html {

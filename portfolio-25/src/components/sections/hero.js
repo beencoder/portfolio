@@ -70,8 +70,8 @@ export default function HeroSection({ id }) {
         </div>
 
         <div className={styles['btn-wrap']}>
-          <LinkButton href="/resume.pdf" label="Resume" size="medium" target="_blank" rel="noopener noreferrer" />
-          <LinkButton href="/posts" label="Recent Work" size="medium" />
+          <LinkButton href="/resume.pdf" label="Resume" size="md" target="_blank" rel="noopener noreferrer" />
+          <LinkButton href="/posts" label="Recent Work" size="md" />
         </div>
       </div>
     </section>

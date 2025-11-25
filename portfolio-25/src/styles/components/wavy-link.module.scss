@@ -9,8 +9,8 @@
   color: var(--color-primary);
   isolation: isolate;
   --char-delay: 20ms;
-  --dur: 400ms;
-  --easing: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur: 360ms;
+  --easing: cubic-bezier(0.22, 0.6, 0.36, 1);
   --slideY: 100%;
   --bracket-gap: var(--space-1);
 
@@ -30,7 +30,6 @@
     grid-row: 1 / 2;
     grid-column: 1 / 2;
     display: inline-flex;
-    height: 1.1em;
     overflow: hidden;
 
     &.top .char {

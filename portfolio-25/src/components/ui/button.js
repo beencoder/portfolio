@@ -11,9 +11,9 @@ export function Button({ label, isActive, ...restProps }) {
   );
 }
 
-export function LinkButton({ href, label, size = null, isActive = false, ...restProps }) {
+export function LinkButton({ href, label, size = 'sm', isActive = false, ...restProps }) {
   return (
-    <Link href={href} className={clsx('btn', size && size, { 'is-active': isActive })} {...restProps}>
+    <Link href={href} className={clsx('btn', `btn-${size}`, { 'is-active': isActive })} {...restProps}>
       {label}
       <ArrowUpRight className="icon" aria-hidden />
     </Link>
