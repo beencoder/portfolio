@@ -1,11 +1,14 @@
-import { useEffect, useId } from 'react';
+import { useState, useId, useRef, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import clsx from 'clsx';
 import { X } from 'lucide-react';
-import useScrollLock from '@/hook/useScrollLock';
 
+import useScrollLock from '@/hooks/useScrollLock';
+import useFocusTrap from '@/hooks/useFocusTrap';
 import styles from '@/styles/components/modal.module.scss';
 
 export default function Modal({
+  type = 'default',
   isOpen,
   onClose,
   title,
@@ -14,32 +17,30 @@ export default function Modal({
   closeOnOverlay = true,
   hideCloseButton = false,
   ariaLabel,
-  className,
   bodyClassName,
   footer,
 }) {
+  const [mounted, setMounted] = useState(false);
+  const containerRef = useRef(null);
   const titleId = useId();
+
+  // 클라이언트에서만 portal 렌더
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // 스크롤락 적용
   useScrollLock(isOpen);
 
-  // ESC로 닫기
-  useEffect(() => {
-    if (!isOpen) return;
+  // 포커스트랩 + ESC로 닫기
+  useFocusTrap(containerRef, isOpen, {
+    initial: 'first',
+    onEscape: () => {
+      if (typeof onClose === 'function') onClose();
+    },
+  });
 
-    const handleKeyDown = (e) => {
-      if (e.key === 'Escape') {
-        onClose?.();
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [isOpen, onClose]);
-
-  if (!isOpen) return null;
+  if (!mounted || !isOpen) return null;
 
   const handleOverlayClick = () => {
     if (!closeOnOverlay) return;
@@ -57,10 +58,11 @@ export default function Modal({
     dialogProps['aria-label'] = ariaLabel;
   }
 
-  return (
+  const modalNode = (
     <div className={styles.dimmed} onClick={handleOverlayClick}>
       <div
-        className={clsx(styles.modal, styles[`modal-${size}`], className)}
+        ref={containerRef}
+        className={clsx(styles.modal, styles[`modal-${size}`], styles[`type-${type}`])}
         onClick={(e) => e.stopPropagation()}
         {...dialogProps}>
         {(title || !hideCloseButton) && (
@@ -72,7 +74,9 @@ export default function Modal({
             )}
             {!hideCloseButton && (
               <button type="button" className={styles['close-btn']} onClick={onClose} aria-label="닫기">
-                <X className="icon" aria-hidden />
+                <span className={styles['btn-icon']}>
+                  <X className="icon" aria-hidden />
+                </span>
               </button>
             )}
           </header>
@@ -84,4 +88,11 @@ export default function Modal({
       </div>
     </div>
   );
+
+  // 포털
+  const root = typeof document !== 'undefined' ? document.getElementById('modal-root') || document.body : null;
+
+  if (!root) return null;
+
+  return createPortal(modalNode, root);
 }

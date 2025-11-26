@@ -69,7 +69,7 @@ export default function HeroSection({ id }) {
           <p className={styles.tagline}>사용자 경험을 기반으로 UI를 설계하고 구현합니다.</p>
         </div>
 
-        <div className={styles['btn-wrap']}>
+        <div className={clsx('mt-5', common['btn-wrap'])}>
           <LinkButton href="/resume.pdf" label="Resume" size="md" target="_blank" rel="noopener noreferrer" />
           <LinkButton href="/posts" label="Recent Work" size="md" />
         </div>

@@ -136,7 +136,7 @@ export default function SectionTitle({ id, className, mode = 'scroll', children 
           scrollTrigger: {
             trigger: el,
             start: 'top 90%',
-            end: 'top 40%',
+            end: 'top 30%',
             scrub: true,
           },
           stagger: {

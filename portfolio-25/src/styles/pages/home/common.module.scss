@@ -19,16 +19,8 @@
   letter-spacing: -0.1rem;
 }
 
-/* ===== util ===== */
-.text-block {
-  display: block;
-}
-.text-gap-sm {
-  margin-top: 0.5rem;
-}
-.text-gap-md {
-  margin-top: 1rem;
-}
-.text-gap-lg {
-  margin-top: 1.5rem;
+.btn-wrap {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
 }

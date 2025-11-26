@@ -15,15 +15,15 @@ $base-open-delay: $wrap-open-duration - ($item-start-lag * 2);
 }
 .toggle-btn {
   display: none;
-  position: relative;
   align-items: center;
   justify-content: center;
+  position: relative;
   width: 34px;
   height: 34px;
   cursor: pointer;
   z-index: 4;
 
-  &.is-active .icon-group .icon {
+  &.is-active .icon-group .btn-icon {
     &.menu {
       transform: translateY(-100%);
     }
@@ -37,7 +37,7 @@ $base-open-delay: $wrap-open-duration - ($item-start-lag * 2);
     height: 34px;
     overflow: hidden;
 
-    .icon {
+    .btn-icon {
       position: absolute;
       inset: 0;
       transition: transform 400ms cubic-bezier(0.22, 1, 0.36, 1);
@@ -100,12 +100,12 @@ $base-open-delay: $wrap-open-duration - ($item-start-lag * 2);
   }
 
   .menu-wrap {
-    flex-direction: column;
-    align-items: flex-start;
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
+    flex-direction: column;
+    align-items: flex-start;
     height: 100dvh;
     padding: 14rem 2rem 3rem;
     background-color: var(--color-surface);

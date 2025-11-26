@@ -115,13 +115,24 @@ export function WavyButton({ label = '', type = 'button', ...restProps }) {
   );
 }
 
-export function WavyLinkButton({ href = '#', label = '', offset = 79, ...restProps }) {
+export function WavyLinkButton({ href = '#', label = '', offset = 79, onClick, ...restProps }) {
   const isHashLink = typeof href === 'string' && href.startsWith('#');
 
   if (isHashLink) {
     const handleClick = (e) => {
+      // props.onClick 먼저 실행
+      if (typeof onClick === 'function') {
+        onClick(e);
+      }
+      // 이미 e.preventDefault() 했으면 넘어가기
+      if (e.defaultPrevented) return;
+      // 스크롤 유틸 실행
       e.preventDefault();
-      scrollToHashTarget(href, { offset });
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          scrollToHashTarget(href, { offset });
+        });
+      });
     };
 
     return (
@@ -132,7 +143,7 @@ export function WavyLinkButton({ href = '#', label = '', offset = 79, ...restPro
   }
 
   return (
-    <Link href={href} className={clsx(styles.link, styles.btn)} {...restProps}>
+    <Link href={href} className={clsx(styles.link, styles.btn)} onClick={onClick} {...restProps}>
       <WavyLabel label={label} brackets={false} srOnlyText={label} />
     </Link>
   );

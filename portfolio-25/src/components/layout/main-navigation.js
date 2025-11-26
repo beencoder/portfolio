@@ -219,10 +219,10 @@ export default function MainNavigation({ navItems = [] }) {
 
           {/* 아이콘 */}
           <span className={styles['icon-group']} aria-hidden>
-            <span className={clsx(styles.icon, styles.menu)}>
+            <span className={clsx(styles['btn-icon'], styles.menu)}>
               <TextAlignJustify className="icon" aria-hidden />
             </span>
-            <span className={clsx(styles.icon, styles.close)}>
+            <span className={clsx(styles['btn-icon'], styles.close)}>
               <X className="icon" aria-hidden />
             </span>
           </span>

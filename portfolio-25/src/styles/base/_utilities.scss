@@ -1,0 +1,36 @@
+@use 'mixins' as *;
+
+@for $i from 1 through 6 {
+  .mt-#{$i} {
+    margin-top: #{$i}rem;
+  }
+  .mb-#{$i} {
+    margin-bottom: #{$i}rem;
+  }
+}
+
+.center {
+  @include flex-center;
+}
+.truncate {
+  @include truncate;
+}
+.responsive-title {
+  @include fluid-type(18, 28);
+}
+.btn {
+  @include button-base;
+}
+
+.text-block {
+  display: block;
+}
+.text-gap-sm {
+  margin-top: 0.5rem;
+}
+.text-gap-md {
+  margin-top: 1rem;
+}
+.text-gap-lg {
+  margin-top: 1.5rem;
+}
