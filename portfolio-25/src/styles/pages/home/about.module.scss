@@ -4,11 +4,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: var(--space-4);
+  gap: var(--space-10);
+  margin-top: 2rem;
 
   .layer-area {
     position: relative;
-    width: calc(100% - var(--space-4));
+    width: calc(100% - var(--space-5));
     aspect-ratio: 1;
 
     .layer {
@@ -17,16 +18,36 @@
       will-change: transform;
     }
   }
+  .content-area {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    width: calc(80% - var(--space-5));
+  }
+}
+.about-title {
+  font-family: 'Marck Script';
+  @include fluid-step(24, 36);
+}
+.text-wrap p {
+  font-size: 1.2rem;
+}
+.about-body {
+}
 
-  .text-area {
-    width: calc(100% - var(--space-4));
+@include respond(max, md) {
+  .contents {
+    flex-direction: column;
 
-    .about-title {
-      font-family: 'Marck Script';
-      @include fluid-step(20, 30);
+    .layer-area {
+      width: 100%;
     }
-    .text-wrap {
-      margin-top: 3rem;
+    .content-area {
+      width: 100%;
+
+      .about-title {
+        text-align: center;
+      }
     }
   }
 }
