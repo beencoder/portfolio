@@ -45,13 +45,28 @@
     z-index: 1;
   }
   .tagline {
+    position: relative;
     align-self: flex-end;
     width: fit-content;
     margin-top: -0.4%;
-    padding: 0.2rem 1rem;
+    padding: 0.2rem 2rem;
     border-radius: 0.2rem;
     @include font(10, var(--color-on-primary));
-    background-color: var(--color-on-surface);
+    overflow: hidden;
+    z-index: 1;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-color: var(--color-on-surface);
+      border-radius: inherit;
+      transform-origin: left center;
+      transform: scaleX(0);
+      z-index: -1;
+      animation: tagline-fill 1s var(--ease-power2-in-out) forwards;
+      animation-delay: 0.6s;
+    }
   }
 }
 
@@ -71,6 +86,15 @@
     img {
       pointer-events: none;
     }
+  }
+}
+
+@keyframes tagline-fill {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
   }
 }
 

@@ -5,7 +5,7 @@
   justify-content: space-between;
   align-items: center;
   gap: var(--space-10);
-  margin-top: 2rem;
+  margin-top: 3rem;
 
   .layer-area {
     position: relative;
@@ -21,18 +21,65 @@
   .content-area {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: 2rem;
     width: calc(80% - var(--space-5));
   }
 }
 .about-title {
   font-family: 'Marck Script';
-  @include fluid-step(24, 36);
+  @include fluid-step(25, 40);
+  letter-spacing: -0.1rem;
 }
 .text-wrap p {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
-.about-body {
+
+// modal body
+body .about-body {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  padding: 4rem 7.8rem 4rem 3.6rem;
+
+  .skills-wrap {
+    flex-shrink: 0;
+    overflow: hidden;
+
+    &:hover .skills-inner {
+      animation-play-state: paused;
+    }
+  }
+  .skills-inner {
+    display: flex;
+    width: max-content;
+    animation: skills-marquee 22s linear infinite;
+
+    .skill-list {
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      flex: 0 0 auto;
+      padding-right: 3rem;
+    }
+    .skill-item {
+      img {
+        width: auto;
+        height: 64px;
+      }
+      &.resize img {
+        height: 32px;
+      }
+    }
+  }
+}
+
+@keyframes skills-marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 @include respond(max, md) {
@@ -49,5 +96,8 @@
         text-align: center;
       }
     }
+  }
+
+  .about-body {
   }
 }
