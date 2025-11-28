@@ -132,15 +132,16 @@ export default function SectionTitle({ id, className, mode = 'scroll', children 
         },
         {
           yPercent: 0,
-          ease: 'none',
+          duration: 1,
+          ease: 'power3.out',
           scrollTrigger: {
             trigger: el,
-            start: 'top 90%',
-            end: 'top 30%',
-            scrub: true,
+            start: 'top 100%',
+            end: 'bottom 30%',
+            scrub: 1,
           },
           stagger: {
-            each: 0.06, // 글자 간 딜레이 간격
+            each: 0.05, // 글자 간 딜레이 간격
             from: 'center', // 가운데 글자부터 양옆으로
           },
         },

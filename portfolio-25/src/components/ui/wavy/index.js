@@ -126,8 +126,10 @@ export function WavyLinkButton({ href = '#', label = '', offset = 79, onClick, .
       }
       // 이미 e.preventDefault() 했으면 넘어가기
       if (e.defaultPrevented) return;
+
       // 스크롤 유틸 실행
       e.preventDefault();
+      // React 리렌더 + removeScrollLock 실행 이후 -> 스크롤 위치 계산
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           scrollToHashTarget(href, { offset });
