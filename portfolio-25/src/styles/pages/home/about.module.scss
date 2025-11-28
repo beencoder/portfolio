@@ -41,27 +41,27 @@ body .about-body {
   gap: 3rem;
   padding: 4rem 7.8rem 4rem 3.6rem;
 
-  .skills-wrap {
+  .stacks-wrap {
     flex-shrink: 0;
     overflow: hidden;
 
-    &:hover .skills-inner {
+    &:hover .stacks-inner {
       animation-play-state: paused;
     }
   }
-  .skills-inner {
+  .stacks-inner {
     display: flex;
     width: max-content;
-    animation: skills-marquee 22s linear infinite;
+    animation: stacks-marquee 22s linear infinite;
 
-    .skill-list {
+    .stack-list {
       display: flex;
       align-items: center;
       gap: 3rem;
       flex: 0 0 auto;
       padding-right: 3rem;
     }
-    .skill-item {
+    .stack-item {
       img {
         width: auto;
         height: 64px;
@@ -73,7 +73,7 @@ body .about-body {
   }
 }
 
-@keyframes skills-marquee {
+@keyframes stacks-marquee {
   0% {
     transform: translateX(0);
   }

@@ -103,70 +103,70 @@ export default function AboutSection({ id }) {
           </p>
         </div>
 
-        <div className={styles['skills-wrap']}>
-          <div className={styles['skills-inner']} aria-label="기술 스택">
-            <ul className={styles['skill-list']}>
-              <li className={styles['skill-item']}>
+        <div className={styles['stacks-wrap']}>
+          <div className={styles['stacks-inner']} aria-label="기술 스택">
+            <ul className={styles['stack-list']}>
+              <li className={styles['stack-item']}>
                 <Image src="/images/icons/html5.png" alt="HTML5" width={128} height={128} />
               </li>
-              <li className={styles['skill-item']}>
+              <li className={styles['stack-item']}>
                 <Image src="/images/icons/css3.png" alt="CSS3" width={128} height={128} />
               </li>
-              <li className={styles['skill-item']}>
+              <li className={styles['stack-item']}>
                 <Image src="/images/icons/js.png" alt="JavaScript" width={128} height={128} />
               </li>
-              <li className={styles['skill-item']}>
+              <li className={styles['stack-item']}>
                 <Image src="/images/icons/react.png" alt="React" width={128} height={128} />
               </li>
-              <li className={clsx(styles['skill-item'], styles.resize)}>
+              <li className={clsx(styles['stack-item'], styles.resize)}>
                 <Image src="/images/icons/next.png" alt="Next.js" width={128} height={128} />
               </li>
-              <li className={styles['skill-item']}>
+              <li className={styles['stack-item']}>
                 <Image src="/images/icons/vue.png" alt="Vue.js" width={128} height={128} />
               </li>
-              <li className={styles['skill-item']}>
+              <li className={styles['stack-item']}>
                 <Image src="/images/icons/sass.png" alt="Sass" width={128} height={128} />
               </li>
-              <li className={styles['skill-item']}>
+              <li className={styles['stack-item']}>
                 <Image src="/images/icons/ts.png" alt="TypeScript" width={128} height={128} />
               </li>
-              <li className={styles['skill-item']}>
+              <li className={styles['stack-item']}>
                 <Image src="/images/icons/git.png" alt="Git" width={128} height={128} />
               </li>
-              <li className={styles['skill-item']}>
+              <li className={styles['stack-item']}>
                 <Image src="/images/icons/figma.png" alt="Figma" width={128} height={128} />
               </li>
             </ul>
 
-            <ul className={styles['skill-list']} aria-hidden="true">
-              <li className={styles['skill-item']}>
+            <ul className={styles['stack-list']} aria-hidden="true">
+              <li className={styles['stack-item']}>
                 <Image src="/images/icons/html5.png" alt="" width={128} height={128} />
               </li>
-              <li className={styles['skill-item']}>
+              <li className={styles['stack-item']}>
                 <Image src="/images/icons/css3.png" alt="" width={128} height={128} />
               </li>
-              <li className={styles['skill-item']}>
+              <li className={styles['stack-item']}>
                 <Image src="/images/icons/js.png" alt="" width={128} height={128} />
               </li>
-              <li className={styles['skill-item']}>
+              <li className={styles['stack-item']}>
                 <Image src="/images/icons/react.png" alt="" width={128} height={128} />
               </li>
-              <li className={clsx(styles['skill-item'], styles.resize)}>
+              <li className={clsx(styles['stack-item'], styles.resize)}>
                 <Image src="/images/icons/next.png" alt="" width={128} height={128} />
               </li>
-              <li className={styles['skill-item']}>
+              <li className={styles['stack-item']}>
                 <Image src="/images/icons/vue.png" alt="" width={128} height={128} />
               </li>
-              <li className={styles['skill-item']}>
+              <li className={styles['stack-item']}>
                 <Image src="/images/icons/sass.png" alt="" width={128} height={128} />
               </li>
-              <li className={styles['skill-item']}>
+              <li className={styles['stack-item']}>
                 <Image src="/images/icons/ts.png" alt="" width={128} height={128} />
               </li>
-              <li className={styles['skill-item']}>
+              <li className={styles['stack-item']}>
                 <Image src="/images/icons/git.png" alt="" width={128} height={128} />
               </li>
-              <li className={styles['skill-item']}>
+              <li className={styles['stack-item']}>
                 <Image src="/images/icons/figma.png" alt="" width={128} height={128} />
               </li>
             </ul>

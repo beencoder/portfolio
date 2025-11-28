@@ -1,8 +1,42 @@
 import common from '@/styles/pages/home/common.module.scss';
 import styles from '@/styles/pages/works/works.module.scss';
 import SectionTitle from '@/components/ui/section-title';
-import ProjectCard from '@/components/ui/project-card';
+import WorkBlock from '@/components/ui/work-block';
 
+const workItems = [
+  {
+    id: 0,
+    title: 'DoazoomT',
+    stack: [
+      { name: 'HTML5' },
+      { name: 'CSS3' },
+      { name: 'JavaScript' },
+      { name: 'Vue.js' },
+      { name: 'Nuxt' },
+      { name: 'React Native' },
+      { name: 'TypeScript' },
+    ],
+    thumb: [{ url: '/images/works/doazoom/doazoom-pc.png' }, { url: '/images/works/doazoom/doazoom-app-1.png' }],
+    summary:
+      '안녕하심까 안녕하심까 안녕하심까 안녕하심까 안녕하심까 안녕하심까 안녕하심까 안녕하심까 안녕하심까 안녕하심까 안녕하심까 안녕하심까 안녕하심까 하이 하이 하이 하이 하이',
+  },
+  {
+    id: 4,
+    title: 'DoazoomT',
+    stack: [
+      { name: 'HTML5' },
+      { name: 'CSS3' },
+      { name: 'JavaScript' },
+      { name: 'Vue.js' },
+      { name: 'Nuxt' },
+      { name: 'React Native' },
+      { name: 'TypeScript' },
+    ],
+    thumb: [{ url: '/images/works/doazoom/doazoom-pc.png' }, { url: '/images/works/doazoom/doazoom-app-1.png' }],
+    summary:
+      '안녕하심까 안녕하심까 안녕하심까 안녕하심까 안녕하심까 안녕하심까 안녕하심까 안녕하심까 안녕하심까 안녕하심까 안녕하심까 안녕하심까 안녕하심까 하이 하이 하이 하이 하이',
+  },
+];
 const projectItems = [
   {
     id: 'landing-renewal',
@@ -11,12 +45,6 @@ const projectItems = [
     thumb: '/images/project1.png',
     demo: 'https://example.com',
     github: 'https://github.com/you/project',
-  },
-  {
-    id: 'email-template',
-    title: '반응형 이메일 템플릿',
-    summary: '미디어쿼리 없이 유연 레이아웃 · 주요 클라이언트 호환',
-    thumb: '/images/project2.png',
   },
 ];
 
@@ -28,11 +56,23 @@ export default function WorksSection({ id }) {
           Works
         </SectionTitle>
 
-        <div>
-          {/* {projectItems.map((project) => (
+        <div className={styles['projects-wrap']}></div>
+
+        {/* <div>
+          {projectItems.map((project) => (
             <ProjectCard key={project.id} projectItem={project} />
-          ))} */}
-        </div>
+          ))}
+        </div> */}
+      </div>
+
+      <div className={styles['works-wrap']}>
+        <ul className={styles['work-list']}>
+          {workItems.map((work) => (
+            <li key={work.id}>
+              <WorkBlock workItem={work} />
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );
