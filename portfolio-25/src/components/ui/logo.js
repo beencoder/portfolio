@@ -6,7 +6,7 @@ export default function Logo() {
   return (
     <Link href="/" className={styles.logo}>
       <div className={styles['image-wrap']}>
-        <img src="/images/common/logo.png" alt="다빈의 포트폴리오 사이트 로고" />
+        <img src="/images/common/logo.svg" alt="다빈의 포트폴리오 사이트 로고" />
       </div>
       <div className={styles['text-wrap']}>
         <div className={styles['text-inner']}>
