@@ -1,0 +1,15 @@
+@use '../../base/mixins' as *;
+
+.work-list {
+  display: flex;
+  width: 100vw;
+  margin-block: 5.6rem 8.4rem;
+  border-top: 2px solid var(--color-on-surface);
+}
+
+@include respond(max, md) {
+  .work-list {
+    flex-direction: column;
+    border-top: none;
+  }
+}

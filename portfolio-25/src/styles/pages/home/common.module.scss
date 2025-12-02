@@ -1,12 +1,16 @@
 @use '../../base/mixins' as *;
 
 .section-title {
-  @include fluid-step(36, 100);
+  @include fluid-step(40, 96);
   text-align: center;
   overflow: hidden;
 
   span:not(.char) {
     margin-inline: 0.5rem;
+  }
+  &.title-md {
+    @include fluid-step(40, 80);
+    text-align: left;
   }
 }
 .char {
@@ -23,4 +27,10 @@
   display: flex;
   align-items: center;
   gap: 2rem;
+}
+
+@include respond(max, sm) {
+  .section-title {
+    font-size: 50px;
+  }
 }

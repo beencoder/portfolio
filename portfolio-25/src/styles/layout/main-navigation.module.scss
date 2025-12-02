@@ -147,7 +147,7 @@ $base-open-delay: $wrap-open-duration - ($item-start-lag * 2);
           &:nth-child(#{$i}) a {
             transition-delay: $item-stagger-close * $orderIndex;
             transform: translateX(4rem);
-            opaci₩ty: 0;
+            opacity: 0;
           }
         }
       }

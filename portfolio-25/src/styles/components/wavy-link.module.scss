@@ -118,4 +118,7 @@
 }
 
 @include respond(max, md) {
+  .link {
+    font-size: 16px;
+  }
 }

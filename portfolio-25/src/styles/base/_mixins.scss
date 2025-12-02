@@ -204,7 +204,6 @@
     }
   }
   .icon {
-    // flex-shrink: 0;
     width: 1em;
     height: 1em;
     transition: transform 0.5s var(--transition-main);
@@ -213,6 +212,14 @@
   &.is-active {
     .icon {
       transform: rotate(45deg);
+    }
+  }
+
+  @include respond(max, md) {
+    font-size: 16px;
+
+    &-md {
+      font-size: 18px;
     }
   }
 }

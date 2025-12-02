@@ -132,7 +132,7 @@ strong {
 }
 .section {
   position: relative;
-  min-height: calc(100dvh - var(--header-offset));
+  min-height: 100dvh;
 
   &:focus-visible {
     @include focus-ring;
