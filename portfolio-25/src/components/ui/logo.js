@@ -1,12 +1,13 @@
 import Link from 'next/link';
 
 import styles from '@/styles/components/logo.module.scss';
+import LogoIcon from './logo-icon';
 
 export default function Logo() {
   return (
     <Link href="/" className={styles.logo}>
       <div className={styles['image-wrap']}>
-        <img src="/images/common/logo.svg" alt="다빈의 포트폴리오 사이트 로고" />
+        <LogoIcon />
       </div>
       <div className={styles['text-wrap']}>
         <div className={styles['text-inner']}>
