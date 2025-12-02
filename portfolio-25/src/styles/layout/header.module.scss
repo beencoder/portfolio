@@ -1,11 +1,19 @@
 @use '../base/mixins' as *;
 
 .header {
-  position: sticky;
-  top: 0;
-  left: 0;
-  backdrop-filter: blur(6px);
+  position: fixed;
+  inset: 0 0 auto 0;
+  color: var(--color-text-inverse);
+  mix-blend-mode: difference;
   z-index: layer('sticky');
+
+  a,
+  button {
+    color: inherit;
+  }
+  svg {
+    stroke: currentColor;
+  }
 
   &-inner {
     display: flex;
@@ -17,8 +25,23 @@
   }
 }
 
+@include respond(min, md) {
+  .header {
+    a,
+    button {
+      &::before,
+      &::after {
+        background-color: var(--color-text-inverse);
+      }
+    }
+  }
+}
+
 @include respond(max, md) {
   .header {
+    color: var(--color-text);
+    mix-blend-mode: normal;
+
     &-inner {
       padding-block: 18px;
     }

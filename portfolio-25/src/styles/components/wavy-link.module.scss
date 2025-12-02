@@ -6,7 +6,6 @@
   justify-content: center;
   align-items: center;
   font-size: 1.1rem;
-  color: var(--color-primary);
   isolation: isolate;
   --char-delay: 20ms;
   --dur: 360ms;
@@ -15,7 +14,7 @@
   --bracket-gap: var(--space-1);
 
   &.is-active {
-    color: var(--color-primary-active);
+    color: var(--color-on-primary);
   }
 }
 

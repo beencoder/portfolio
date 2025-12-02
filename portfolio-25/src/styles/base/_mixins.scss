@@ -177,7 +177,7 @@
     left: 0;
     bottom: 0;
     height: 0.1rem;
-    background-color: var(--color-primary-active);
+    background-color: var(--color-text);
     transition: transform 0.8s var(--transition-main);
   }
   &::before {

@@ -6,7 +6,7 @@ $wrap-close-duration: 420ms;
 $item-duration: 450ms;
 $item-stagger-open: 70ms;
 $item-stagger-close: 40ms;
-$item-count: 6;
+$item-count: 4;
 $item-start-lag: 120ms;
 $base-open-delay: $wrap-open-duration - ($item-start-lag * 2);
 
@@ -70,7 +70,7 @@ $base-open-delay: $wrap-open-duration - ($item-start-lag * 2);
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
-      transition: opacity 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+      transition: opacity 0.5s cubic-bezier(0.77, 0, 0.175, 1), visibility 0.5s cubic-bezier(0.77, 0, 0.175, 1);
     }
     .menu-item a {
       transition: color 0.3s;
@@ -109,7 +109,6 @@ $base-open-delay: $wrap-open-duration - ($item-start-lag * 2);
     height: 100dvh;
     padding: 14rem 2rem 3rem;
     background-color: var(--color-surface);
-    color: var(--color-text-inverse, #fff);
     transform: translateY(-100%);
     visibility: hidden;
 
@@ -132,7 +131,7 @@ $base-open-delay: $wrap-open-duration - ($item-start-lag * 2);
         opacity: 1;
         visibility: visible;
         pointer-events: auto;
-        transition-delay: $base-open-delay + ($item-stagger-open * 5);
+        transition-delay: $base-open-delay + ($item-stagger-open * 4);
       }
     }
     &[data-state='closing-items'] {
@@ -143,11 +142,12 @@ $base-open-delay: $wrap-open-duration - ($item-start-lag * 2);
 
       .menu-list .menu-item {
         @for $i from 1 through $item-count {
-          $nRev: $item-count - $i;
+          $orderIndex: ($item-count + 1) - $i;
+
           &:nth-child(#{$i}) a {
-            transition-delay: $item-stagger-close * $nRev;
+            transition-delay: $item-stagger-close * $orderIndex;
             transform: translateX(4rem);
-            opacity: 0;
+            opaci₩ty: 0;
           }
         }
       }

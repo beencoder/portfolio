@@ -4,17 +4,25 @@
 
 :root {
   --color-bg: #{$color-bg};
+  --color-surface: #{$color-surface};
+  --color-surface-alt: #{$color-surface-alt};
+  --color-border: #{$color-border};
   --color-text: #{$color-text};
   --color-text-muted: #{$color-text-muted};
+  --color-text-inverse: #{$color-text-inverse};
   --color-primary: #{$color-primary};
   --color-primary-hover: #{$color-primary-hover};
   --color-primary-active: #{$color-primary-active};
-  --color-border: #{$color-border};
-  --color-surface: #{$color-surface};
-  --color-surface-alt: #{$color-surface-alt};
+  --color-secondary: #{$color-secondary};
   --color-on-primary: #{$color-on-primary};
   --color-on-surface: #{$color-on-surface};
   --color-on-surface-alt: #{$color-on-surface-alt};
+  --color-shadow: #{$color-shadow};
+  --color-success: #{$color-success};
+  --color-warning: #{$color-warning};
+  --color-error: #{$color-error};
+  --color-info: #{$color-info};
+  --color-overlay: #{$color-overlay};
 
   --space-1: #{$space-1};
   --space-2: #{$space-2};
@@ -39,6 +47,12 @@
   --shadow-lg: #{$shadow-lg};
 
   --transition-main: cubic-bezier(0.11, 0.82, 0.39, 0.92);
+  --ease-power1-out: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-power3-out: cubic-bezier(0.165, 0.84, 0.44, 1);
+  --ease-power1-in-out: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  --ease-power2-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-power3-in-out: cubic-bezier(0.76, 0, 0.24, 1);
+  --ease-power4-in-out: cubic-bezier(0.37, 0.01, 0.18, 0.98);
 
   --step--1: 0.875rem;
   --step-0: 1rem;
@@ -79,13 +93,13 @@ body {
   font-size: var(--step-0);
   line-height: var(--lh-normal);
   color: var(--color-text, #{$color-text});
-  background: var(--color-bg, #{$color-bg});
+  background-color: var(--color-bg, #{$color-bg});
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 a {
-  color: var(--color-text);
+  // color: var(--color-text);
   text-decoration: none;
 }
 a,
@@ -103,6 +117,10 @@ h5,
 h6 {
   font-weight: 400;
   line-height: var(--lh-tight);
+}
+strong {
+  font-weight: 700;
+  color: var(--color-primary);
 }
 // p {
 //   white-space: pre-line;
@@ -139,20 +157,6 @@ h6 {
   &:focus-visible {
     @include sr-only-focus;
   }
-}
-
-/* util */
-.center {
-  @include flex-center;
-}
-.truncate {
-  @include truncate;
-}
-.responsive-title {
-  @include fluid-type(18, 28);
-}
-.btn {
-  @include button-base;
 }
 
 @include respond(max, lg) {
