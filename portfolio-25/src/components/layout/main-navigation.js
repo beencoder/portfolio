@@ -5,6 +5,7 @@ import { TextAlignJustify, X } from 'lucide-react';
 
 import useFocusTrap from '@/hooks/useFocusTrap';
 import useScrollLock from '@/hooks/useScrollLock';
+import useMedia from '@/hooks/useMedia';
 import styles from '@/styles/layout/main-navigation.module.scss';
 import { WavyLink } from '@/components/ui/wavy';
 import { LinkButton } from '../ui/button';
@@ -13,24 +14,6 @@ function isPageActive(pathname, href) {
   if (!pathname || !href) return false;
   if (href === '/') return pathname === '/';
   return pathname === href || pathname.startsWith(href + '/');
-}
-
-// 미디어쿼리 hook
-function useMedia(query, defaultState = false) {
-  const [matches, setMatches] = useState(defaultState);
-
-  useEffect(() => {
-    if (typeof window === 'undefined' || !window.matchMedia) return;
-
-    const mq = window.matchMedia(query);
-    const handler = () => setMatches(mq.matches);
-
-    handler();
-    mq.addEventListener?.('change', handler);
-    return () => mq.removeEventListener?.('change', handler);
-  }, [query]);
-
-  return matches;
 }
 
 export default function MainNavigation({ navItems = [] }) {
@@ -47,7 +30,6 @@ export default function MainNavigation({ navItems = [] }) {
   const CLOSE_WRAP_MS = 420;
   const ITEM_MS = 450;
   const ITEM_STAGGER_CLOSE = 40;
-  const ITEM_COUNT_FOR_CLOSE = 6;
 
   const showSectionLinks = pathname === '/';
   const sectionLinks = useMemo(
@@ -55,6 +37,7 @@ export default function MainNavigation({ navItems = [] }) {
     [showSectionLinks, navItems],
   );
   const pageLinks = useMemo(() => navItems.filter((item) => item.type === 'page'), [navItems]);
+  const sectionItemCount = sectionLinks.length;
 
   const getMenuWrap = () => document.getElementById('primary-menu');
   // 오버레이 즉시닫기 on/off
@@ -159,7 +142,8 @@ export default function MainNavigation({ navItems = [] }) {
     }
     wrap.setAttribute('data-state', 'closing-items');
 
-    const totalItemOut = ITEM_MS + (ITEM_COUNT_FOR_CLOSE - 4) * ITEM_STAGGER_CLOSE;
+    const lastDelay = ITEM_STAGGER_CLOSE * sectionItemCount;
+    const totalItemOut = ITEM_MS + lastDelay;
 
     setTimeout(() => {
       wrap.setAttribute('data-state', 'closing');
