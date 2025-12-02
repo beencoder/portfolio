@@ -20,31 +20,62 @@ export default function Modal({
   bodyClassName,
   footer,
 }) {
-  const [mounted, setMounted] = useState(false);
+  const [isClient, setIsClient] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+  const [isActive, setIsActive] = useState(false);
   const containerRef = useRef(null);
   const titleId = useId();
 
   // 클라이언트에서만 portal 렌더
   useEffect(() => {
-    setMounted(true);
+    setIsClient(true);
   }, []);
 
-  // 스크롤락 적용
-  useScrollLock(isOpen);
+  // 모달이 열릴 경우
+  useEffect(() => {
+    if (isOpen) {
+      setIsMounted(true);
+    } else {
+      setIsActive(false);
+    }
+  }, [isOpen]);
 
-  // 포커스트랩 + ESC로 닫기
-  useFocusTrap(containerRef, isOpen, {
+  // DOM에 모달이 있다면 is-active
+  useEffect(() => {
+    if (!isMounted) return;
+    if (!isOpen) return;
+
+    const id = requestAnimationFrame(() => {
+      setIsActive(true);
+    });
+
+    return () => cancelAnimationFrame(id);
+  }, [isMounted, isOpen]);
+
+  // 스크롤락 / 포커스트랩 / Esc로 닫기
+  useScrollLock(isMounted);
+  useFocusTrap(containerRef, isMounted, {
     initial: 'first',
     onEscape: () => {
       if (typeof onClose === 'function') onClose();
     },
   });
 
-  if (!mounted || !isOpen) return null;
+  if (!isClient || !isMounted) return null;
 
   const handleOverlayClick = () => {
     if (!closeOnOverlay) return;
     onClose?.();
+  };
+
+  // 모달 transition 관련
+  const handleModalTransitionEnd = (e) => {
+    if (e.target !== e.currentTarget) return;
+    // transform 트랜지션이 끝났을 때만
+    if (e.propertyName !== 'transform') return;
+    if (!isOpen) {
+      setIsMounted(false);
+    }
   };
 
   const dialogProps = {
@@ -59,11 +90,14 @@ export default function Modal({
   }
 
   const modalNode = (
-    <div className={styles.dimmed} onClick={handleOverlayClick}>
+    <div className={clsx(styles.dimmed, { [styles['is-active']]: isActive })} onClick={handleOverlayClick}>
       <div
         ref={containerRef}
-        className={clsx(styles.modal, styles[`modal-${size}`], styles[`type-${type}`])}
+        className={clsx(styles.modal, styles[`modal-${size}`], styles[`type-${type}`], {
+          [styles['is-active']]: isActive,
+        })}
         onClick={(e) => e.stopPropagation()}
+        onTransitionEnd={handleModalTransitionEnd}
         {...dialogProps}>
         {(title || !hideCloseButton) && (
           <header className={styles.header}>
