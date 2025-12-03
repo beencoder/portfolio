@@ -1,15 +1,52 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import clsx from 'clsx';
+import { gsap } from 'gsap';
 
 import common from '@/styles/pages/home/common.module.scss';
 import styles from '@/styles/pages/home/about.module.scss';
 import SectionTitle from '@/components/ui/section-title';
 import Modal from '@/components/ui/modal';
 import { WavyButton, WavyLinkButton } from '../ui/wavy';
+import AboutStacks from '@/components/ui/about-stacks';
+import { removeScrollLock } from '@/lib/scroll-lock';
 
 export default function AboutSection({ id }) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const layersRef = useRef(null);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const layersEl = layersRef.current;
+    if (!layersEl) return;
+
+    const layers = gsap.utils.toArray(`.${styles.layer}`, layersEl);
+    gsap.set(layers, {});
+
+    const handleMouseMove = (e) => {
+      const { innerWidth, innerHeight } = window;
+      const xRatio = (e.clientX / innerWidth - 0.5) * 2;
+      const yRatio = (e.clientY / innerHeight - 0.5) * 2;
+
+      layers.forEach((layer) => {
+        const depth = Number(layer.dataset.depth) || -0.2;
+
+        gsap.to(layer, {
+          x: xRatio * 70 * depth,
+          y: yRatio * 70 * depth,
+          duration: 0.35,
+          ease: 'power2.out',
+        });
+      });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
 
   return (
     <section id={id} className="section" aria-labelledby={`${id}-title`} tabIndex={-1}>
@@ -19,9 +56,12 @@ export default function AboutSection({ id }) {
         </SectionTitle>
 
         <div className={styles.contents}>
-          <div className={styles['layer-area']}>
+          <div className={styles['layer-area']} aria-hidden="true" ref={layersRef}>
             <div className={styles.layer} data-depth="-0.05">
               <img src="/images/hero/gold-light.png" alt="" aria-hidden="true" />
+            </div>
+            <div className={styles.layer} data-depth="-0.18">
+              <img src="/images/hero/tree.png" alt="" aria-hidden="true" />
             </div>
           </div>
 
@@ -103,82 +143,20 @@ export default function AboutSection({ id }) {
           </p>
         </div>
 
-        <div className={styles['stacks-wrap']}>
-          <div className={styles['stacks-inner']} aria-label="기술 스택">
-            <ul className={styles['stack-list']}>
-              <li className={styles['stack-item']}>
-                <Image src="/images/icons/html5.png" alt="HTML5" width={128} height={128} />
-              </li>
-              <li className={styles['stack-item']}>
-                <Image src="/images/icons/css3.png" alt="CSS3" width={128} height={128} />
-              </li>
-              <li className={styles['stack-item']}>
-                <Image src="/images/icons/js.png" alt="JavaScript" width={128} height={128} />
-              </li>
-              <li className={styles['stack-item']}>
-                <Image src="/images/icons/react.png" alt="React" width={128} height={128} />
-              </li>
-              <li className={clsx(styles['stack-item'], styles.resize)}>
-                <Image src="/images/icons/next.png" alt="Next.js" width={128} height={128} />
-              </li>
-              <li className={styles['stack-item']}>
-                <Image src="/images/icons/vue.png" alt="Vue.js" width={128} height={128} />
-              </li>
-              <li className={styles['stack-item']}>
-                <Image src="/images/icons/sass.png" alt="Sass" width={128} height={128} />
-              </li>
-              <li className={styles['stack-item']}>
-                <Image src="/images/icons/ts.png" alt="TypeScript" width={128} height={128} />
-              </li>
-              <li className={styles['stack-item']}>
-                <Image src="/images/icons/git.png" alt="Git" width={128} height={128} />
-              </li>
-              <li className={styles['stack-item']}>
-                <Image src="/images/icons/figma.png" alt="Figma" width={128} height={128} />
-              </li>
-            </ul>
-
-            <ul className={styles['stack-list']} aria-hidden="true">
-              <li className={styles['stack-item']}>
-                <Image src="/images/icons/html5.png" alt="" width={128} height={128} />
-              </li>
-              <li className={styles['stack-item']}>
-                <Image src="/images/icons/css3.png" alt="" width={128} height={128} />
-              </li>
-              <li className={styles['stack-item']}>
-                <Image src="/images/icons/js.png" alt="" width={128} height={128} />
-              </li>
-              <li className={styles['stack-item']}>
-                <Image src="/images/icons/react.png" alt="" width={128} height={128} />
-              </li>
-              <li className={clsx(styles['stack-item'], styles.resize)}>
-                <Image src="/images/icons/next.png" alt="" width={128} height={128} />
-              </li>
-              <li className={styles['stack-item']}>
-                <Image src="/images/icons/vue.png" alt="" width={128} height={128} />
-              </li>
-              <li className={styles['stack-item']}>
-                <Image src="/images/icons/sass.png" alt="" width={128} height={128} />
-              </li>
-              <li className={styles['stack-item']}>
-                <Image src="/images/icons/ts.png" alt="" width={128} height={128} />
-              </li>
-              <li className={styles['stack-item']}>
-                <Image src="/images/icons/git.png" alt="" width={128} height={128} />
-              </li>
-              <li className={styles['stack-item']}>
-                <Image src="/images/icons/figma.png" alt="" width={128} height={128} />
-              </li>
-            </ul>
-          </div>
-        </div>
+        <AboutStacks />
 
         <div className={clsx(common['btn-wrap'])}>
-          <WavyLinkButton href="#contact" label="Let’s Talk" onClick={() => setModalIsOpen(false)} />
+          <WavyLinkButton
+            href="#contact"
+            label="Let’s Talk"
+            onClick={() => {
+              setModalIsOpen(false);
+              // 스크롤락 해제하되, 이전 y로 되돌아가지 않게
+              removeScrollLock({ restore: false });
+            }}
+          />
         </div>
       </Modal>
     </section>
-
-    /* modalIsOpen */
   );
 }

@@ -14,7 +14,7 @@ export function addScrollLock() {
 }
 
 // 스크롤락 해제
-export function removeScrollLock() {
+export function removeScrollLock({ restore = true } = {}) {
   if (typeof document === 'undefined') return;
   if (lockCount === 0) return;
   lockCount -= 1;
@@ -24,5 +24,8 @@ export function removeScrollLock() {
   const y = Math.abs(parseInt(docEl.style.top || '0', 10)) || 0;
   docEl.classList.remove('is-scroll-locked');
   docEl.style.top = '';
-  window.scrollTo(0, y);
+
+  if (restore) {
+    window.scrollTo(0, y);
+  }
 }
