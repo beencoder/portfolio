@@ -7,7 +7,7 @@ import { LinkButton } from './button';
 export default function WorkBlock({ workItem, isActive, isMobile, onActivate, onDeactivate, onToggle }) {
   const panelId = `work-${workItem.id}-panel`;
 
-  // pages 버튼 클릭 시
+  // View 버튼 클릭 시
   function handleViewBtnClick(e, href) {
     e.stopPropagation();
     console.log(href);
@@ -26,22 +26,18 @@ export default function WorkBlock({ workItem, isActive, isMobile, onActivate, on
     <li className={clsx(styles['work-item'], { [styles['is-active']]: isActive })} {...eventProps}>
       <header className={styles.header}>
         {isMobile ? (
-          <button
-            type="button"
-            onClick={isMobile ? onToggle : undefined}
-            aria-expanded={isActive ? 'true' : 'false'}
-            aria-controls={panelId}>
+          <button type="button" onClick={onToggle} aria-expanded={isActive ? 'true' : 'false'} aria-controls={panelId}>
             <span className={styles.number}>{String(workItem.id).padStart(2, '0')}</span>
-            <h3 className={styles.title}>
+            <h2 className={styles.title}>
               <span>{workItem.title}</span>
-            </h3>
+            </h2>
           </button>
         ) : (
           <>
             <span className={styles.number}>{String(workItem.id).padStart(2, '0')}</span>
-            <h3 className={styles.title}>
+            <h2 className={styles.title}>
               <span>{workItem.title}</span>
-            </h3>
+            </h2>
           </>
         )}
 
@@ -75,7 +71,13 @@ export default function WorkBlock({ workItem, isActive, isMobile, onActivate, on
       <p className={styles.summary}>{workItem.summary}</p>
 
       <div className={styles.link}>
-        <LinkButton href={workItem.href} label="View Case" onClick={(e) => handleViewBtnClick(e, workItem.href)} />
+        <LinkButton
+          href={workItem.href}
+          label="View Case"
+          onClick={(e) => handleViewBtnClick(e, workItem.href)}
+          tabIndex={isMobile && !isActive ? -1 : 0}
+          aria-hidden={isMobile && !isActive ? true : undefined}
+        />
       </div>
     </li>
   );

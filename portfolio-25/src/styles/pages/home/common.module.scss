@@ -8,10 +8,6 @@
   span:not(.char) {
     margin-inline: 0.5rem;
   }
-  &.title-md {
-    @include fluid-step(40, 80);
-    text-align: left;
-  }
 }
 .char {
   display: inline-block;

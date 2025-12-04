@@ -1,13 +1,15 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import clsx from 'clsx';
 
 import useMedia from '@/hooks/useMedia';
 import common from '@/styles/pages/home/common.module.scss';
 import styles from '@/styles/pages/works/works.module.scss';
-import SectionTitle from '@/components/ui/section-title';
-import WorkBlock from '@/components/ui/work-block';
+import SectionTitle from '../ui/section-title';
+import WorkBlock from '../ui/work-block';
+import ProjectBlock from '../ui/project-block';
+import ProjectPreview from '../ui/project-preview';
 
-const workItems = [
+const WORK_ITEMS = [
   {
     id: 0,
     title: '트래블로버',
@@ -62,26 +64,135 @@ const workItems = [
     href: '/doazoom',
   },
 ];
-const projectItems = [
+const PROJECT_ITEMS = [
   {
-    id: 'landing-renewal',
-    title: '기업 랜딩 리뉴얼',
-    summary: '접근성 기준 준수 · CLS 0.02 · LCP 1.8s',
-    thumb: '/images/project1.png',
-    demo: 'https://example.com',
-    github: 'https://github.com/you/project',
+    id: 0,
+    title: 'Portfolio',
+    type: 'Main / Flagship',
+    href: '/example',
+    previewImage: '/images/projects/project-thumb-1.png',
+    previewTitle: 'My personal portfolio website',
+  },
+  {
+    id: 1,
+    title: 'Shared Recipe',
+    type: 'Side Project',
+    href: '/example',
+    previewImage: '/images/projects/doazoom-intro.png',
+    previewTitle: 'Shared recipe website',
+  },
+  {
+    id: 2,
+    title: 'Shared Recipe Shared Recipe',
+    type: 'Side Project',
+    href: '/example',
+    previewImage: '/images/projects/doazoom-intro.png',
+    previewTitle: 'Shared recipe website',
+  },
+  {
+    id: 3,
+    title: 'Shared Recipe',
+    type: 'Side Project',
+    href: '/example',
+    previewImage: '/images/projects/doazoom-intro.png',
+    previewTitle: 'Shared recipe website',
+  },
+  {
+    id: 4,
+    title: 'Shared Recipe',
+    type: 'Side Project',
+    href: '/example',
+    previewImage: '/images/projects/doazoom-intro.png',
+    previewTitle: 'Shared recipe website',
+  },
+  {
+    id: 5,
+    title: 'Shared Recipe',
+    type: 'Side Project',
+    href: '/example',
+    previewImage: '/images/projects/doazoom-intro.png',
+    previewTitle: 'Shared recipe website',
+  },
+  {
+    id: 6,
+    title: 'Shared Recipe',
+    type: 'Side Project',
+    href: '/example',
+    previewImage: '/images/projects/doazoom-intro.png',
+    previewTitle: 'Shared recipe website',
+  },
+  {
+    id: 7,
+    title: 'Shared Recipe',
+    type: 'Side Project',
+    href: '/example',
+    previewImage: '/images/projects/doazoom-intro.png',
+    previewTitle: 'Shared recipe website',
   },
 ];
 
 export default function WorksSection({ id }) {
-  const [activeId, setActiveId] = useState(null);
+  const [activeWorkId, setActiveWorkId] = useState(null);
+  const [hoveredProject, setHoveredProject] = useState(null);
+  const [previewPos, setPreviewPos] = useState({ x: 0, y: 0 });
   const isMobile = useMedia('(max-width: 767px)');
 
-  const handleActivate = (id) => setActiveId(id);
-  const handleDeactivate = () => setActiveId(null);
-  const handleToggle = (id) => {
-    setActiveId((prev) => (prev === id ? null : id));
+  const handleWorkActivate = (id) => setActiveWorkId(id);
+  const handleWorkDeactivate = () => setActiveWorkId(null);
+  const handleWorkToggle = (id) => {
+    setActiveWorkId((prev) => (prev === id ? null : id));
   };
+
+  useEffect(() => {
+    if (!isMobile) {
+      setActiveWorkId(null);
+    }
+  }, [isMobile]);
+
+  /* 프로젝트 프리뷰 관련 */
+  function getEventPosition(e) {
+    if (e?.clientX != null && e?.clientY != null) {
+      return { x: e.clientX, y: e.clientY };
+    }
+
+    if (e?.currentTarget) {
+      const rect = e.currentTarget.getBoundingClientRect();
+      return {
+        x: rect.left + rect.width / 2,
+        y: rect.top + rect.height / 2,
+      };
+    }
+
+    return previewPos;
+  }
+
+  function handleProjectActivate(projectItem, event) {
+    if (isMobile) return;
+    const pos = getEventPosition(event);
+    setHoveredProject(projectItem);
+    setPreviewPos(pos);
+  }
+
+  function handleProjectDeactivate() {
+    if (isMobile) return;
+    setHoveredProject(null);
+  }
+
+  useEffect(() => {
+    if (!hoveredProject || isMobile) return;
+
+    function handlePointerMove(e) {
+      setPreviewPos({
+        x: e.clientX,
+        y: e.clientY,
+      });
+    }
+
+    window.addEventListener('pointermove', handlePointerMove);
+    return () => {
+      window.removeEventListener('pointermove', handlePointerMove);
+    };
+  }, [hoveredProject, isMobile]);
 
   return (
     <section id={id} className="section" aria-labelledby={`${id}-title`} tabIndex={-1}>
@@ -93,31 +204,42 @@ export default function WorksSection({ id }) {
       </div>
 
       <ul className={styles['work-list']}>
-        {workItems.map((work) => (
+        {WORK_ITEMS.map((work) => (
           <WorkBlock
             key={work.id}
             workItem={work}
-            isActive={activeId === work.id}
+            isActive={activeWorkId === work.id}
             isMobile={isMobile}
-            onActivate={() => handleActivate(work.id)}
-            onDeactivate={handleDeactivate}
-            onToggle={() => handleToggle(work.id)}
+            onActivate={() => handleWorkActivate(work.id)}
+            onDeactivate={handleWorkDeactivate}
+            onToggle={() => handleWorkToggle(work.id)}
           />
         ))}
       </ul>
 
       {/* projects */}
       <div className="container">
-        <SectionTitle id={`${id}-title`} className={clsx(common['section-title'], common['title-md'])}>
+        <SectionTitle id={`${id}-title`} className={clsx(common['section-title'], 'text-left')}>
           Projects
         </SectionTitle>
+
+        <ul className={styles['project-list']}>
+          <div className={styles['list-divider']}></div>
+          {PROJECT_ITEMS.map((project) => (
+            <ProjectBlock
+              key={project.id}
+              projectItem={project}
+              isMobile={isMobile}
+              onActivate={(e) => handleProjectActivate(project, e)}
+              onDeactivate={handleProjectDeactivate}
+              onMove={(e) => handleProjectMove(project, e)}
+            />
+          ))}
+        </ul>
       </div>
 
-      <ul className={styles['project-list']}>
-        {/* {projectItems.map((project) => (
-            <ProjectCard key={project.id} projectItem={project} />
-          ))} */}
-      </ul>
+      {/* 프로젝트 프리뷰 */}
+      <ProjectPreview project={hoveredProject} position={previewPos} isVisible={!!hoveredProject} />
     </section>
   );
 }

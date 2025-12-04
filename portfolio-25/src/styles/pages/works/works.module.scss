@@ -7,9 +7,29 @@
   border-top: 2px solid var(--color-on-surface);
 }
 
+.project-list {
+  width: 70%;
+  margin-top: 5.6rem;
+}
+.list-divider {
+  height: 4px;
+  border-radius: 2px 0 4px 2px;
+  background-color: var(--color-on-surface);
+  transform: scale(1);
+  transform-origin: bottom left;
+  // transform: scale(0);
+  // transition: transform .8s var(--transition-main);
+}
+
+@include respond(max, lg) {
+}
+
 @include respond(max, md) {
   .work-list {
     flex-direction: column;
     border-top: none;
+  }
+  .project-list {
+    width: 100%;
   }
 }
