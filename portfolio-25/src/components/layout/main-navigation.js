@@ -8,7 +8,7 @@ import useScrollLock from '@/hooks/useScrollLock';
 import useMedia from '@/hooks/useMedia';
 import styles from '@/styles/layout/main-navigation.module.scss';
 import { WavyLink } from '@/components/ui/wavy';
-import { LinkButton } from '../ui/button';
+import { LinkButton, Button } from '../ui/button';
 
 function isPageActive(pathname, href) {
   if (!pathname || !href) return false;
@@ -25,19 +25,23 @@ export default function MainNavigation({ navItems = [] }) {
   const immediateCloseRef = useRef(false);
   const toggleBtnRef = useRef(null);
   const menuWrapRef = useRef(null);
+  const isHome = pathname === '/';
+  const showSectionLinks = isHome;
 
   // ===== 모바일 메뉴 모션 타이밍 상수 =====
   const CLOSE_WRAP_MS = 420;
   const ITEM_MS = 450;
   const ITEM_STAGGER_CLOSE = 40;
 
-  const showSectionLinks = pathname === '/';
   const sectionLinks = useMemo(
     () => (showSectionLinks ? navItems.filter((item) => item.type === 'section') : []),
     [showSectionLinks, navItems],
   );
   const pageLinks = useMemo(() => navItems.filter((item) => item.type === 'page'), [navItems]);
   const sectionItemCount = sectionLinks.length;
+
+  const isMenuDialogVisible = isHome && !isDesktop && isOpen;
+  const isMenuVisible = isHome && (isDesktop || isOpen);
 
   const getMenuWrap = () => document.getElementById('primary-menu');
   // 오버레이 즉시닫기 on/off
@@ -113,10 +117,10 @@ export default function MainNavigation({ navItems = [] }) {
   }, [isDesktop, isOpen]);
 
   // 스크롤락 적용
-  useScrollLock(!isDesktop && isOpen);
+  useScrollLock(isHome && !isDesktop && isOpen);
 
   // 모바일 포커스 트랩
-  useFocusTrap(menuWrapRef, !isDesktop && isOpen, {
+  useFocusTrap(menuWrapRef, isHome && !isDesktop && isOpen, {
     initial: 'first',
     returnTo: toggleBtnRef,
     onEscape: () => closeMenu(),
@@ -154,6 +158,14 @@ export default function MainNavigation({ navItems = [] }) {
     }, totalItemOut);
   }, [isDesktop]);
 
+  const handleBackClick = useCallback(() => {
+    if (typeof window !== 'undefined' && window.history.length > 1) {
+      router.back();
+    } else {
+      router.push('/');
+    }
+  }, [router]);
+
   // 토글 버튼 동작
   const handleToggleBtnClick = useCallback(() => {
     if (isOpen) closeMenu();
@@ -190,94 +202,97 @@ export default function MainNavigation({ navItems = [] }) {
 
   return (
     <nav className={styles.nav} aria-label="Primary" ref={menuWrapRef}>
-      {/* 토글 버튼 (모바일 && 홈에서만 노출) */}
-      {showSectionLinks && (
-        <button
-          type="button"
-          ref={toggleBtnRef}
-          className={clsx(styles['toggle-btn'], { [styles['is-active']]: isOpen })}
-          aria-expanded={isOpen ? 'true' : 'false'}
-          aria-controls="primary-menu"
-          onClick={handleToggleBtnClick}>
-          <span className="sr-only">{isOpen ? '메뉴 닫기' : '메뉴 열기'}</span>
+      {/* 상단 버튼: 홈이면 토글 버튼, 홈이 아니면 뒤로가기 버튼 */}
+      {isHome ? (
+        <>
+          <button
+            type="button"
+            ref={toggleBtnRef}
+            className={clsx(styles['toggle-btn'], { [styles['is-active']]: isOpen })}
+            aria-expanded={isOpen ? 'true' : 'false'}
+            aria-controls="primary-menu"
+            onClick={handleToggleBtnClick}>
+            <span className="sr-only">{isOpen ? '메뉴 닫기' : '메뉴 열기'}</span>
 
-          {/* 아이콘 */}
-          <span className={styles['icon-group']} aria-hidden>
-            <span className={clsx(styles['btn-icon'], styles.menu)}>
-              <TextAlignJustify className="icon" aria-hidden />
+            {/* 아이콘 */}
+            <span className={styles['icon-group']} aria-hidden>
+              <span className={clsx(styles['btn-icon'], styles.menu)}>
+                <TextAlignJustify className="icon" aria-hidden />
+              </span>
+              <span className={clsx(styles['btn-icon'], styles.close)}>
+                <X className="icon" aria-hidden />
+              </span>
             </span>
-            <span className={clsx(styles['btn-icon'], styles.close)}>
-              <X className="icon" aria-hidden />
-            </span>
-          </span>
-        </button>
-      )}
+          </button>
 
-      {/* 모바일 메뉴 오버레이 */}
-      <div
-        id="primary-menu"
-        className={styles['menu-wrap']}
-        data-state={showSectionLinks ? (isDesktop ? 'open' : isOpen ? 'open' : 'closed') : 'closed'}
-        aria-hidden={!(showSectionLinks && (!isDesktop ? isOpen : true))}
-        role={!isDesktop && isOpen ? 'dialog' : undefined}
-        aria-modal={!isDesktop && isOpen ? 'true' : undefined}
-        aria-labelledby={!isDesktop && isOpen ? 'primary-menu-title' : undefined}>
-        <h2 id="primary-menu-title" className="sr-only">
-          메인 메뉴
-        </h2>
+          {/* 모바일 메뉴 오버레이 */}
+          <div
+            id="primary-menu"
+            className={styles['menu-wrap']}
+            data-state={isDesktop ? 'open' : isOpen ? 'open' : 'closed'}
+            aria-hidden={!isMenuVisible}
+            role={isMenuDialogVisible ? 'dialog' : undefined}
+            aria-modal={isMenuDialogVisible ? 'true' : undefined}
+            aria-labelledby={isMenuDialogVisible ? 'primary-menu-title' : undefined}>
+            <h2 id="primary-menu-title" className="sr-only">
+              메인 메뉴
+            </h2>
 
-        {showSectionLinks && (
-          <ul className={styles['menu-list']} role="list">
-            {sectionLinks.map((item) => {
-              const isActive = activeSection === item.href;
+            <ul className={styles['menu-list']} role="list">
+              {sectionLinks.map((item) => {
+                const isActive = activeSection === item.href;
 
-              return (
-                <li key={item.href} className={styles['menu-item']}>
-                  <WavyLink
-                    href={item.href}
-                    label={item.label}
-                    isActive={isActive}
-                    brackets={isDesktop}
-                    offset={isDesktop ? 79 : 70}
-                    closeFirst={!isDesktop}
-                    onAfterNavigate={
-                      !isDesktop
-                        ? ({ immediate } = { immediate: false }) => {
-                            if (immediate) {
-                              // 즉시 닫힘 모드
-                              setImmediateCloseOn();
-                              // 다음 프레임에 즉시모드 OFF (재오픈 모션 복원)
-                              requestAnimationFrame(() => setImmediateCloseOff());
-                            } else {
-                              closeMenu();
+                return (
+                  <li key={item.href} className={styles['menu-item']}>
+                    <WavyLink
+                      href={item.href}
+                      label={item.label}
+                      isActive={isActive}
+                      brackets={isDesktop}
+                      offset={isDesktop ? 79 : 70}
+                      closeFirst={!isDesktop}
+                      onAfterNavigate={
+                        !isDesktop
+                          ? ({ immediate } = { immediate: false }) => {
+                              if (immediate) {
+                                // 즉시 닫힘 모드
+                                setImmediateCloseOn();
+                                // 다음 프레임에 즉시모드 OFF (재오픈 모션 복원)
+                                requestAnimationFrame(() => setImmediateCloseOff());
+                              } else {
+                                closeMenu();
+                              }
                             }
-                          }
-                        : undefined
-                    }
-                  />
-                </li>
-              );
-            })}
-          </ul>
-        )}
-        <ul className={clsx(styles['menu-list'], styles['has-btn'])} role="list">
-          {pageLinks.map((item) => {
-            const isActive = isPageActive(pathname, item.href);
+                          : undefined
+                      }
+                    />
+                  </li>
+                );
+              })}
+            </ul>
 
-            return (
-              <li key={item.href} className={styles['menu-item']}>
-                <LinkButton
-                  href={item.href}
-                  label={item.label}
-                  isActive={isActive}
-                  onClick={handleLinkBtnClick(item.href)}
-                  aria-current={isActive ? 'page' : undefined}
-                />
-              </li>
-            );
-          })}
-        </ul>
-      </div>
+            <ul className={clsx(styles['menu-list'], styles['has-btn'])} role="list">
+              {pageLinks.map((item) => {
+                const isActive = isPageActive(pathname, item.href);
+
+                return (
+                  <li key={item.href} className={styles['menu-item']}>
+                    <LinkButton
+                      href={item.href}
+                      label={item.label}
+                      isActive={isActive}
+                      onClick={handleLinkBtnClick(item.href)}
+                      aria-current={isActive ? 'page' : undefined}
+                    />
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        </>
+      ) : (
+        <Button label="Back" arrow="left" onClick={handleBackClick} />
+      )}
     </nav>
   );
 }

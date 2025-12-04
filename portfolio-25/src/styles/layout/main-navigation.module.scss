@@ -12,6 +12,10 @@ $base-open-delay: $wrap-open-duration - ($item-start-lag * 2);
 
 .nav {
   width: 100%;
+
+  &:has(:only-child) {
+    text-align: right;
+  }
 }
 .toggle-btn {
   display: none;
@@ -86,7 +90,7 @@ $base-open-delay: $wrap-open-duration - ($item-start-lag * 2);
     pointer-events: auto;
   }
 
-  .menu-list:has(.menu-item:hover, .menu-item:focus-within) .menu-item:not(:hover):not(:focus-within) a {
+  .menu-list:has(.menu-item a:hover, .menu-item:focus-within) .menu-item:not(:hover):not(:focus-within) a {
     color: var(--color-text-muted);
   }
 }

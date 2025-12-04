@@ -3,6 +3,9 @@
 .project-item {
   overflow: hidden;
 
+  &:focus-within {
+    @include focus-ring;
+  }
   &:hover {
     .title-wrap {
       transform: translate(0);
@@ -60,7 +63,7 @@
 @include respond(max, lg) {
   .inner {
     .title-wrap {
-      flex: 0 1 calc(100% - 110px);
+      flex: 0 1 calc(100% - 140px);
     }
   }
 }

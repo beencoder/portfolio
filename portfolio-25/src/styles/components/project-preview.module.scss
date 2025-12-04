@@ -6,7 +6,7 @@
   z-index: layer('tooltip');
   pointer-events: none;
   opacity: 0;
-  transform: translate3d(0, 0, 0) scale(0.95);
+  transform: scale(0.95);
   transition: opacity 0.2s var(--ease-power3-out), transform 0.2s var(--ease-power3-out);
   will-change: opacity, transform;
 
@@ -14,16 +14,16 @@
     display: flex;
     align-items: center;
     gap: 14px;
-    padding: 6px 12px 6px 6px;
+    width: 550px;
+    padding: 6px 14px 6px 6px;
     border-radius: 24px;
     background-color: var(--color-on-surface);
     box-shadow: 0 10px 25px var(--color-shadow);
-    width: 500px;
   }
   .image-wrap {
     position: relative;
     flex: 0 0 300px;
-    height: 100px;
+    height: 110px;
     aspect-ratio: 16 / 9;
     border-radius: 18px;
     overflow: hidden;
@@ -35,13 +35,13 @@
   }
   .text-wrap {
     .project-title {
-      @include font(15, var(--color-text-inverse), 700);
+      @include font(14, var(--color-text-inverse), 700);
     }
   }
 
   &.is-active {
     opacity: 1;
-    transform: translate3d(0, 0, 0) scale(1);
+    transform: scale(1);
   }
 }
 
@@ -56,5 +56,18 @@
   }
 }
 
-@include respond(max, md) {
+@include respond(max, lg) {
+  .preview {
+    .inner {
+      width: 510px;
+    }
+    .image-wrap {
+      height: 100px;
+    }
+    .text-wrap {
+      .project-title {
+        font-size: 18px;
+      }
+    }
+  }
 }
