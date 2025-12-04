@@ -10,38 +10,38 @@ import { LinkButton } from '../ui/button';
 export default function HeroSection({ id }) {
   const bgRef = useRef(null);
 
-  // useEffect(() => {
-  //   if (typeof window === 'undefined') return;
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
 
-  //   const bgEl = bgRef.current;
-  //   if (!bgEl) return;
+    const bgEl = bgRef.current;
+    if (!bgEl) return;
 
-  //   const layers = gsap.utils.toArray(`.${styles.layer}`, bgEl);
-  //   gsap.set(layers, { xPercent: -50 });
+    const layers = gsap.utils.toArray(`.${styles.layer}`, bgEl);
+    gsap.set(layers, { xPercent: -50, yPercent: -50 });
 
-  //   const handleMouseMove = (e) => {
-  //     const { innerWidth, innerHeight } = window;
-  //     const xRatio = (e.clientX / innerWidth - 0.5) * 2;
-  //     const yRatio = (e.clientY / innerHeight - 0.5) * 2;
+    const handleMouseMove = (e) => {
+      const { innerWidth, innerHeight } = window;
+      const xRatio = (e.clientX / innerWidth - 0.5) * 2;
+      const yRatio = (e.clientY / innerHeight - 0.5) * 2;
 
-  //     layers.forEach((layer) => {
-  //       const depth = Number(layer.dataset.depth) || -0.2;
+      layers.forEach((layer) => {
+        const depth = Number(layer.dataset.depth) || -0.2;
 
-  //       gsap.to(layer, {
-  //         x: xRatio * 70 * depth,
-  //         y: yRatio * 70 * depth,
-  //         duration: 0.35,
-  //         ease: 'power2.out',
-  //       });
-  //     });
-  //   };
+        gsap.to(layer, {
+          x: xRatio * 70 * depth,
+          y: yRatio * 70 * depth,
+          duration: 0.35,
+          ease: 'power2.out',
+        });
+      });
+    };
 
-  //   window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mousemove', handleMouseMove);
 
-  //   return () => {
-  //     window.removeEventListener('mousemove', handleMouseMove);
-  //   };
-  // }, []);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
 
   return (
     <section id={id} className={clsx('section', styles.hero)} aria-labelledby={`${id}-title`} tabIndex={-1}>
@@ -69,7 +69,7 @@ export default function HeroSection({ id }) {
           <p className={styles.tagline}>사용자 경험을 기반으로 UI를 설계하고 구현합니다.</p>
         </div>
 
-        <div className={clsx('mt-5', common['btn-wrap'])}>
+        <div className={clsx(styles['link-wrap'], common['btn-wrap'])}>
           <LinkButton href="/resume.pdf" label="Resume" size="md" target="_blank" rel="noopener noreferrer" />
           <LinkButton href="/posts" label="Recent Work" size="md" />
         </div>

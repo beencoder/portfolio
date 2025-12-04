@@ -5,7 +5,7 @@ import { gsap } from 'gsap';
 
 import common from '@/styles/pages/home/common.module.scss';
 import styles from '@/styles/pages/home/about.module.scss';
-import SectionTitle from '@/components/ui/section-title';
+import SectionTitle from '../ui/section-title';
 import Modal from '@/components/ui/modal';
 import { WavyButton, WavyLinkButton } from '../ui/wavy';
 import AboutStacks from '@/components/ui/about-stacks';
@@ -66,10 +66,10 @@ export default function AboutSection({ id }) {
           </div>
 
           <div className={styles['content-area']}>
-            <h3 className={styles['about-title']}>
+            <h2 className={styles['about-title']}>
               Building meaningful interfaces,
               <span className={'text-block'}>one structure at a time.</span>
-            </h3>
+            </h2>
             <div className={styles['text-wrap']}>
               <p>안녕하세요!</p>
               <p>
@@ -102,10 +102,10 @@ export default function AboutSection({ id }) {
         ariaLabel="자기소개 상세"
         size="md"
         bodyClassName={styles['about-body']}>
-        <h3 className={styles['about-title']}>
+        <h1 className={styles['about-title']}>
           Building meaningful interfaces,
           <span className={'text-block'}>one structure at a time.</span>
-        </h3>
+        </h1>
 
         <div className={styles['text-wrap']}>
           <p>처음 웹 퍼블리셔로 일했을 때는, 디자인 시안을 얼마나 정확하게 구현할 수 있을지에 집중했습니다.</p>

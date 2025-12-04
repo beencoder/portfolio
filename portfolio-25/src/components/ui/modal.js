@@ -102,9 +102,9 @@ export default function Modal({
         {(title || !hideCloseButton) && (
           <header className={styles.header}>
             {title && (
-              <h2 id={titleId} className={styles.title}>
+              <h1 id={titleId} className={styles.title}>
                 {title}
-              </h2>
+              </h1>
             )}
             {!hideCloseButton && (
               <button type="button" className={styles['close-btn']} onClick={onClose} aria-label="닫기">

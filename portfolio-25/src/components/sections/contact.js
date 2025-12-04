@@ -1,6 +1,6 @@
 import common from '@/styles/pages/home/common.module.scss';
 import styles from '@/styles/pages/home/contact.module.scss';
-import SectionTitle from '@/components/ui/section-title';
+import SectionTitle from '../ui/section-title';
 
 export default function ContactSection({ id }) {
   return (

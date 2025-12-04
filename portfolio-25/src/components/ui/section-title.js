@@ -154,8 +154,8 @@ export default function SectionTitle({ id, className, mode = 'scroll', children 
   }, [mode]);
 
   return (
-    <h2 id={id} ref={titleRef} className={className}>
+    <h1 id={id} ref={titleRef} className={className}>
       {children}
-    </h2>
+    </h1>
   );
 }

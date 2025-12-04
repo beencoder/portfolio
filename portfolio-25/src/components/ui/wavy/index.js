@@ -124,7 +124,7 @@ export function WavyLinkButton({ href = '#', label = '', offset = 79, onClick, .
       if (typeof onClick === 'function') {
         onClick(e);
       }
-      // 이미 e.preventDefault() 했으면 넘어가기
+      // 부모에서 e.preventDefault() 한 경우 스킵
       if (e.defaultPrevented) return;
 
       // 스크롤 유틸 실행
