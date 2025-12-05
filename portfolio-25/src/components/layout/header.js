@@ -7,7 +7,7 @@ const navItems = [
   { type: 'section', href: '#about', label: 'Who I Am' },
   { type: 'section', href: '#works', label: 'Works' },
   { type: 'section', href: '#contact', label: 'Let’s Talk' },
-  { type: 'page', href: '/posts', label: 'Guestbook' },
+  { type: 'page', href: '/guestbook', label: 'Guestbook' },
 ];
 
 export default function Header() {

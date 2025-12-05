@@ -60,7 +60,7 @@ export default function HeroSection({ id }) {
           <p className={styles['sub-title']}>2025 다콩 포트폴리오</p>
 
           <div className={styles['title-inner']}>
-            <SectionTitle id={`${id}-title`} className={styles.title} mode="hero">
+            <SectionTitle id={`${id}-title`} className={styles.title} mode="fix">
               <span className={styles.top}>UX-Driven</span>
               <span className={styles.bottom}>UI Developer</span>
             </SectionTitle>
@@ -71,7 +71,7 @@ export default function HeroSection({ id }) {
 
         <div className={clsx(styles['link-wrap'], common['btn-wrap'])}>
           <LinkButton href="/resume.pdf" label="Resume" size="md" target="_blank" rel="noopener noreferrer" />
-          <LinkButton href="/posts" label="Recent Work" size="md" />
+          <LinkButton href="/works/travelover" label="Recent Work" size="md" />
         </div>
       </div>
     </section>

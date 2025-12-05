@@ -4,10 +4,6 @@
   @include fluid-step(40, 96);
   text-align: center;
   overflow: hidden;
-
-  span:not(.char) {
-    margin-inline: 0.5rem;
-  }
 }
 .char {
   display: inline-block;
