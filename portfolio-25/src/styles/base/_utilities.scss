@@ -23,7 +23,7 @@
 }
 
 .text-block {
-  display: block;
+  display: block !important;
 }
 .text-gap-sm {
   margin-top: 0.5rem;
@@ -33,4 +33,13 @@
 }
 .text-gap-lg {
   margin-top: 1.5rem;
+}
+.text-left {
+  text-align: left !important;
+}
+.text-center {
+  text-align: center !important;
+}
+.text-right {
+  text-align: right !important;
 }

@@ -102,8 +102,8 @@
 
 /* 포커스 링 */
 @mixin focus-ring {
-  outline: 2px solid var(--color-primary, #{$color-primary});
-  outline-offset: 4px;
+  outline: 2px solid var(--color-focus, #{$color-focus});
+  // outline-offset: 4px;
 }
 
 /* 중앙 정렬 */
@@ -160,10 +160,8 @@
   justify-content: center;
   align-items: center;
   gap: 1rem;
+  font-size: 1.3rem;
   position: relative;
-  font-size: 1.2rem;
-  font-weight: 700;
-  text-transform: uppercase;
   overflow: hidden;
 
   &-md {
@@ -203,6 +201,11 @@
       transition-delay: 0.1s;
     }
   }
+  span {
+    font-size: inherit;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
   .icon {
     width: 1em;
     height: 1em;
@@ -212,11 +215,15 @@
   &.is-active {
     .icon {
       transform: rotate(45deg);
+
+      &.left {
+        transform: rotate(-45deg);
+      }
     }
   }
 
   @include respond(max, md) {
-    font-size: 16px;
+    font-size: 18px;
 
     &-md {
       font-size: 18px;

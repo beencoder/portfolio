@@ -56,7 +56,8 @@
     max-width: 57.2vw;
     max-height: 100dvh;
     border-radius: 0.4rem 0 0 0.4rem;
-    background-color: var(--color-bg);
+    background: var(--color-bg) url(/images/common/bg-paper.webp);
+    background-size: 6.4rem;
     opacity: 1;
     transform: translate(100%, 0);
     clip-path: polygon(80% 0%, 100% 0%, 100% 100%, 80% 100%);

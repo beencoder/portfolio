@@ -21,6 +21,7 @@
   --color-success: #{$color-success};
   --color-warning: #{$color-warning};
   --color-error: #{$color-error};
+  --color-focus: #{$color-focus};
   --color-info: #{$color-info};
   --color-overlay: #{$color-overlay};
 
@@ -74,9 +75,13 @@ html {
     ),
     #{$fluid-max-root}
   );
-  // 전역 스크롤 동작
+  background: var(--color-bg) url(/images/common/bg-paper.webp);
+  background-size: 6.4rem;
   scroll-padding-top: var(--header-offset);
-  scroll-behavior: smooth;
+
+  &[data-scroll-behavior='smooth'] {
+    scroll-behavior: smooth;
+  }
 }
 html.is-scroll-locked {
   overflow-y: hidden;
@@ -93,7 +98,7 @@ body {
   font-size: var(--step-0);
   line-height: var(--lh-normal);
   color: var(--color-text, #{$color-text});
-  background-color: var(--color-bg, #{$color-bg});
+  // background-color: var(--color-bg, #{$color-bg});
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -120,7 +125,7 @@ h6 {
 }
 strong {
   font-weight: 700;
-  color: var(--color-primary);
+  color: var(--color-primary-active);
 }
 // p {
 //   white-space: pre-line;
@@ -137,8 +142,19 @@ strong {
   &:focus-visible {
     @include focus-ring;
   }
-  &:not(:first-of-type) {
+  &:not(.hero) {
     padding-block: var(--space-section);
+  }
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background-color: var(--color-bg, #ece4d4);
+    mix-blend-mode: multiply;
   }
 }
 .container {

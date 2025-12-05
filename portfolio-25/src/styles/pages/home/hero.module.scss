@@ -4,7 +4,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  isolation: isolate;
 }
 .wrapper {
   position: relative;
@@ -20,7 +19,6 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  mix-blend-mode: color-burn;
   z-index: 1;
 
   .title-inner {

@@ -6,7 +6,7 @@ import { gsap } from 'gsap';
 import common from '@/styles/pages/home/common.module.scss';
 import styles from '@/styles/pages/home/about.module.scss';
 import SectionTitle from '../ui/section-title';
-import Modal from '@/components/ui/modal';
+import Modal from '@/components/ui/modal/index';
 import { WavyButton, WavyLinkButton } from '../ui/wavy';
 import AboutStacks from '@/components/ui/about-stacks';
 import { removeScrollLock } from '@/lib/scroll-lock';

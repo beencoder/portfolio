@@ -1,0 +1,22 @@
+@use '../../base/mixins' as *;
+
+.contact {
+  &::before {
+    background-color: #eee1cf;
+  }
+  &::after {
+    content: '';
+    position: absolute;
+    top: -194px;
+    display: block;
+    width: 100%;
+    height: 194px;
+    background: url(/images/common/bg-paper-cut.webp) 0 0 / 100% 194px;
+    mix-blend-mode: multiply;
+    z-index: 1;
+  }
+  .link-list {
+    position: relative;
+    z-index: 1;
+  }
+}

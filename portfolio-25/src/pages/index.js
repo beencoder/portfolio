@@ -1,5 +1,4 @@
 import { Fragment } from 'react';
-import { Geist, Geist_Mono } from 'next/font/google';
 
 import HeroSection from '@/components/sections/hero';
 import AboutSection from '@/components/sections/about';
