@@ -161,6 +161,7 @@
   align-items: center;
   gap: 1rem;
   font-size: 1.3rem;
+  font-weight: 700;
   position: relative;
   overflow: hidden;
 
@@ -203,7 +204,7 @@
   }
   span {
     font-size: inherit;
-    font-weight: 700;
+    font-weight: inherit;
     text-transform: uppercase;
   }
   .icon {

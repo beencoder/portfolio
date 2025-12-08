@@ -14,14 +14,13 @@
   svg {
     stroke: currentColor;
   }
-
   &-inner {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: clamp(20px, 3rem, 50px);
     width: 100%;
-    padding-block: 24px;
+    height: 80px;
   }
 }
 
@@ -39,12 +38,12 @@
 
 @include respond(max, md) {
   .header {
-    color: var(--color-text);
+    color: var(--color-on-surface);
     mix-blend-mode: normal;
     backdrop-filter: blur(4px);
 
     &-inner {
-      padding-block: 18px;
+      height: 70px;
     }
   }
 }

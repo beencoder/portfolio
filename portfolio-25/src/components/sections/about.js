@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import clsx from 'clsx';
 import { gsap } from 'gsap';
 
 import common from '@/styles/pages/home/common.module.scss';
@@ -145,7 +144,7 @@ export default function AboutSection({ id }) {
 
         <AboutStacks />
 
-        <div className={clsx(common['btn-wrap'])}>
+        <div className={common['btn-wrap']}>
           <WavyLinkButton
             href="#contact"
             label="Let’s Talk"

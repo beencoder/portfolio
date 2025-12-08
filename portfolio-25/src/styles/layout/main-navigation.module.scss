@@ -111,8 +111,8 @@ $base-open-delay: $wrap-open-duration - ($item-start-lag * 2);
     flex-direction: column;
     align-items: flex-start;
     height: 100dvh;
-    padding: 14rem 2rem 3rem;
-    background-color: var(--color-surface);
+    padding: 140px 20px 30px;
+    background-color: var(--color-primary);
     transform: translateY(-100%);
     visibility: hidden;
 
@@ -164,7 +164,7 @@ $base-open-delay: $wrap-open-duration - ($item-start-lag * 2);
     .menu-list {
       flex-direction: column;
       align-items: flex-start;
-      gap: 3rem;
+      gap: 40px;
 
       &.has-btn {
         margin-top: auto;
@@ -175,9 +175,9 @@ $base-open-delay: $wrap-open-duration - ($item-start-lag * 2);
         }
       }
       .menu-item a {
-        font-size: 4rem;
+        font-size: 40px;
         font-weight: 900;
-        line-height: 6rem;
+        color: var(--color-on-surface);
         transform: translateX(4rem);
         opacity: 0;
         transition: transform $item-duration cubic-bezier(0.22, 1, 0.36, 1),

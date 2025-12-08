@@ -120,5 +120,9 @@
 @include respond(max, md) {
   .link {
     font-size: 16px;
+
+    &.is-active {
+      color: var(--color-secondary) !important;
+    }
   }
 }
