@@ -9,7 +9,7 @@ import SectionTitle from '../ui/section-title';
 import Modal from '@/components/ui/modal/index';
 import { WavyButton, WavyLinkButton } from '../ui/wavy';
 import AboutStacks from '@/components/ui/about-stacks';
-import { removeScrollLock } from '@/lib/scroll-lock';
+import { removeScrollLock } from '@/lib/scrollLock';
 
 export default function AboutSection({ id }) {
   const [modalIsOpen, setModalIsOpen] = useState(false);

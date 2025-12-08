@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import { addScrollLock, removeScrollLock } from '@/lib/scroll-lock';
+import { addScrollLock, removeScrollLock } from '@/lib/scrollLock';
 
 export default function useScrollLock(active) {
   useEffect(() => {
