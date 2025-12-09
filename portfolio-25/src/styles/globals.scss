@@ -142,7 +142,7 @@ strong {
   &:focus-visible {
     @include focus-ring;
   }
-  &:not(.hero) {
+  &:not(:first-of-type) {
     padding-block: var(--space-section);
   }
   &::before {
@@ -163,6 +163,10 @@ strong {
 .icon {
   width: 100%;
   height: auto;
+}
+.text-icon {
+  width: 1em;
+  height: 1em;
 }
 
 /* 스크린리더 전용 */
