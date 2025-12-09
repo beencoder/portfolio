@@ -45,7 +45,7 @@ export default function HeroSection({ id }) {
 
   return (
     <section id={id} className={clsx('section', styles.hero)} aria-labelledby={`${id}-title`} tabIndex={-1}>
-      <div className={clsx('container', styles.wrapper)}>
+      <div className={clsx('container', styles.layout)}>
         {/* 배경 */}
         <div className={styles['hero-bg']} aria-hidden="true" ref={bgRef}>
           <div className={styles.layer} data-depth="-0.08">

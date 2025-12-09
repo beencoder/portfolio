@@ -107,9 +107,9 @@ export function WavyLink({
   );
 }
 
-export function WavyButton({ label = '', type = 'button', ...restProps }) {
+export function WavyButton({ label = '', type = 'button', className, ...restProps }) {
   return (
-    <button type={type} className={clsx(styles.link, styles.btn)} {...restProps}>
+    <button type={type} className={clsx(styles.link, styles.btn, className)} {...restProps}>
       <WavyLabel label={label} brackets={false} srOnlyText={label} />
     </button>
   );

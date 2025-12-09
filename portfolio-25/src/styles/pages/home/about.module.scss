@@ -28,7 +28,7 @@
 .about-title {
   font-family: 'Marck Script';
   @include fluid-step(25, 40);
-  letter-spacing: -0.1rem;
+  letter-spacing: -0.04em;
   color: var(--color-primary-active);
 }
 .text-wrap p {
