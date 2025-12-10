@@ -1,18 +1,9 @@
 import { useState, useRef, useEffect } from 'react';
 import clsx from 'clsx';
 
-import { WavyButton } from '@/components/ui/wavy';
 import styles from '@/styles/pages/guestbook/guestbook-form.module.scss';
-
-// 비밀번호 해시
-async function hashPassword(password) {
-  if (!password) return '';
-  const enc = new TextEncoder();
-  const data = enc.encode(password);
-  const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-  const hashArray = Array.from(new Uint8Array(hashBuffer));
-  return hashArray.map((b) => b.toString(16).padStart(2, '0')).join('');
-}
+import { WavyButton } from '@/components/ui/wavy';
+import { hashPassword } from '@/lib/utils';
 
 export default function GuestbookForm({ onSubmit }) {
   const [captchaQuestion, setCaptchaQuestion] = useState({ num1: 0, num2: 0 });
