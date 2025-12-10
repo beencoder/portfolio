@@ -56,6 +56,10 @@ table {
   border-spacing: 0;
 }
 
+em {
+  font-style: normal;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

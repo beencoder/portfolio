@@ -24,6 +24,8 @@
   --color-focus: #{$color-focus};
   --color-info: #{$color-info};
   --color-overlay: #{$color-overlay};
+  --color-disabled-bg: #{$color-disabled-bg};
+  --color-disabled-text: #{$color-disabled-text};
 
   --space-1: #{$space-1};
   --space-2: #{$space-2};
@@ -123,7 +125,7 @@ h6 {
   font-weight: 400;
   line-height: var(--lh-tight);
 }
-strong {
+p strong {
   font-weight: 700;
   color: var(--color-primary-active);
 }

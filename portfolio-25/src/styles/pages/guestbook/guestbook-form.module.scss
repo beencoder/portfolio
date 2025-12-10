@@ -1,0 +1,143 @@
+@use '../../base/mixins' as *;
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+
+  .label-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .label {
+    font-size: 1.1rem;
+    font-weight: 700;
+
+    .required {
+      color: var(--color-error);
+    }
+  }
+  .count {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+
+    &.full em {
+      color: var(--color-error);
+    }
+    em {
+      font-weight: 700;
+    }
+  }
+  .input,
+  .textarea {
+    width: 100%;
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+    color: var(--color-text);
+    border-radius: 0.6rem;
+    border: 1px solid var(--color-border);
+    background-color: var(--color-surface);
+    transition: border-color 0.2s;
+
+    &::placeholder {
+      color: var(--color-text-muted);
+    }
+    &:focus {
+      outline: none;
+      border-color: var(--color-focus);
+    }
+    &.invalid {
+      border-color: var(--color-error);
+
+      &:focus {
+        box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+      }
+    }
+  }
+  .textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+  .captcha-group {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 0.5rem 0.8rem;
+
+    .problem {
+      padding: 0.6rem 1.2rem;
+      border-radius: 0.8rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--color-primary);
+      background-color: var(--color-surface-alt);
+      border: 1px solid var(--color-border);
+      white-space: nowrap;
+      user-select: none;
+    }
+    input {
+      width: 100%;
+      min-width: 0;
+    }
+    .error {
+      grid-column: 1 / -1;
+      margin-top: -2px;
+    }
+  }
+  .error {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 12px;
+    color: var(--color-error);
+
+    &::before {
+      content: '!';
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      width: 14px;
+      height: 14px;
+      color: #fff;
+      font-size: 10px;
+      font-weight: bold;
+      background-color: var(--color-error);
+      border-radius: 50%;
+    }
+  }
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+
+  button {
+    min-width: 180px;
+  }
+}
+
+@include respond(max, sm) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+  .actions {
+    button {
+      min-width: 100%;
+    }
+  }
+}
