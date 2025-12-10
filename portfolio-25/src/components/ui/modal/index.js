@@ -145,6 +145,7 @@ export default function Modal({
       )}
 
       <div className={clsx(styles.body, bodyClassName)}>{children}</div>
+
       {footer && <footer className={styles.footer}>{footer}</footer>}
     </div>
   );

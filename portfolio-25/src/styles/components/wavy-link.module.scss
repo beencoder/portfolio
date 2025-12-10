@@ -85,8 +85,7 @@
   transition: background-color 0.3s;
 
   &:disabled {
-    color: var(--color-disabled-text);
-    background-color: var(--color-disabled-bg);
+    opacity: 0.5;
     cursor: not-allowed;
     pointer-events: none;
   }

@@ -4,7 +4,7 @@ import { MessageCircleMore, MessageCircleHeart, Sparkles, HeartPulse, Ghost } fr
 
 import styles from '@/styles/pages/guestbook/guestbook.module.scss';
 import SectionTitle from '@/components/ui/section-title';
-import { PostDetailModal } from '@/components/ui/modal/post-modal';
+import { PostDetailModal } from '@/components/ui/modal/guestbook-modal';
 import GuestbookForm from '@/components/ui/guestbook-form';
 
 const INITIAL_MESSAGES = [
