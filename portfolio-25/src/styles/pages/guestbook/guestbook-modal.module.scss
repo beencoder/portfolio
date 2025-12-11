@@ -1,0 +1,233 @@
+@use '../../base/mixins' as *;
+
+/* ===== detail-modal ===== */
+.detail {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.detail-header {
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 1.2rem;
+
+  .profile-area {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .emoji {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    font-size: 1.4rem;
+    background-color: var(--color-surface-alt);
+    border-radius: 50%;
+    border: 1px solid var(--color-border);
+  }
+  .info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+
+    .author {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--color-text);
+    }
+    .date {
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+    }
+  }
+}
+.contents {
+  max-height: 200px;
+  overflow-y: auto;
+
+  .content {
+    font-size: 1.1rem;
+    line-height: var(--lh-loose);
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+  }
+}
+
+/* ===== [공통] detail-footer ===== */
+.modal-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  width: 100%;
+
+  .btn {
+    padding: 0.8rem 1.2rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-on-surface);
+    border-radius: 0.6rem;
+    border: 2px solid transparent;
+    background-color: var(--color-surface);
+    transition: filter 0.2s;
+
+    &.close {
+      background-color: var(--color-surface-alt);
+    }
+    &:hover {
+      filter: brightness(0.9);
+    }
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+  }
+}
+
+/* ===== delete-modal ===== */
+.delete-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.delete-desc {
+  font-size: 1.1rem;
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+
+  .label {
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+  .input {
+    width: 100%;
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+    letter-spacing: 0.2em;
+    text-align: center;
+    border-radius: 0.6rem;
+    border: 1px solid var(--color-border);
+    background-color: var(--color-surface);
+    transition: border-color 0.2s;
+
+    &:focus {
+      outline: none;
+      border-color: var(--color-focus);
+    }
+    &.invalid {
+      border-color: var(--color-error);
+
+      &:focus {
+        box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+      }
+    }
+    &.shake {
+      animation: shake 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+    }
+  }
+}
+
+.error-container {
+  min-height: 1.2rem;
+
+  .error {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 12px;
+    color: var(--color-error);
+
+    &::before {
+      content: '!';
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      width: 14px;
+      height: 14px;
+      color: #fff;
+      font-size: 10px;
+      font-weight: bold;
+      background-color: var(--color-error);
+      border-radius: 50%;
+    }
+  }
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+@include respond(max, lg) {
+  .field {
+    gap: 8px;
+
+    .label {
+      font-size: 14px;
+    }
+    .input {
+      padding: 8px 10px;
+      font-size: 14px;
+    }
+  }
+}
+
+@include respond(max, md) {
+  .detail {
+    gap: 18px;
+  }
+  .detail-header {
+    padding-bottom: 14px;
+
+    .profile-area {
+      gap: 10px;
+    }
+    .emoji {
+      font-size: 20px;
+    }
+    .info {
+      gap: 4px;
+
+      .author {
+        font-size: 14px;
+      }
+      .date {
+        font-size: 12px;
+      }
+    }
+  }
+  .contents {
+    .content {
+      font-size: 14px;
+    }
+  }
+  .modal-actions {
+    .btn {
+      padding: 12px 14px;
+      font-size: 14px;
+    }
+  }
+  .delete-desc {
+    font-size: 14px;
+  }
+}

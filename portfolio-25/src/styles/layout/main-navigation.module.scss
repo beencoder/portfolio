@@ -22,8 +22,6 @@ $base-open-delay: $wrap-open-duration - ($item-start-lag * 2);
   align-items: center;
   justify-content: center;
   position: relative;
-  width: 34px;
-  height: 34px;
   cursor: pointer;
   z-index: 4;
 
