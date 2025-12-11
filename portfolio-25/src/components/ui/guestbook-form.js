@@ -20,6 +20,7 @@ export default function GuestbookForm({ onSubmit }) {
   const passwordRef = useRef(null);
   const captchaRef = useRef(null);
 
+  const isAuthorNameFull = formValues.author.length > 20;
   const isContentFull = formValues.content.length > 300;
 
   const handleChange = (e) => {
@@ -54,6 +55,10 @@ export default function GuestbookForm({ onSubmit }) {
     const newErrors = {};
     const correctAnswer = captchaQuestion.num1 + captchaQuestion.num2;
 
+    if (formValues.author.length > 20) {
+      newErrors.author = '닉네임은 20자 이내로 입력해 주세요.';
+    }
+
     if (!formValues.content.trim()) newErrors.content = '내용을 입력해 주세요.';
 
     if (!formValues.password || formValues.password.length < 4) newErrors.password = '비밀번호 4자리를 입력해 주세요.';
@@ -84,13 +89,13 @@ export default function GuestbookForm({ onSubmit }) {
     setIsSubmitting(true);
 
     try {
-      const passwordHash = await hashPassword(formValues.password);
+      const hashedPassword = await hashPassword(formValues.password);
 
       // 부모 컴포넌트로 데이터 전달
       await onSubmit({
         author: formValues.author,
         content: formValues.content,
-        passwordHash,
+        password: hashedPassword,
       });
 
       // 성공 시 폼 초기화
@@ -115,13 +120,22 @@ export default function GuestbookForm({ onSubmit }) {
             id="gb-author"
             name="author"
             type="text"
-            className={styles.input}
+            className={clsx(styles.input, {
+              [styles.invalid]: errors.author || isAuthorNameFull,
+            })}
             placeholder="익명"
             maxLength={20}
             value={formValues.author}
             onChange={handleChange}
             autoComplete="nickname"
+            aria-invalid={!!errors.author || isAuthorNameFull}
+            aria-describedby={errors.author || isAuthorNameFull ? 'gb-author-err' : undefined}
           />
+          {(errors.author || isAuthorNameFull) && (
+            <p id="gb-author-err" className={styles.error} role="alert">
+              {errors.author || '닉네임은 20자 이내로 입력해 주세요.'}
+            </p>
+          )}
         </div>
       </div>
 

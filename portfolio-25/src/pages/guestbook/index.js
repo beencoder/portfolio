@@ -7,62 +7,90 @@ import SectionTitle from '@/components/ui/section-title';
 import { PostDetailModal } from '@/components/ui/modal/guestbook-modal';
 import GuestbookForm from '@/components/ui/guestbook-form';
 
-const INITIAL_MESSAGES = [
-  {
-    id: '1',
-    author: '익명',
-    content:
-      '포트폴리오 잘 봤어요! 특히 폼 UX랑 모달 동작이 인상 깊었습니다 포트폴리오 잘 봤어요! 특히 폼 UX랑 모달 동작이 인상 깊었습니다 포트폴리오 잘 봤어요! 특히 폼 UX랑 모달 동작이 인상 깊었습니다',
-    createdAt: '2025-12-05T09:00:00+09:00',
-    passwordHash: null,
-  },
-  {
-    id: '2',
-    author: 'Frontend 구직자',
-    content: '구조적인 마크업이 너무 잘 되어 있어서 많이 배워갑니다. 힘나는 포트폴리오였어요!',
-    createdAt: '2025-12-05T10:20:00+09:00',
-    passwordHash: null,
-  },
-];
-
 export default function GuestbookPage() {
-  const [messages, setMessages] = useState(INITIAL_MESSAGES);
+  const [messages, setMessages] = useState([]);
   const [activeMessage, setActiveMessage] = useState(null);
   const [announce, setAnnounce] = useState('');
   const detailModalId = activeMessage ? `guestbook-detail-${activeMessage.id}` : null;
 
-  const handleAddMessage = async (data) => {
-    await new Promise((resolve) => setTimeout(resolve, 500));
+  // 데이터 불러오기
+  const fetchMessages = async () => {
+    try {
+      const res = await fetch('/api/guestbook');
+      const result = await res.json();
 
-    const newMessage = {
-      id: String(Date.now()),
-      author: data.author?.trim() || '익명',
-      content: data.content.trim(),
-      createdAt: new Date().toISOString(),
-      passwordHash: data.passwordHash,
-    };
-
-    setMessages((prev) => [newMessage, ...prev]);
-    setAnnounce('새로운 방명록이 등록되었습니다.');
+      if (result.success) {
+        const formattedData = result.data.map((item) => ({
+          id: item._id,
+          author: item.name,
+          content: item.message,
+          createdAt: item.createdAt,
+          password: item.password || null,
+        }));
+        setMessages(formattedData);
+      }
+    } catch (error) {
+      console.error('Failed to fetch messages', error);
+    }
   };
 
-  // 더미 해시 설정
   useEffect(() => {
-    if (messages.some((m) => m.passwordHash === null)) {
-      setMessages((prev) =>
-        prev.map((m) => (m.passwordHash === null ? { ...m, passwordHash: 'DEMO_NO_DELETE_HASH' } : m)),
-      );
-    }
+    fetchMessages();
   }, []);
+
+  // 메시지 추가
+  const handleAddMessage = async (data) => {
+    try {
+      const res = await fetch('/api/guestbook', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          author: data.author?.trim() || '익명',
+          content: data.content.trim(),
+          password: data.password,
+        }),
+      });
+
+      const result = await res.json();
+
+      if (result.success) {
+        await fetchMessages(); // 목록 다시 불러오기
+        setAnnounce('새로운 방명록이 등록되었습니다.');
+      } else {
+        alert('등록에 실패했습니다.');
+      }
+    } catch (error) {
+      console.error('Error adding message:', error);
+      alert('오류가 발생했습니다.');
+    }
+  };
 
   const handleOpenDetail = (message) => setActiveMessage(message);
   const handleCloseDetail = () => setActiveMessage(null);
 
-  const handleDeleteMessage = (id) => {
-    setMessages((prev) => prev.filter((m) => m.id !== id));
-    setAnnounce('방명록이 삭제되었습니다.');
+  // 메시지 삭제
+  const handleDeleteMessage = async (id) => {
+    if (!confirm('정말 삭제하시겠습니까?')) return;
 
-    if (activeMessage?.id === id) setActiveMessage(null);
+    try {
+      const res = await fetch('/api/guestbook', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id }),
+      });
+
+      const result = await res.json();
+
+      if (result.success) {
+        setMessages((prev) => prev.filter((m) => m.id !== id));
+        setAnnounce('방명록이 삭제되었습니다.');
+        if (activeMessage?.id === id) setActiveMessage(null);
+      } else {
+        alert('삭제에 실패했습니다.');
+      }
+    } catch (error) {
+      console.error('Error deleting message:', error);
+    }
   };
 
   return (

@@ -116,10 +116,11 @@
     .empty-icon {
       margin-bottom: 2rem;
       color: var(--color-text-muted);
-      opacity: 0.6;
+      opacity: 0.8;
     }
     p {
-      font-size: 1rem;
+      font-size: 1.1rem;
+      font-weight: 700;
       color: var(--color-text-muted);
     }
   }
@@ -146,12 +147,13 @@
   .card-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
+    gap: 1rem;
     margin-bottom: 1.2rem;
 
     .author {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 0.5rem;
       font-size: 1rem;
       font-weight: 700;
@@ -216,6 +218,11 @@
   .list-section {
     .list-header {
       .count-title {
+        font-size: 14px;
+      }
+    }
+    .empty {
+      p {
         font-size: 14px;
       }
     }

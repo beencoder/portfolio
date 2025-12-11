@@ -72,7 +72,7 @@ export function PostDetailModal({ message, onClose, onDelete }) {
         isOpen={isDeleteOpen}
         onClose={closeDelete}
         messageId={message.id}
-        expectedHash={message.passwordHash}
+        expectedHash={message.password}
         onConfirm={handleConfirmedDelete}
       />
     </>
