@@ -27,8 +27,8 @@ export function PostDetailModal({ message, onClose, onDelete }) {
         size="md"
         isOpen={!!message}
         onClose={onClose}
-        title="방명록 상세 보기"
-        ariaLabel={`방명록 ${message.author}님의 방명록 상세 내용`}
+        title="메시지 상세 보기"
+        ariaLabel={`방명록 ${message.author}님의 메시지 상세 내용`}
         footer={
           <div className={styles['modal-actions']}>
             <button type="button" className={styles.btn} onClick={openDelete} aria-label="이 글 삭제하기">

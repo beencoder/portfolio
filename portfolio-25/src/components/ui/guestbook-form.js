@@ -109,7 +109,7 @@ export default function GuestbookForm({ onSubmit }) {
       <div className={styles.row}>
         <div className={styles.field}>
           <label htmlFor="gb-author" className={styles.label}>
-            닉네임
+            Name
           </label>
           <input
             id="gb-author"
@@ -128,7 +128,7 @@ export default function GuestbookForm({ onSubmit }) {
       <div className={styles.field}>
         <div className={styles['label-row']}>
           <label htmlFor="gb-content" className={styles.label}>
-            내용 <span className={styles.required}>*</span>
+            Message <span className={styles.required}>*</span>
           </label>
           <span className={clsx(styles.count, { [styles.full]: isContentFull })}>
             <em>{formValues.content.length}</em> / 300
@@ -160,7 +160,7 @@ export default function GuestbookForm({ onSubmit }) {
       <div className={styles.row}>
         <div className={styles.field}>
           <label htmlFor="gb-password" className={styles.label}>
-            비밀번호(4자리) <span className={styles.required}>*</span>
+            PIN (4 digits) <span className={styles.required}>*</span>
           </label>
           <input
             id="gb-password"
@@ -172,7 +172,7 @@ export default function GuestbookForm({ onSubmit }) {
             className={clsx(styles.input, { [styles.invalid]: errors.password })}
             value={formValues.password}
             onChange={handleChange}
-            placeholder="삭제 시 필요한 비밀번호 입력"
+            placeholder="삭제 시 필요한 숫자 4자리 입력"
             autoComplete="new-password"
             aria-invalid={!!errors.password}
             aria-describedby={errors.password ? 'gb-pw-err' : undefined}
@@ -186,7 +186,7 @@ export default function GuestbookForm({ onSubmit }) {
 
         <div className={styles.field}>
           <label htmlFor="gb-captcha" className={styles.label}>
-            스팸 방지 <span className={styles.required}>*</span>
+            Verification <span className={styles.required}>*</span>
           </label>
           <div className={styles['captcha-group']}>
             <span className={styles.problem}>
@@ -220,7 +220,7 @@ export default function GuestbookForm({ onSubmit }) {
       </div>
 
       <div className={styles.actions}>
-        <WavyButton type="submit" label={isSubmitting ? '등록 중...' : '등록하기'} disabled={isSubmitting} />
+        <WavyButton type="submit" label={isSubmitting ? 'Marking...' : 'Make Your Mark'} disabled={isSubmitting} />
       </div>
     </form>
   );

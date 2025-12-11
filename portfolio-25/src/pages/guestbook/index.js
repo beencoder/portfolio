@@ -142,7 +142,7 @@ export default function GuestbookPage() {
                         className={styles['more-btn']}
                         onClick={() => handleOpenDetail(message)}
                         aria-controls={detailModalId}>
-                        더보기
+                        Read More
                       </button>
                     </article>
                   </li>
