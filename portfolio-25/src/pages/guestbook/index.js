@@ -70,8 +70,6 @@ export default function GuestbookPage() {
 
   // 메시지 삭제
   const handleDeleteMessage = async (id) => {
-    if (!confirm('정말 삭제하시겠습니까?')) return;
-
     try {
       const res = await fetch('/api/guestbook', {
         method: 'DELETE',
@@ -87,6 +85,7 @@ export default function GuestbookPage() {
         if (activeMessage?.id === id) setActiveMessage(null);
       } else {
         alert('삭제에 실패했습니다.');
+        setAnnounce('삭제 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.');
       }
     } catch (error) {
       console.error('Error deleting message:', error);
