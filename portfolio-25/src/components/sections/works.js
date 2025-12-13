@@ -5,9 +5,9 @@ import useMedia from '@/hooks/useMedia';
 import common from '@/styles/pages/home/common.module.scss';
 import styles from '@/styles/pages/works/works.module.scss';
 import SectionTitle from '../ui/section-title';
-import WorkBlock from '../ui/work-block';
-import ProjectBlock from '../ui/project-block';
-import ProjectPreview from '../ui/project-preview';
+import WorkBlock from '../ui/works/work-block';
+import ProjectBlock from '../ui/works/project-block';
+import ProjectPreview from '../ui/works/project-preview';
 
 const WORK_ITEMS = [
   {

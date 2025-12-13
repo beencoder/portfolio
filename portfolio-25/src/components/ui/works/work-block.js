@@ -2,7 +2,7 @@ import Image from 'next/image';
 import clsx from 'clsx';
 
 import styles from '@/styles/components/work-block.module.scss';
-import { LinkButton } from './button';
+import { LinkButton } from '../button';
 
 export default function WorkBlock({ workItem, isActive, isMobile, onActivate, onDeactivate, onToggle }) {
   const panelId = `work-${workItem.id}-panel`;

@@ -4,8 +4,8 @@ import { MessageCircleMore, MessageCircleHeart, Sparkles, HeartPulse, Ghost } fr
 
 import styles from '@/styles/pages/guestbook/guestbook.module.scss';
 import SectionTitle from '@/components/ui/section-title';
-import { PostDetailModal } from '@/components/ui/modal/guestbook-modal';
-import GuestbookForm from '@/components/ui/guestbook-form';
+import { PostDetailModal } from '@/components/ui/guestbook/guestbook-modal';
+import GuestbookForm from '@/components/ui/guestbook/guestbook-form';
 
 export default function GuestbookPage() {
   const [messages, setMessages] = useState([]);
