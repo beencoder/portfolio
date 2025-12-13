@@ -137,13 +137,15 @@ p strong {
 }
 .section {
   position: relative;
-  min-height: 100dvh;
 
-  &:focus-visible {
-    @include focus-ring;
+  &:first-of-type {
+    min-height: 100dvh;
   }
   &:not(:first-of-type) {
     padding-block: var(--space-section);
+  }
+  &:focus-visible {
+    @include focus-ring;
   }
   &::before {
     content: '';
@@ -180,7 +182,16 @@ p strong {
 }
 
 @include respond(max, lg) {
+  :root {
+    --space-section: 120px;
+  }
   .container {
     @include container($gutter: 20px);
+  }
+}
+
+@include respond(max, md) {
+  :root {
+    --header-offset: 70px;
   }
 }

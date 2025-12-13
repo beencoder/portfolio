@@ -1,7 +1,7 @@
 @use '../../base/mixins' as *;
 
 .guestbook {
-  padding-block: calc(var(--header-offset) + 3rem) calc(var(--space-section) / 2);
+  padding-block: calc(var(--header-offset) + 40px) 50px;
 }
 .layout {
   display: flex;

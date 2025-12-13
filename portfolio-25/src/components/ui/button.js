@@ -13,10 +13,19 @@ export function Button({ label, isActive = false, arrow = 'right', ...restProps 
   );
 }
 
-export function LinkButton({ href, label, size = 'sm', isActive = false, arrow = 'right', ...restProps }) {
+export function LinkButton({
+  href,
+  label,
+  size = 'sm',
+  isActive = false,
+  arrow = 'right',
+  markIcon = null,
+  ...restProps
+}) {
   return (
     <Link href={href} className={clsx('btn', `btn-${size}`, { 'is-active': isActive })} {...restProps}>
       {arrow === 'left' && <ArrowUpLeft className="icon" aria-hidden="true" />}
+      {markIcon && markIcon}
 
       <span>{label}</span>
 
