@@ -71,63 +71,63 @@ const PROJECT_ITEMS = [
     type: 'Main / Flagship',
     href: '/example',
     previewImage: '/images/projects/project-thumb-1.png',
-    previewTitle: 'My personal portfolio website',
+    previewTitle: '개인 포트폴리오 웹사이트',
   },
   {
     id: 1,
-    title: 'Shared Recipe',
+    title: 'RecipeHub',
     type: 'Side Project',
     href: '/example',
     previewImage: '/images/projects/doazoom-intro.png',
-    previewTitle: 'Shared recipe website',
+    previewTitle: '나만의 요리법을 공유하는 레시피 커뮤니티',
   },
   {
     id: 2,
-    title: 'Shared Recipe Shared Recipe',
-    type: 'Side Project',
+    title: 'TodoLite',
+    type: 'Toy Project',
     href: '/example',
     previewImage: '/images/projects/doazoom-intro.png',
-    previewTitle: 'Shared recipe website',
+    previewTitle: '할 일을 간편하게 관리하는 투두 리스트',
   },
   {
     id: 3,
-    title: 'Shared Recipe',
+    title: 'AuthFlow',
     type: 'Side Project',
     href: '/example',
     previewImage: '/images/projects/doazoom-intro.png',
-    previewTitle: 'Shared recipe website',
+    previewTitle: '회원가입 및 로그인 인증 기능 구현 데모',
   },
   {
     id: 4,
-    title: 'Shared Recipe',
-    type: 'Side Project',
+    title: 'TypeMaster',
+    type: 'Toy Project',
     href: '/example',
     previewImage: '/images/projects/doazoom-intro.png',
-    previewTitle: 'Shared recipe website',
+    previewTitle: '타자 연습 서비스',
   },
   {
     id: 5,
-    title: 'Shared Recipe',
-    type: 'Side Project',
+    title: 'Mini Blocks',
+    type: 'Toy Project',
     href: '/example',
     previewImage: '/images/projects/doazoom-intro.png',
-    previewTitle: 'Shared recipe website',
+    previewTitle: '테트리스를 모티브로 한 블록 쌓기 게임',
   },
   {
     id: 6,
-    title: 'Shared Recipe',
+    title: 'PlayTune',
     type: 'Side Project',
     href: '/example',
     previewImage: '/images/projects/doazoom-intro.png',
-    previewTitle: 'Shared recipe website',
+    previewTitle: '기본 재생 기능을 갖춘 웹 뮤직 플레이어',
   },
   {
     id: 7,
-    title: 'Shared Recipe',
-    type: 'Side Project',
+    title: 'CSS 3D Lab',
+    type: 'Creative Experiment',
     href: '/example',
     previewImage: '/images/projects/doazoom-intro.png',
-    previewTitle: 'Shared recipe website',
+    previewTitle: 'CSS 3D 효과를 활용한 인터랙티브',
   },
 ];
 
@@ -135,7 +135,7 @@ export default function WorksSection({ id }) {
   const [activeWorkId, setActiveWorkId] = useState(null);
   const [hoveredProject, setHoveredProject] = useState(null);
   const [previewPos, setPreviewPos] = useState({ x: 0, y: 0 });
-  const isMobile = useMedia('(max-width: 767px)');
+  const isMobile = useMedia('(max-width: 768px)');
 
   const handleWorkActivate = (id) => setActiveWorkId(id);
   const handleWorkDeactivate = () => setActiveWorkId(null);

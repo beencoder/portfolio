@@ -53,11 +53,11 @@
   $max: if($to != null, bp($to), null);
 
   @if $mode == min {
-    @media (min-width: $min) {
+    @media (min-width: ($min + 0.02px)) {
       @content;
     }
   } @else if $mode == max {
-    @media (max-width: ($min - 0.02px)) {
+    @media (max-width: ($min)) {
       @content;
     }
   }
