@@ -19,7 +19,7 @@ export default function ProjectBlock({ projectItem, isMobile, onActivate, onDeac
 
   return (
     <li className={styles['project-item']} {...eventProps}>
-      <Link href={`${projectItem.href}`} onClick={(e) => handleLinkClick(e, projectItem.href)}>
+      <Link href={`${projectItem.url.detail}`} onClick={(e) => handleLinkClick(e, projectItem.url.detail)}>
         <div className={styles.inner}>
           <div className={styles['title-wrap']}>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 28">
@@ -27,7 +27,7 @@ export default function ProjectBlock({ projectItem, isMobile, onActivate, onDeac
             </svg>
             <h2 className={styles.title}>{projectItem.title}</h2>
           </div>
-          <span className={styles.type}>{projectItem.type}</span>
+          <span className={styles.category}>{projectItem.category}</span>
         </div>
       </Link>
     </li>

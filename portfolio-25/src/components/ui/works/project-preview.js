@@ -59,14 +59,14 @@ export default function ProjectPreview({ project, position, isVisible }) {
       aria-hidden="true"
       onTransitionEnd={handleTransitionEnd}>
       <div className={clsx(styles.inner, styles['inner-anim'])} key={currentProject.id}>
-        {currentProject.previewImage && (
+        {currentProject.thumbnail && (
           <div className={styles['image-wrap']}>
-            <Image src={currentProject.previewImage} alt="" fill sizes="220px" />
+            <Image src={currentProject.thumbnail} alt="" fill sizes="220px" />
           </div>
         )}
 
         <div className={styles['text-wrap']}>
-          <p className={styles['project-title']}>{currentProject.previewTitle || currentProject.title}</p>
+          <p className={styles['project-title']}>{currentProject.summary || currentProject.title}</p>
         </div>
       </div>
     </div>

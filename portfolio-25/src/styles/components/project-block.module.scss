@@ -18,7 +18,7 @@
         letter-spacing: 0.01em;
       }
     }
-    .type {
+    .category {
       transform: translate(-10px);
     }
   }
@@ -52,7 +52,7 @@
       transition: font-size 0.4s, letter-spacing 0.4s;
     }
   }
-  .type {
+  .category {
     font-size: 1.4rem;
     font-weight: 700;
     transform-origin: right;
@@ -85,7 +85,7 @@
         font-size: 24px;
       }
     }
-    .type {
+    .category {
       font-size: 16px;
     }
   }
@@ -96,7 +96,7 @@
     .title-wrap {
       transform: translate(-30px);
     }
-    .type {
+    .category {
       transform: translate(0);
     }
   }

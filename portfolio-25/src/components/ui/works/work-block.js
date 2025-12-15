@@ -4,8 +4,9 @@ import clsx from 'clsx';
 import styles from '@/styles/components/work-block.module.scss';
 import { LinkButton } from '../button';
 
-export default function WorkBlock({ workItem, isActive, isMobile, onActivate, onDeactivate, onToggle }) {
+export default function WorkBlock({ workItem, index, isActive, isMobile, onActivate, onDeactivate, onToggle }) {
   const panelId = `work-${workItem.id}-panel`;
+  const itemNumber = String(index + 1).padStart(2, '0');
 
   // View 버튼 클릭 시
   function handleViewBtnClick(e, href) {
@@ -34,7 +35,7 @@ export default function WorkBlock({ workItem, isActive, isMobile, onActivate, on
           </button>
         ) : (
           <>
-            <span className={styles.number}>{String(workItem.id).padStart(2, '0')}</span>
+            <span className={styles.number}>{itemNumber}</span>
             <h2 className={styles.title}>
               <span>{workItem.title}</span>
             </h2>
@@ -52,10 +53,10 @@ export default function WorkBlock({ workItem, isActive, isMobile, onActivate, on
       <dl id={panelId} className={styles.contents}>
         <dt className="sr-only">기술 스택</dt>
         <dd>
-          <ul className={styles['stack-list']}>
-            {workItem.stack.map((stack, index) => (
+          <ul className={styles['tech-list']}>
+            {workItem.techStack.map((tech, index) => (
               <li key={index}>
-                <span className={styles.stack}>/{stack.name}</span>
+                <span className={styles.tech}>/{tech}</span>
               </li>
             ))}
           </ul>
@@ -63,7 +64,7 @@ export default function WorkBlock({ workItem, isActive, isMobile, onActivate, on
         <dt className="sr-only">참고 이미지</dt>
         <dd>
           <div className={styles['img-wrap']}>
-            <Image src={workItem.thumb} alt={`${workItem.title} 화면`} width={321} height={563} />
+            <Image src={workItem.thumbnail} alt={`${workItem.title} 화면`} width={321} height={563} />
           </div>
         </dd>
       </dl>
@@ -72,9 +73,9 @@ export default function WorkBlock({ workItem, isActive, isMobile, onActivate, on
 
       <div className={styles.link}>
         <LinkButton
-          href={workItem.href}
+          href={workItem.url.detail}
           label="View Case"
-          onClick={(e) => handleViewBtnClick(e, workItem.href)}
+          onClick={(e) => handleViewBtnClick(e, workItem.url.detail)}
           tabIndex={isMobile && !isActive ? -1 : 0}
           aria-hidden={isMobile && !isActive ? true : undefined}
         />

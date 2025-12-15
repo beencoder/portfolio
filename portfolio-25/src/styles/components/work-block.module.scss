@@ -42,7 +42,7 @@
       }
     }
     .contents {
-      .stack-list li {
+      .tech-list li {
         span {
           transform: translateY(0);
           transition: transform 0.6s var(--transition-main);
@@ -133,7 +133,7 @@
   justify-content: space-between;
   gap: 1rem;
 
-  .stack-list {
+  .tech-list {
     li {
       margin-bottom: 0.3rem;
       overflow: hidden;
@@ -253,7 +253,7 @@
     dd:has(.img-wrap) {
       width: 50%;
     }
-    .stack-list {
+    .tech-list {
       li span {
         font-size: 16px;
       }
