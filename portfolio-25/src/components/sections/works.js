@@ -104,7 +104,7 @@ export default function WorksSection({ id }) {
         </SectionTitle>
 
         <ul className={styles['project-list']}>
-          <div className={styles['list-divider']}></div>
+          <div className={styles.divider} aria-hidden="true"></div>
           {projectData.map((project) => (
             <ProjectBlock
               key={project.id}

@@ -18,16 +18,16 @@
     padding: 6px 14px 6px 6px;
     border-radius: 24px;
     background-color: var(--color-on-surface);
-    box-shadow: 0 10px 25px var(--color-shadow);
+    box-shadow: var(--shadow-md);
   }
-  .image-wrap {
+  .img-wrap {
     position: relative;
     flex: 0 0 300px;
     height: 100px;
     aspect-ratio: 16 / 9;
     border-radius: 18px;
     overflow: hidden;
-    animation: tooltipImageFade 0.4s var(--ease-power3-out);
+    animation: tooltip-fade 0.4s var(--ease-power3-out);
 
     img {
       object-fit: cover;
@@ -46,12 +46,12 @@
   }
 }
 
-@keyframes tooltipImageFade {
-  from {
+@keyframes tooltip-fade {
+  0% {
     opacity: 0.75;
     transform: scale(0.98);
   }
-  to {
+  100% {
     opacity: 1;
     transform: scale(1);
   }

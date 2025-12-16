@@ -5,8 +5,8 @@ import LogoIcon from './logo-icon';
 
 export default function Logo() {
   return (
-    <Link href="/" className={styles.logo}>
-      <div className={styles['image-wrap']}>
+    <Link href="/" className={styles.logo} aria-label="다빈이의 포트폴리오 홈으로 이동">
+      <div className={styles['img-wrap']}>
         <LogoIcon />
       </div>
       <div className={styles['text-wrap']}>

@@ -234,6 +234,7 @@
 
 /* 컨테이너 유틸 */
 @mixin container($max: var(--container-max, #{$container-max}), $gutter: 70px) {
+  position: relative;
   max-width: min(100% - #{$gutter} * 2, #{$max});
   height: 100%;
   margin: 0 auto;

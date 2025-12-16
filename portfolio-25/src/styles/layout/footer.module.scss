@@ -5,6 +5,7 @@
   padding: 20px 0;
   color: var(--color-text-inverse);
   background-color: var(--color-secondary);
+  z-index: 10;
 
   .layout {
     display: flex;

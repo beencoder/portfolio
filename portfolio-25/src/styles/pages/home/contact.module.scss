@@ -74,7 +74,7 @@
     background-color: var(--color-surface-alt);
     border-radius: 16px;
     border: 1px solid var(--color-border);
-    box-shadow: 0 4px 12px var(--color-shadow);
+    box-shadow: var(--shadow-sm);
     cursor: pointer;
     transition: all 0.3s var(--transition-main);
 
@@ -166,7 +166,7 @@
     padding: 2.8rem 2.4rem;
     border: 2px double var(--color-primary);
     border-radius: 2rem;
-    box-shadow: 0 20px 40px var(--color-shadow);
+    box-shadow: var(--shadow-md);
     overflow: hidden;
     isolation: isolate;
     transition: transform 0.3s ease;

@@ -60,7 +60,7 @@ export default function ProjectPreview({ project, position, isVisible }) {
       onTransitionEnd={handleTransitionEnd}>
       <div className={clsx(styles.inner, styles['inner-anim'])} key={currentProject.id}>
         {currentProject.thumbnail && (
-          <div className={styles['image-wrap']}>
+          <div className={styles['img-wrap']}>
             <Image src={currentProject.thumbnail} alt="" fill sizes="220px" />
           </div>
         )}

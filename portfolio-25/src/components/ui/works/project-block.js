@@ -22,7 +22,7 @@ export default function ProjectBlock({ projectItem, isMobile, onActivate, onDeac
       <Link href={`${projectItem.url.detail}`} onClick={(e) => handleLinkClick(e, projectItem.url.detail)}>
         <div className={styles.inner}>
           <div className={styles['title-wrap']}>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 28">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 28" aria-hidden="true">
               <path d="M8,0h16v20c0,4.42-3.58,8-8,8h-8c-4.42,0-8-3.58-8-8v-12C0,3.58,3.58,0,8,0Z"></path>
             </svg>
             <h2 className={styles.title}>{projectItem.title}</h2>
