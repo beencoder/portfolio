@@ -57,7 +57,7 @@ export default function GuestbookPage() {
         await fetchMessages(); // 목록 다시 불러오기
         setAnnounce('새로운 방명록이 등록되었습니다.');
       } else {
-        alert('등록에 실패했습니다.');
+        alert(result.error || '등록에 실패했습니다.');
       }
     } catch (error) {
       console.error('Error adding message:', error);
@@ -120,7 +120,7 @@ export default function GuestbookPage() {
             </div>
 
             <ul className={styles['notice-list']}>
-              <li>개인정보(전화번호 등)는 남기지 말아주세요.</li>
+              <li>개인정보(실명, 전화번호 등)는 남기지 말아주세요.</li>
               <li>욕설 및 비방 글은 예고 없이 삭제될 수 있습니다.</li>
             </ul>
           </section>
