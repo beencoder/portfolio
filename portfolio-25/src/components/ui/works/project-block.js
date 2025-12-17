@@ -3,9 +3,8 @@ import Link from 'next/link';
 import styles from '@/styles/components/project-block.module.scss';
 
 export default function ProjectBlock({ projectItem, isMobile, onActivate, onDeactivate }) {
-  function handleLinkClick(e, href) {
+  function handleLinkClick(e) {
     e.stopPropagation();
-    console.log(href);
   }
 
   const eventProps = isMobile

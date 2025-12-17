@@ -60,14 +60,6 @@
   }
 }
 
-@include respond(max, lg) {
-  .inner {
-    .title-wrap {
-      flex: 0 1 calc(100% - 140px);
-    }
-  }
-}
-
 @include respond(max, md) {
   .project-item:hover {
     .title-wrap {

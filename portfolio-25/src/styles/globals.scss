@@ -184,9 +184,10 @@ p strong {
 @include respond(max, lg) {
   :root {
     --space-section: 120px;
+    --shadow-lg: #{$shadow-sm};
   }
   .container {
-    @include container($gutter: 20px);
+    max-width: min(100% - 24px * 2, var(--container-max, 1920px));
   }
 }
 

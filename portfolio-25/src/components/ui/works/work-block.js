@@ -8,10 +8,8 @@ export default function WorkBlock({ workItem, index, isActive, isMobile, onActiv
   const panelId = `work-${workItem.id}-panel`;
   const itemNumber = String(index + 1).padStart(2, '0');
 
-  // View 버튼 클릭 시
-  function handleViewBtnClick(e, href) {
+  function handleViewBtnClick(e) {
     e.stopPropagation();
-    console.log(href);
   }
 
   const eventProps = isMobile
@@ -28,7 +26,7 @@ export default function WorkBlock({ workItem, index, isActive, isMobile, onActiv
       <header className={styles.header}>
         {isMobile ? (
           <button type="button" onClick={onToggle} aria-expanded={isActive ? 'true' : 'false'} aria-controls={panelId}>
-            <span className={styles.number}>{String(workItem.id).padStart(2, '0')}</span>
+            <span className={styles.number}>{itemNumber}</span>
             <h2 className={styles.title}>
               <span>{workItem.title}</span>
             </h2>
