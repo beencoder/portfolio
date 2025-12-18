@@ -92,14 +92,14 @@
     align-items: center;
     justify-content: space-between;
     margin-bottom: 1.5rem;
-    padding-bottom: 1rem;
-    border-bottom: 2px solid var(--color-on-surface-alt);
+    padding-bottom: 0.8rem;
+    border-bottom: 2px solid var(--color-primary);
 
     .count-title {
       font-size: 1.1rem;
 
       strong {
-        color: var(--color-primary);
+        color: var(--color-primary-active);
         font-weight: 900;
       }
     }
@@ -113,13 +113,18 @@
     border-radius: 1.5rem;
     border: 1px dashed var(--color-border);
 
-    .empty-icon {
+    .icon {
       margin-bottom: 2rem;
       color: var(--color-text-muted);
       opacity: 0.8;
+
+      &.loading {
+        margin-bottom: 1rem;
+        animation: spin 1s linear infinite;
+      }
     }
     p {
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       font-weight: 700;
       color: var(--color-text-muted);
     }
@@ -180,6 +185,12 @@
     font-weight: 700;
     text-decoration: underline;
     text-underline-offset: 4px;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
   }
 }
 

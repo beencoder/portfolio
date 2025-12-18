@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import clsx from 'clsx';
-import { MessageCircleMore, MessageCircleHeart, Sparkles, HeartPulse, Ghost } from 'lucide-react';
+import { MessageCircleMore, MessageCircleHeart, Sparkles, Loader2, Ghost } from 'lucide-react';
 
 import styles from '@/styles/pages/guestbook/guestbook.module.scss';
 import SectionTitle from '@/components/ui/section-title';
@@ -9,12 +9,15 @@ import GuestbookForm from '@/components/ui/guestbook/guestbook-form';
 
 export default function GuestbookPage() {
   const [messages, setMessages] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [activeMessage, setActiveMessage] = useState(null);
   const [announce, setAnnounce] = useState('');
   const detailModalId = activeMessage ? `guestbook-detail-${activeMessage.id}` : null;
 
   // 데이터 불러오기
   const fetchMessages = async () => {
+    setIsLoading(true);
+
     try {
       const res = await fetch('/api/guestbook');
       const result = await res.json();
@@ -31,6 +34,8 @@ export default function GuestbookPage() {
       }
     } catch (error) {
       console.error('Failed to fetch messages', error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -128,13 +133,18 @@ export default function GuestbookPage() {
           <section className={styles['list-section']} aria-label={`총 ${messages.length}개의 방명록이 있습니다.`}>
             <div className={styles['list-header']}>
               <h2 className={styles['count-title']}>
-                Total <strong>{messages.length}</strong> Messages
+                Total <strong>{isLoading ? '...' : messages.length}</strong> Marks
               </h2>
             </div>
 
-            {messages.length === 0 ? (
+            {isLoading ? (
+              <div className={styles.empty} style={{ padding: '4rem 0' }}>
+                <Loader2 className={clsx(styles.icon, styles.loading)} size={50} aria-hidden="true" />
+                <p>Loading...</p>
+              </div>
+            ) : messages.length === 0 ? (
               <div className={styles.empty}>
-                <Ghost size={80} strokeWidth={1.5} className={styles['empty-icon']} aria-hidden="true" />
+                <Ghost size={80} strokeWidth={1.5} className={styles.icon} aria-hidden="true" />
                 <p>아직 남겨진 코멘트가 없어요.</p>
                 <p>첫 번째 주인공이 되어보세요!</p>
               </div>
