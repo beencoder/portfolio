@@ -249,7 +249,7 @@ export default function MainNavigation({ navItems = [] }) {
                       label={item.label}
                       isActive={isActive}
                       brackets={isDesktop}
-                      offset={isDesktop ? 79 : 70}
+                      offset={isDesktop ? 80 : 70}
                       closeFirst={!isDesktop}
                       onAfterNavigate={
                         !isDesktop

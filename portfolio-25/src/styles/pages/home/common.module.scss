@@ -18,7 +18,14 @@
 .btn-wrap {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  flex-wrap: wrap;
+  gap: 2rem 3rem;
+}
+
+@include respond(max, md) {
+  .btn-wrap {
+    justify-content: center;
+  }
 }
 
 @include respond(max, sm) {

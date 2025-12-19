@@ -5,7 +5,8 @@
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.1rem;
+  font-size: 16px;
+  letter-spacing: 0.04em;
   isolation: isolate;
   --char-delay: 20ms;
   --dur: 360ms;
@@ -125,13 +126,23 @@
 
 @include respond(max, md) {
   .link {
-    font-size: 14px;
-
     &.is-active {
       color: var(--color-secondary) !important;
     }
   }
   .btn {
     padding: 14px 30px;
+
+    &:only-child {
+      min-width: 75%;
+    }
+  }
+}
+
+@include respond(max, sm) {
+  .btn {
+    &:only-child {
+      min-width: 100%;
+    }
   }
 }

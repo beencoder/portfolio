@@ -190,6 +190,9 @@
         }
       }
     }
+    a {
+      align-self: flex-end;
+    }
   }
 }
 
@@ -299,6 +302,9 @@
       p {
         font-size: 14px;
       }
+    }
+    .links {
+      justify-content: center;
     }
   }
   .action-area {

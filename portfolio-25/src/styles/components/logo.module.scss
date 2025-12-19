@@ -8,7 +8,7 @@
 
   .img-wrap {
     position: relative;
-    width: clamp(20px, 20px + 0.4vw, 24px);
+    width: 22px;
   }
   .text-wrap {
     display: grid;
@@ -24,8 +24,8 @@
     .text {
       display: block;
       width: auto;
-      padding-left: 10px;
-      font-size: 20px;
+      padding-left: 12px;
+      font-size: 22px;
       font-weight: 900;
       overflow: hidden;
     }

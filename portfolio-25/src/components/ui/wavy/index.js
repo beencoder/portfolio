@@ -42,7 +42,7 @@ export function WavyLink({
   label = '',
   isActive = false,
   brackets = true,
-  offset = 79,
+  offset = 80,
   closeFirst = false,
   onAfterNavigate,
   ...restProps
@@ -115,7 +115,7 @@ export function WavyButton({ label = '', type = 'button', className, ...restProp
   );
 }
 
-export function WavyLinkButton({ href = '#', label = '', offset = 79, onClick, ...restProps }) {
+export function WavyLinkButton({ href = '#', label = '', offset = 80, onClick, ...restProps }) {
   const isHashLink = typeof href === 'string' && href.startsWith('#');
 
   if (isHashLink) {

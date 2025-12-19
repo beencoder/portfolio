@@ -9,7 +9,7 @@ export function scrollToHashTarget(href, options = {}) {
   if (typeof window === 'undefined' || typeof document === 'undefined') return;
   if (typeof href !== 'string' || !href.startsWith('#')) return;
 
-  const { offset = 79, focus = true } = options;
+  const { offset = 80, focus = true } = options;
 
   const el = document.querySelector(href);
   if (!el) return;

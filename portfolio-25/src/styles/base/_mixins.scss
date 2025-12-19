@@ -223,11 +223,11 @@
     }
   }
 
-  @include respond(max, md) {
-    font-size: 18px;
+  @include respond(max, lg) {
+    font-size: 17px;
 
     &-md {
-      font-size: 18px;
+      font-size: 20px;
     }
   }
 }
