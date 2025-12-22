@@ -17,6 +17,7 @@
   }
   .title {
     @include fluid-step(40, 96);
+    color: var(--color-secondary);
     text-align: right;
     overflow: hidden;
     opacity: 0.2;
@@ -36,7 +37,7 @@
 
   .headline {
     font-family: 'Marck Script';
-    @include fluid-step(23, 90);
+    @include fluid-step(21, 70);
     letter-spacing: -0.04em;
     -webkit-text-fill-color: transparent;
     color: transparent;
@@ -175,10 +176,10 @@
       transform: translateY(-5px);
     }
     &-title {
-      font-family: 'Marck Script';
-      font-size: 4rem;
-      color: var(--color-primary);
       padding-left: 0.1em;
+      font-size: 3rem;
+      text-transform: uppercase;
+      color: var(--color-primary);
     }
     &-text {
       p {
@@ -210,6 +211,19 @@
   100% {
     transform: scale(1.2);
     opacity: 0.8;
+  }
+}
+
+@include respond(max, xl) {
+  .info-area {
+    .headline {
+      @include fluid-step(12, 77);
+    }
+  }
+  .action-area {
+    .card-title {
+      font-size: 2.6rem;
+    }
   }
 }
 
@@ -250,7 +264,7 @@
       padding: 32px 28px;
 
       &-title {
-        font-size: 48px;
+        font-size: 32px;
       }
       &-text {
         p {
@@ -270,7 +284,7 @@
     gap: 30px;
 
     .headline {
-      @include fluid-step(45, 110);
+      @include fluid-step(30, 120);
     }
     .email-wrap {
       width: 100%;
@@ -291,7 +305,7 @@
 @include respond(max, sm) {
   .info-area {
     .headline {
-      font-size: 3.8rem;
+      font-size: 3.6rem;
     }
     .email-wrap {
       .email {
@@ -302,9 +316,6 @@
       p {
         font-size: 14px;
       }
-    }
-    .links {
-      justify-content: center;
     }
   }
   .action-area {

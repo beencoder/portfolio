@@ -30,8 +30,8 @@ export default function ContactSection({ id }) {
         <div className={styles.contents}>
           <div className={styles['info-area']}>
             <h2 className={styles.headline}>
-              Ready to build
-              <strong>something meaningful?</strong>
+              Let’s build a solid experience,
+              <strong>starting from the structure.</strong>
             </h2>
             <div className={styles.description}>
               <p>사용자 경험을 우선시하는 UI 개발자, 김다빈입니다.</p>
