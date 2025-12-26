@@ -48,7 +48,7 @@
   // about용
   &.type-side {
     inset: 0 0 0 auto;
-    max-width: 60vw;
+    max-width: 55vw;
     max-height: 100dvh;
     border-radius: 0.4rem 0 0 0.4rem;
     background: var(--color-bg) url(/images/common/bg-paper.webp);
@@ -174,9 +174,15 @@
   gap: 0.5rem;
 }
 
+@include respond(max, xl) {
+  .modal.type-side {
+    max-width: 65vw;
+  }
+}
+
 @include respond(max, lg) {
   .modal.type-side {
-    max-width: 70vw;
+    max-width: 75vw;
   }
 }
 

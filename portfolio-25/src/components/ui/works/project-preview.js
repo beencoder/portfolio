@@ -66,7 +66,7 @@ export default function ProjectPreview({ project, position, isVisible }) {
         )}
 
         <div className={styles['text-wrap']}>
-          <p className={styles['project-title']}>{currentProject.summary || currentProject.title}</p>
+          <p className={styles['project-title']}>{currentProject.subtitle || currentProject.title}</p>
         </div>
       </div>
     </div>

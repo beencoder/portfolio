@@ -28,14 +28,14 @@ export default function WorkBlock({ workItem, index, isActive, isMobile, onActiv
           <button type="button" onClick={onToggle} aria-expanded={isActive ? 'true' : 'false'} aria-controls={panelId}>
             <span className={styles.number}>{itemNumber}</span>
             <h2 className={styles.title}>
-              <span>{workItem.title}</span>
+              <span>{workItem.title[0]}</span>
             </h2>
           </button>
         ) : (
           <>
             <span className={styles.number}>{itemNumber}</span>
             <h2 className={styles.title}>
-              <span>{workItem.title}</span>
+              <span>{workItem.title[0]}</span>
             </h2>
           </>
         )}
@@ -43,7 +43,7 @@ export default function WorkBlock({ workItem, index, isActive, isMobile, onActiv
         <h3 className={clsx(styles.title, styles.second)} aria-hidden="true">
           <span>
             <span>//</span>
-            {workItem.title}
+            {workItem.title[0]}
           </span>
         </h3>
       </header>
@@ -62,7 +62,12 @@ export default function WorkBlock({ workItem, index, isActive, isMobile, onActiv
         <dt className="sr-only">참고 이미지</dt>
         <dd>
           <div className={styles['img-wrap']}>
-            <Image src={workItem.thumbnail} alt={`${workItem.title} 화면`} width={321} height={563} />
+            <Image
+              src={workItem.thumbnail}
+              alt={`${workItem.title[0]}${workItem.title[1] ? ` ${workItem.title[1]}` : ''}.`}
+              width={321}
+              height={563}
+            />
           </div>
         </dd>
       </dl>

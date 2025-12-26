@@ -3,7 +3,7 @@
 .work-item {
   position: relative;
   flex: 1 1 0;
-  height: 40rem;
+  height: 38rem;
   padding: 2rem 1rem;
   border-right: 1px solid var(--color-on-surface);
   overflow: hidden;
@@ -202,8 +202,8 @@
     width: 100%;
     height: auto;
     max-height: 90px;
-    padding: 30px 24px 50px;
-    border-bottom: 2px solid var(--color-border);
+    padding: 34px 24px 68px;
+    border-bottom: 2px solid var(--color-surface);
     transition: max-height 1s var(--transition-main);
 
     &:not(:last-of-type) {
@@ -211,7 +211,7 @@
     }
   }
   .work-item.is-active {
-    max-height: 60rem;
+    max-height: 40rem;
 
     &::before,
     &::after {
