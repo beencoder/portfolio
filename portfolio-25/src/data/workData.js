@@ -224,12 +224,36 @@ export const projectData = [
   {
     id: 'portfolio',
     title: 'Portfolio',
-    category: 'Personal Project',
+    subtitle: '개인 포트폴리오 웹사이트',
+    category: 'Personal Portfolio',
     date: '2025',
     roles: ['Frontend Dev', 'UI/UX Design'],
-    techStack: ['Next.js', 'Sass', 'JavaScript', 'MongoDB', 'GSAP'],
-    summary: '개인 포트폴리오 웹사이트',
-    description: '설명',
+    techStack: ['Next.js 16', 'React 19', 'Sass', 'MongoDB', 'GSAP'],
+    summary: 'Next.js 16(Pages Router), MongoDB를 활용한 인터랙티브 포트폴리오',
+    detail: {
+      overview:
+        '단순한 정보 전달을 넘어, UX 중심의 UI 설계 철학과 기술 역량을 보여주기 위해 제작했습니다. 최신 기술 스택인 Next.js 16과 React 19 환경에서 기획부터 배포까지 전 과정을 100% 수행했습니다.',
+      userRole: [
+        'Tech Adoption: Next.js 16, React 19 등 최신 프론트엔드 생태계를 선제적으로 도입하여 성능과 개발 생산성을 고려한 아키텍처 설계',
+        'Interaction Design: GSAP를 활용하여 마우스 움직임에 반응하는 심도(Depth) 효과를 구현하고, 정적인 웹사이트에 생동감 부여',
+      ],
+      features: [
+        {
+          title: 'Mouse Parallax Effect',
+          desc: 'GSAP와 Mousemove 이벤트를 결합하여, 커서 위치(clientX/Y)에 따라 레이어별로 다른 속도(Depth)로 움직이는 시차(Parallax) 애니메이션 로직 구현.',
+        },
+        {
+          title: 'Full-Stack Guestbook',
+          desc: 'MongoDB와 Mongoose를 연동하여 CRUD 기능을 구현하고, 로딩 상태(Skeleton/Loader) 및 예외 처리를 통해 완성도 높은 사용자 경험 제공.',
+        },
+      ],
+      troubleshooting: {
+        issue:
+          'GSAP 애니메이션과 React 생명주기 간의 충돌로 인해, 페이지 이동 후 돌아왔을 때 애니메이션이 중복 실행되거나 메모리 누수 발생.',
+        resolution:
+          'useEffect 내에서 GSAP Context를 사용하거나 Cleanup 함수(return)에서 이벤트 리스너를 명확히 제거하여 메모리 누수를 방지하고 성능 최적화.',
+      },
+    },
     thumbnail: '/images/works/portfolio/project-thumb-1.png',
     images: [
       {
@@ -264,18 +288,42 @@ export const projectData = [
     },
   },
   {
-    id: 'recipe-hub',
-    title: 'RecipeHub',
-    category: 'Web Application',
+    id: 'foodie-hub',
+    title: 'FoodieHub',
+    subtitle: '나만의 요리법을 공유하는 레시피 커뮤니티',
+    category: 'Community Platform',
     date: '2025',
     roles: ['Frontend Dev', 'UI/UX Design'],
-    techStack: ['Next.js', 'CSS3', 'JavaScript', 'MongoDB'],
-    summary: '나만의 요리법을 공유하는 레시피 커뮤니티',
-    description: '설명',
+    techStack: ['Next.js 15', 'React 19', 'Supabase', 'Better-SQLite3'],
+    summary: 'Next.js 15(App Router), Supabase를 활용한 풀스택 레시피 공유 커뮤니티',
+    detail: {
+      overview:
+        '나만의 레시피를 기록하고 공유하는 커뮤니티입니다. Next.js 15의 App Router와 최신 React 19 기능을 실험적으로 도입하여 풀스택 개발 역량을 키웠습니다.',
+      userRole: [
+        'Full-Stack Logic: Supabase Auth와 Storage를 연동하여 회원 관리 및 레시피 이미지 업로드/삭제 프로세스 구현',
+        'Modern Stack: Next.js App Router의 Server Component와 Server Action을 적극 활용하여 클라이언트 번들 사이즈 최소화',
+      ],
+      features: [
+        {
+          title: 'Recipe Management',
+          desc: '레시피 작성(Create), 목록 조회(Read), 삭제(Delete) 기능을 구현하고, 각 레시피별 썸네일 이미지를 클라우드 스토리지에 저장.',
+        },
+        {
+          title: 'Image Handling',
+          desc: '게시글 삭제 시 연동된 이미지 파일까지 스토리지에서 깔끔하게 정리되는 데이터 무결성 로직 작성.',
+        },
+      ],
+      troubleshooting: {
+        issue:
+          '게시글 삭제 시 DB 데이터는 삭제되지만, 스토리지의 이미지 파일은 남아있는 "고아 파일(Orphan File)" 문제 발생.',
+        resolution:
+          '이미지의 전체 URL 문자열을 파싱(new URL)하여 스토리지 내 실제 객체 경로(Object Path)만 추출하는 로직을 구현, Supabase Admin API로 파일까지 완벽하게 삭제하도록 처리.',
+      },
+    },
     thumbnail: '/images/works/portfolio/project-thumb-1.png',
     images: [''],
     url: {
-      detail: '/project/recipe-hub',
+      detail: '/project/foodie-hub',
       site: 'https://demo.com',
       github: 'https://github.com/beencoder/',
     },
@@ -283,12 +331,35 @@ export const projectData = [
   {
     id: 'todo-list',
     title: 'TodoList',
+    subtitle: '할 일을 간편하게 관리하는 투두 리스트',
     category: 'Utility App',
     date: '2023',
     roles: ['Frontend Dev'],
     techStack: ['React', 'CSS3', 'JavaScript'],
-    summary: '할 일을 간편하게 관리하는 투두 리스트',
-    description: '설명',
+    summary: 'React의 State 관리 흐름과 LocalStorage를 활용한 데이터 영속성 구현',
+    detail: {
+      overview:
+        '할 일을 간편하게 관리하는 웹 애플리케이션입니다. React의 핵심 개념인 State와 Lifecycle, 그리고 컴포넌트 간 데이터 흐름을 체득하기 위해 제작했습니다.',
+      userRole: [
+        'State Management: useState와 Props를 활용하여 할 일의 추가/수정/삭제/완료 상태를 관리하는 CRUD 로직 완성',
+        'Data Persistence: 브라우저를 새로고침해도 데이터가 유지되도록 Web Storage API(LocalStorage) 연동',
+      ],
+      features: [
+        {
+          title: 'CRUD Implementation',
+          desc: '할 일 목록을 배열(Array) 상태로 관리하며 불변성을 지키는 방식으로 아이템 추가, 수정, 삭제 기능 구현.',
+        },
+        {
+          title: 'Dynamic UI',
+          desc: '완료 여부(isDone)에 따라 텍스트 취소선 스타일을 동적으로 적용하고, 조건부 렌더링을 통해 UI 상태 제어.',
+        },
+      ],
+      troubleshooting: {
+        issue: '앱을 새로고침하면 React State가 초기화되어 작성한 할 일 목록이 모두 사라지는 휘발성 문제.',
+        resolution:
+          'useEffect를 활용하여 컴포넌트 마운트 시 LocalStorage의 데이터를 불러오고, 상태 변경 시마다 스토리지를 업데이트하여 데이터 영속성을 확보.',
+      },
+    },
     thumbnail: '/images/works/portfolio/project-thumb-1.png',
     images: [''],
     url: {
@@ -300,12 +371,36 @@ export const projectData = [
   {
     id: 'auth-flow',
     title: 'AuthFlow',
-    category: 'Feature Implementation',
+    subtitle: '회원가입 및 로그인 인증 기능 구현 데모',
+    category: 'Auth System Demo',
     date: '2023',
     roles: ['Frontend Dev'],
-    techStack: ['Vue.js', 'CSS3', 'JavaScript', 'Firebase'],
-    summary: '회원가입 및 로그인 인증 기능 구현 데모',
-    description: '설명',
+    techStack: ['Vue.js', 'Firebase', 'CSS3', 'JavaScript'],
+    summary: 'Vue.js와 Firebase Auth를 연동하여 안전한 회원가입/로그인 프로세스 구현',
+    detail: {
+      overview:
+        '사용자 인증 프로세스를 깊이 있게 이해하기 위한 데모 프로젝트입니다. Vue.js 환경에서 Firebase Authentication을 연동하여 실제 서비스 수준의 로그인을 구현했습니다.',
+      userRole: [
+        'Auth Integration: Firebase SDK를 활용하여 이메일/비밀번호 기반의 회원가입, 로그인, 비밀번호 변경 기능 구현',
+        'State Observer: 로그인 상태 변화를 실시간으로 감지하여 UI를 업데이트하는 옵저버 패턴 적용',
+      ],
+      features: [
+        {
+          title: 'User Management',
+          desc: '회원가입 시 유효성 검사(Validation)를 거쳐 Firebase에 유저를 생성하고, 로그인 성공 시 메인 화면으로 라우팅 처리.',
+        },
+        {
+          title: 'Conditional Rendering',
+          desc: '인증 상태(User Object) 유무에 따라 로그인 전/후의 헤더 UI와 접근 가능한 페이지를 다르게 보여주는 로직 구현.',
+        },
+      ],
+      troubleshooting: {
+        issue:
+          '페이지 새로고침 시 Firebase의 인증 체크(비동기)보다 Vue 앱 렌더링이 먼저 일어나 로그인이 풀린 것처럼 보이는 현상.',
+        resolution:
+          'Firebase의 onAuthStateChanged 리스너가 인증 상태를 확정지을 때까지 앱 초기화를 지연시키거나, 로딩 인디케이터를 적용하여 사용자 경험 개선.',
+      },
+    },
     thumbnail: '/images/works/portfolio/project-thumb-1.png',
     images: [''],
     url: {
@@ -317,12 +412,36 @@ export const projectData = [
   {
     id: 'type-master',
     title: 'TypeMaster',
-    category: 'Interactive Toy',
+    subtitle: '타자 연습 서비스',
+    category: 'Interactive Game',
     date: '2023',
     roles: ['Scripting', 'Game Logic'],
-    techStack: ['HTML5', 'CSS3', 'JavaScript'],
-    summary: '타자 연습 서비스',
-    description: '설명',
+    techStack: ['HTML5', 'CSS3', 'JavaScript', 'Axios'],
+    summary: 'Random Word API 연동 및 Axios를 활용한 실시간 타자 연습 게임',
+    detail: {
+      overview:
+        '제한 시간 내에 주어진 영단어를 빠르게 입력하는 타자 연습 게임입니다. 고정된 데이터가 아닌 외부 API를 연동하여 매번 새로운 단어로 연습할 수 있도록 구현했습니다.',
+      userRole: [
+        'API Integration: Axios 라이브러리를 사용하여 Random Word API로부터 무작위 단어 데이터를 비동기로 호출(Fetch) 및 관리',
+        'State Management: 게임 진행 여부(isPlaying), 점수, 시간 등 게임의 상태를 전역 변수로 관리하고 DOM에 실시간 반영',
+      ],
+      features: [
+        {
+          title: 'Async Data Fetching',
+          desc: '게임 초기화 시 비동기 통신으로 단어 리스트를 미리 받아오고, 데이터 수신 전까지 "로딩 중" 상태를 UI에 표시하여 UX 개선.',
+        },
+        {
+          title: 'Real-time Validation',
+          desc: 'Input 이벤트를 감지하여 사용자가 입력한 값과 제시어를 실시간으로 비교하고, 일치 시 점수 획득 및 다음 단어로 즉시 전환.',
+        },
+      ],
+      troubleshooting: {
+        issue:
+          'API 응답 속도에 따라 데이터가 오기 전에 게임이 시작되거나, 단어 목록이 비어있는 상태에서 로직이 실행되는 문제.',
+        resolution:
+          'Axios의 Promise 패턴(.then)을 활용하여 데이터 수신이 확실히 완료된 시점에만 게임 시작 버튼을 활성화(Callback)하도록 비동기 흐름을 제어.',
+      },
+    },
     thumbnail: '/images/works/portfolio/project-thumb-1.png',
     images: [''],
     url: {
@@ -334,12 +453,35 @@ export const projectData = [
   {
     id: 'mini-blocks',
     title: 'Mini Blocks',
-    category: 'Interactive Game',
+    subtitle: '테트리스를 모티브로 한 블록 쌓기 게임',
+    category: 'Puzzle Game',
     date: '2023',
     roles: ['Scripting', 'Game Logic'],
     techStack: ['HTML5', 'CSS3', 'JavaScript'],
-    summary: '테트리스를 모티브로 한 블록 쌓기 게임',
-    description: '설명',
+    summary: '2차원 배열 그리드 시스템과 충돌 감지 알고리즘을 활용한 블록 게임',
+    detail: {
+      overview:
+        '테트리스를 모티브로 한 블록 쌓기 게임입니다. Canvas API 없이 순수 DOM 조작과 자바스크립트 로직만으로 게임 엔진을 구현했습니다.',
+      userRole: [
+        'Grid System: 2차원 배열과 DOM 요소를 매핑하여 게임 보드를 렌더링하고, 블록의 좌표(x, y)를 계산하여 이동 로직 구현',
+        'Algorithm: 블록의 회전, 이동 시 벽이나 다른 블록과의 충돌을 감지하는 충돌 처리(Collision Detection) 알고리즘 작성',
+      ],
+      features: [
+        {
+          title: 'Block Rendering',
+          desc: '블록의 모양(Shape)과 회전 상태(Direction) 데이터를 객체로 관리하고, 좌표 변경 시마다 Class를 업데이트하여 렌더링.',
+        },
+        {
+          title: 'Game Loop',
+          desc: '일정 시간마다 블록을 한 칸씩 내리는 인터벌 로직과 라인이 꽉 찼을 때 삭제하고 점수를 올리는 클리어 로직 구현.',
+        },
+      ],
+      troubleshooting: {
+        issue: '블록이 이동할 때마다 전체 그리드를 다시 그리면 발생하는 리플로우(Reflow) 성능 저하.',
+        resolution:
+          '초기에 생성된 DOM 노드를 재사용하고, 좌표에 해당하는 셀(Cell)의 CSS 클래스만 토글(Toggle)하는 방식으로 렌더링 비용을 최소화.',
+      },
+    },
     thumbnail: '/images/works/portfolio/project-thumb-1.png',
     images: [''],
     url: {
@@ -351,12 +493,35 @@ export const projectData = [
   {
     id: 'play-tune',
     title: 'PlayTune',
+    subtitle: '기본 재생 기능을 갖춘 웹 뮤직 플레이어',
     category: 'Web Application',
     date: '2023',
     roles: ['UI Implementation', 'Scripting'],
     techStack: ['HTML5', 'CSS3', 'JavaScript'],
-    summary: '기본 재생 기능을 갖춘 웹 뮤직 플레이어',
-    description: '설명',
+    summary: 'HTML5 Audio API 활용 및 커스텀 컨트롤러 UI 구현',
+    detail: {
+      overview:
+        '좋아하는 밴드의 음악을 나만의 플레이리스트로 듣기 위해 제작한 웹 뮤직 플레이어입니다. 브라우저 기본 컨트롤러 대신 커스텀 UI를 입혔습니다.',
+      userRole: [
+        'Audio API Control: HTML5 Audio 객체의 메서드(play, pause, load)와 속성(currentTime, duration)을 활용하여 재생 로직 제어',
+        'UI Customization: 진행 바(Progress Bar) 드래그 이동, 셔플/반복 재생 등 사용자 친화적인 커스텀 컨트롤러 구현',
+      ],
+      features: [
+        {
+          title: 'Progress Sync',
+          desc: 'timeupdate 이벤트를 통해 현재 재생 시간을 계산하고, 진행 바의 너비를 실시간으로 동기화하여 시각적 피드백 제공.',
+        },
+        {
+          title: 'Playlist Management',
+          desc: '자바스크립트 배열로 관리되는 음악 리스트를 순회하며 이전 곡/다음 곡 재생 및 랜덤 재생 기능 구현.',
+        },
+      ],
+      troubleshooting: {
+        issue: '음원 파일이 완전히 로드되기 전에 재생 정보를 읽으려 할 때 발생하는 NaN(Not a Number) 에러.',
+        resolution:
+          'loadeddata 이벤트를 리스닝하여 메타데이터가 확보된 시점에 전체 시간(Duration)을 계산하고 UI를 업데이트하도록 비동기 처리.',
+      },
+    },
     thumbnail: '/images/works/portfolio/project-thumb-1.png',
     images: [''],
     url: {
@@ -368,12 +533,35 @@ export const projectData = [
   {
     id: 'css-3d-lab',
     title: 'CSS 3D Lab',
-    category: 'Creative Lab',
+    subtitle: 'CSS 3D 효과를 활용한 인터랙티브',
+    category: 'Creative Experiment',
     date: '2025',
     roles: ['Motion & Interaction'],
     techStack: ['HTML5', 'CSS3', 'JavaScript'],
-    summary: 'CSS 3D 효과를 활용한 인터랙티브',
-    description: '설명',
+    summary: 'CSS3 transform-style: preserve-3d 속성을 활용한 입체적 인터랙티브 구현',
+    detail: {
+      overview:
+        '웹에서의 3D 공간감과 인터랙션 가능성을 실험하기 위해 제작했습니다. 자바스크립트 라이브러리 없이 순수 CSS 속성만으로 입체 회전을 구현했습니다.',
+      userRole: [
+        '3D Space Styling: perspective와 transform-style: preserve-3d 속성을 이해하고 사용하여 깊이감 있는 3D 공간(Stage) 구축',
+        'Interaction Control: 마우스 호버(Hover) 시 애니메이션을 일시 정지(paused)시키는 등 사용자와 상호작용하는 UX 디테일 추가',
+      ],
+      features: [
+        {
+          title: 'Hardware Acceleration',
+          desc: 'transform 속성(rotateY, translateZ)을 적극 활용하여 GPU 가속을 유도, 부드러운 60fps 애니메이션 구현.',
+        },
+        {
+          title: 'Carousel Logic',
+          desc: '각 패널(Article)을 원형으로 배치하기 위해 각도(deg)를 계산하여 회전시키고, JS로 제어하여 입체적인 캐러셀 동작.',
+        },
+      ],
+      troubleshooting: {
+        issue: '3D 회전 시 요소의 뒷면이 비쳐 보이거나 텍스트 가독성이 떨어지는 문제.',
+        resolution:
+          'backface-visibility: hidden 속성을 사용하여 요소의 뒷면 렌더링을 막고, 3D 공간에서의 레이어 겹침 현상을 깔끔하게 정리.',
+      },
+    },
     thumbnail: '/images/works/portfolio/project-thumb-1.png',
     images: [''],
     url: {
