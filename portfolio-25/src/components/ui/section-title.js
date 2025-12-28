@@ -45,6 +45,7 @@ function createSplitChildren(children) {
 
 export default function SectionTitle({ id, className, mode = 'scroll', children }) {
   const titleRef = useRef(null);
+  const animatedRef = useRef(false);
   const splitChildren = useMemo(() => createSplitChildren(children), [children]);
 
   useEffect(() => {
@@ -53,11 +54,17 @@ export default function SectionTitle({ id, className, mode = 'scroll', children 
     const el = titleRef.current;
     if (!el) return;
 
+    // fix 모드일 때 이미 애니메이션이 실행되었다면 다시 실행하지 않음
+    if (mode === 'fix' && animatedRef.current) return;
+
     const letters = el.querySelectorAll(`.${common['char']}`);
     if (!letters.length) return;
 
     const ctx = gsap.context(() => {
       if (mode === 'fix') {
+        // 애니메이션 실행 직후 true로 변경
+        animatedRef.current = true;
+
         const lines = Array.from(el.children).filter((node) => node.nodeType === Node.ELEMENT_NODE);
         const topLine = lines[0] || el;
         const bottomLine = lines[1] || null;
@@ -105,34 +112,37 @@ export default function SectionTitle({ id, className, mode = 'scroll', children 
 
         return;
       }
+      if (mode === 'scroll') {
+        if (!gsap.core.globals().ScrollTrigger) {
+          gsap.registerPlugin(ScrollTrigger);
+        }
 
-      if (!gsap.core.globals().ScrollTrigger) {
-        gsap.registerPlugin(ScrollTrigger);
+        gsap.fromTo(
+          letters,
+          { yPercent: -120 },
+          {
+            yPercent: 0,
+            duration: 1,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 100%',
+              end: 'bottom 30%',
+              scrub: 1,
+            },
+            stagger: {
+              each: 0.05,
+              from: 'center',
+            },
+          },
+        );
       }
-
-      gsap.fromTo(
-        letters,
-        { yPercent: -120 },
-        {
-          yPercent: 0,
-          duration: 1,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: el,
-            start: 'top 100%',
-            end: 'bottom 30%',
-            scrub: 1,
-          },
-          stagger: {
-            each: 0.05,
-            from: 'center',
-          },
-        },
-      );
     }, el);
 
     return () => {
-      ctx.revert(); // tween/ScrollTrigger 제거
+      if (mode !== 'fix') {
+        ctx.revert(); // tween/ScrollTrigger 제거
+      }
     };
   }, [mode, children]);
 
