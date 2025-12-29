@@ -6,15 +6,18 @@
     "dev": "next dev --webpack",
     "build": "next build --webpack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "postbuild": "next-sitemap"
   },
   "dependencies": {
+    "@studio-freight/lenis": "^1.0.42",
     "badwords-ko": "^1.0.4",
     "clsx": "^2.1.1",
     "gsap": "^3.13.0",
     "lucide-react": "^0.553.0",
     "mongoose": "^8.20.2",
     "next": "16.0.0",
+    "next-sitemap": "^4.2.3",
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "sass": "^1.93.2"

@@ -2,7 +2,7 @@ import { Html, Head, Main, NextScript } from 'next/document';
 
 export default function Document() {
   return (
-    <Html lang="ko" data-scroll-behavior="smooth">
+    <Html lang="ko">
       <Head />
       <body>
         <Main />
