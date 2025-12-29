@@ -13,16 +13,16 @@
     align-items: center;
   }
   p {
-    font-size: 14px;
+    font-size: 13px;
   }
   .description {
     font-weight: 700;
   }
 }
 
-@include respond(max, md) {
+@include respond(max, sm) {
   .layout {
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
   }
 }

@@ -78,10 +78,7 @@ html {
   background: var(--color-bg) url(/images/common/bg-paper.webp);
   background-size: 6.4rem;
   scroll-padding-top: var(--header-offset);
-
-  &[data-scroll-behavior='smooth'] {
-    scroll-behavior: smooth;
-  }
+  scroll-behavior: smooth;
 }
 html.is-scroll-locked {
   overflow-y: hidden;
@@ -127,9 +124,10 @@ p strong {
   font-weight: 700;
   color: var(--color-primary-active);
 }
-// p {
-//   white-space: pre-line;
-// }
+p {
+  word-break: keep-all;
+  // white-space: pre-line;
+}
 
 /* layout */
 .main {
