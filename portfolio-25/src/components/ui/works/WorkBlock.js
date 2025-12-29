@@ -2,7 +2,7 @@ import Image from 'next/image';
 import clsx from 'clsx';
 
 import styles from '@/styles/components/work-block.module.scss';
-import { LinkButton } from '../button';
+import { LinkButton } from '../Button';
 
 export default function WorkBlock({ workItem, index, isActive, isMobile, onActivate, onDeactivate, onToggle }) {
   const panelId = `work-${workItem.id}-panel`;
@@ -64,7 +64,7 @@ export default function WorkBlock({ workItem, index, isActive, isMobile, onActiv
           <div className={styles['img-wrap']}>
             <Image
               src={workItem.thumbnail}
-              alt={`${workItem.title[0]}${workItem.title[1] ? ` ${workItem.title[1]}` : ''}.`}
+              alt={`${workItem.title[0]}${workItem.title[1] ? ` ${workItem.title[1]}` : ''} 썸네일`}
               width={321}
               height={563}
             />
@@ -81,6 +81,7 @@ export default function WorkBlock({ workItem, index, isActive, isMobile, onActiv
           onClick={(e) => handleViewBtnClick(e, workItem.url.detail)}
           tabIndex={isMobile && !isActive ? -1 : 0}
           aria-hidden={isMobile && !isActive ? true : undefined}
+          size="md"
         />
       </div>
     </li>

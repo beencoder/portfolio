@@ -1,9 +1,9 @@
 import { Fragment } from 'react';
 
-import HeroSection from '@/components/sections/hero';
-import AboutSection from '@/components/sections/about';
-import WorksSection from '@/components/sections/works';
-import ContactSection from '@/components/sections/contact';
+import HeroSection from '@/components/sections/Hero';
+import AboutSection from '@/components/sections/About';
+import WorksSection from '@/components/sections/Works';
+import ContactSection from '@/components/sections/Contact';
 
 export default function Home() {
   return (

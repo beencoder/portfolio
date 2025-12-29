@@ -1,14 +1,16 @@
 import { Fragment } from 'react';
 
-import Header from './header';
-import Footer from './footer';
+import Seo from './Seo';
+import Header from './Header';
+import Footer from './Footer';
 
-export default function Layout(props) {
+export default function Layout({ children, ...seoProps }) {
   return (
     <Fragment>
+      <Seo {...seoProps} />
       <Header />
       <main id="main" className="main" tabIndex={-1}>
-        {props.children}
+        {children}
       </main>
       <Footer />
     </Fragment>

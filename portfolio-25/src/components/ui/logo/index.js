@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 import styles from '@/styles/components/logo.module.scss';
-import LogoIcon from './logo-icon';
+import LogoIcon from './LogoIcon';
 
 export default function Logo() {
   return (

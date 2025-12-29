@@ -1,6 +1,6 @@
 import styles from '@/styles/layout/header.module.scss';
 import Logo from '../ui/logo';
-import MainNavigation from './main-navigation';
+import MainNavigation from './MainNavigation';
 
 const navItems = [
   { type: 'section', href: '#hero', label: 'Start' },

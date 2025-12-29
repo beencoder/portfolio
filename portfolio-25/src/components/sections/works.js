@@ -4,10 +4,10 @@ import clsx from 'clsx';
 import useMedia from '@/hooks/useMedia';
 import common from '@/styles/pages/home/common.module.scss';
 import styles from '@/styles/pages/works/works.module.scss';
-import SectionTitle from '../ui/section-title';
-import WorkBlock from '../ui/works/work-block';
-import ProjectBlock from '../ui/works/project-block';
-import ProjectPreview from '../ui/works/project-preview';
+import SectionTitle from '../ui/SectionTitle';
+import WorkBlock from '../ui/works/WorkBlock';
+import ProjectBlock from '../ui/works/ProjectBlock';
+import ProjectPreview from '../ui/works/ProjectPreview';
 import { workData, projectData } from '@/data/workData';
 
 export default function WorksSection({ id }) {

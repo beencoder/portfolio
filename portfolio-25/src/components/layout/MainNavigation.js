@@ -8,7 +8,7 @@ import useScrollLock from '@/hooks/useScrollLock';
 import useMedia from '@/hooks/useMedia';
 import styles from '@/styles/layout/main-navigation.module.scss';
 import { WavyLink } from '@/components/ui/wavy';
-import { LinkButton, Button } from '../ui/button';
+import { LinkButton, Button } from '../ui/Button';
 
 function isPageActive(pathname, href) {
   if (!pathname || !href) return false;

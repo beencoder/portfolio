@@ -119,7 +119,7 @@ export default function SectionTitle({ id, className, mode = 'scroll', children 
 
         gsap.fromTo(
           letters,
-          { yPercent: -120 },
+          { yPercent: -120, opacity: 1 },
           {
             yPercent: 0,
             duration: 1,
