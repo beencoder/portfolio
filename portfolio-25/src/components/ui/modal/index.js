@@ -135,7 +135,13 @@ export default function Modal({
             </h1>
           )}
           {!hideCloseButton && (
-            <button type="button" className={styles['close-btn']} onClick={onClose} aria-label="닫기">
+            <button
+              type="button"
+              className={styles['close-btn']}
+              aria-label="닫기"
+              data-cursor="true"
+              data-cursor-label="Close"
+              onClick={onClose}>
               <span className={styles['btn-icon']}>
                 <X className="icon" aria-hidden />
               </span>
@@ -144,7 +150,9 @@ export default function Modal({
         </header>
       )}
 
-      <div className={clsx(styles.body, bodyClassName)}>{children}</div>
+      <div className={clsx(styles.body, bodyClassName)} data-lenis-prevent>
+        {children}
+      </div>
 
       {footer && <footer className={styles.footer}>{footer}</footer>}
     </div>

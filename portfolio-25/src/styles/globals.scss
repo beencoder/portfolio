@@ -80,7 +80,11 @@ html {
   scroll-padding-top: var(--header-offset);
 }
 html.is-scroll-locked {
-  overflow-y: hidden;
+  overflow: hidden !important;
+
+  body {
+    overflow: hidden !important;
+  }
 }
 html.lenis {
   height: auto;

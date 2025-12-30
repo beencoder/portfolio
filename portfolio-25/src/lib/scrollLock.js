@@ -7,6 +7,9 @@ export function addScrollLock() {
   lockCount += 1;
   if (lockCount > 1) return;
 
+  // Lenis 정지
+  if (window.lenis) window.lenis.stop();
+
   lockedY = window.scrollY || document.documentElement.scrollTop || 0;
   const docEl = document.documentElement;
   docEl.classList.add('is-scroll-locked');
@@ -28,4 +31,7 @@ export function removeScrollLock({ restore = true } = {}) {
   if (restore) {
     window.scrollTo(0, y);
   }
+
+  // Lenis 재시작
+  if (window.lenis) window.lenis.start();
 }
