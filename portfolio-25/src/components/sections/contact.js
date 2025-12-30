@@ -3,8 +3,8 @@ import clsx from 'clsx';
 import { Copy, Check, Github, Linkedin, FileText } from 'lucide-react';
 
 import styles from '@/styles/pages/home/contact.module.scss';
-import SectionTitle from '../ui/section-title';
-import { LinkButton } from '../ui/button';
+import SectionTitle from '../ui/SectionTitle';
+import { LinkButton } from '../ui/Button';
 
 export default function ContactSection({ id }) {
   const [isCopied, setIsCopied] = useState(false);
@@ -30,15 +30,14 @@ export default function ContactSection({ id }) {
         <div className={styles.contents}>
           <div className={styles['info-area']}>
             <h2 className={styles.headline}>
-              Let’s build a solid experience,
-              <strong>starting from the structure.</strong>
+              Let’s build a solid <strong>experience, </strong>starting from the <strong>structure.</strong>
             </h2>
             <div className={styles.description}>
               <p>사용자 경험을 우선시하는 UI 개발자, 김다빈입니다.</p>
               <p>새로운 기회와 협업 제안은 언제나 환영합니다.</p>
             </div>
 
-            <div className={styles['email-wrap']} onClick={handleCopyEmail}>
+            <div className={styles['email-wrap']} data-clickable="true" onClick={handleCopyEmail}>
               <span className={styles.email}>{email}</span>
               <button className={styles['copy-btn']} aria-label="이메일 복사">
                 {isCopied ? <Check className={styles.successIcon} /> : <Copy />}

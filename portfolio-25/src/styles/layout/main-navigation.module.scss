@@ -122,7 +122,7 @@ $base-open-delay: $wrap-open-duration - ($item-start-lag * 2);
     align-items: flex-start;
     height: 100dvh;
     padding: 140px 20px 30px;
-    background-color: var(--color-primary);
+    background-color: var(--color-surface-alt);
     transform: translateY(-100%);
     visibility: hidden;
 
@@ -190,7 +190,6 @@ $base-open-delay: $wrap-open-duration - ($item-start-lag * 2);
       .menu-item a {
         font-size: 40px;
         font-weight: 900;
-        color: var(--color-on-surface);
         transform: translateX(4rem);
         opacity: 0;
         transition: transform $item-duration cubic-bezier(0.22, 1, 0.36, 1),

@@ -38,7 +38,7 @@
 
 @include respond(max, md) {
   .header {
-    color: var(--color-on-surface);
+    color: var(--color-text);
     mix-blend-mode: normal;
     backdrop-filter: blur(4px);
 

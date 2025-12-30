@@ -13,6 +13,7 @@
     "@studio-freight/lenis": "^1.0.42",
     "badwords-ko": "^1.0.4",
     "clsx": "^2.1.1",
+    "framer-motion": "^12.23.26",
     "gsap": "^3.13.0",
     "lucide-react": "^0.553.0",
     "mongoose": "^8.20.2",

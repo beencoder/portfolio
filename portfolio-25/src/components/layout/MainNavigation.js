@@ -211,6 +211,8 @@ export default function MainNavigation({ navItems = [] }) {
             className={clsx(styles['toggle-btn'], { [styles['is-active']]: isOpen })}
             aria-expanded={isOpen ? 'true' : 'false'}
             aria-controls="primary-menu"
+            data-cursor="true"
+            data-cursor-label={isOpen ? 'Close' : 'Menu'}
             onClick={handleToggleBtnClick}>
             <span className="sr-only">{isOpen ? '메뉴 닫기' : '메뉴 열기'}</span>
 

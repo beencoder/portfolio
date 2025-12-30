@@ -4,6 +4,7 @@ import Lenis from '@studio-freight/lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 
+import CustomCursor from '../components/layout/CustomCursor';
 import '@/styles/globals.scss';
 import Layout from '../components/layout/Layout';
 import ModalOverlay from '../components/ui/modal/ModalOverlay';
@@ -20,6 +21,7 @@ export default function App({ Component, pageProps }) {
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
     });
+    window.lenis = lenis;
 
     lenis.on('scroll', ScrollTrigger.update);
 
@@ -39,12 +41,14 @@ export default function App({ Component, pageProps }) {
     return () => {
       router.events.off('routeChangeComplete', handleRouteChange);
       lenis.destroy();
+      window.lenis = null;
       gsap.ticker.remove(lenis.raf);
     };
   }, [router.events]);
 
   return (
     <Layout {...pageProps}>
+      <CustomCursor />
       <Component {...pageProps} />
       <ModalOverlay />
     </Layout>
