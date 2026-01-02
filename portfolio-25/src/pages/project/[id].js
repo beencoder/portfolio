@@ -13,37 +13,23 @@ const TYPE_TITLES = {
   'landing-mo': 'Mobile Landing Page',
 };
 
-export default function projectDetail() {
-  const router = useRouter();
-  const { id } = router.query;
-  const project = projectData.find((item) => item.id === id);
-
-  if (!id) return <div>Loading...</div>;
+export default function projectDetail({ project }) {
   if (!project) return <div>존재하지 않는 프로젝트입니다.</div>;
-
   const { detail } = project;
-
-  // 이미지 type별로 그룹화
-  const groupedImages =
-    project?.images?.reduce((acc, img) => {
-      if (!img.src) return acc;
-
-      const type = img.type || 'others';
-
-      if (!acc[type]) {
-        acc[type] = [];
-      }
-
-      acc[type].push(img);
-      return acc;
-    }, {}) || {};
 
   return (
     <section className={clsx('section', styles.detail)} aria-labelledby="project-title">
       <div className={clsx('container', styles.layout)}>
         <header className={styles.header}>
           <div className={styles['thumb-wrap']}>
-            <Image src={project.thumbnail} alt={project.title} width={0} height={0} sizes="100vw" priority />
+            <Image
+              src={project.thumbnail}
+              alt={`${project.title} 썸네일`}
+              width={0}
+              height={0}
+              sizes="100vw"
+              priority
+            />
           </div>
 
           <div className={styles['title-wrap']}>
@@ -84,7 +70,7 @@ export default function projectDetail() {
             <dt className={styles.label}>Github</dt>
             <dd className={styles.value}>
               <Link
-                href={project.url.site}
+                href={project.url.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.link}
@@ -93,7 +79,6 @@ export default function projectDetail() {
               </Link>
             </dd>
           </dl>
-
           <div className={styles.divider} aria-hidden="true"></div>
         </header>
 
@@ -152,28 +137,34 @@ export default function projectDetail() {
             )}
           </div>
           <div className={styles.divider} aria-hidden="true"></div>
-
-          {Object.entries(groupedImages).map(([type, imageList]) => (
-            <section key={type} className={styles.content}>
-              <div className={styles['heading-wrap']}>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 28" aria-hidden="true">
-                  <path d="M8,0h16v20c0,4.42-3.58,8-8,8h-8c-4.42,0-8-3.58-8-8v-12C0,3.58,3.58,0,8,0Z"></path>
-                </svg>
-                <h2 className={styles.heading}>{TYPE_TITLES[type] || type.replace('-', ' ')}</h2>
-              </div>
-
-              <div className={clsx(styles['img-list'], { [styles['is-double']]: type === 'landing-mo' })}>
-                {imageList.map((img, index) => (
-                  <figure key={`${type}-${index}`} className={styles['img-wrap']}>
-                    <Image src={img.src} alt={img.alt || ''} width={0} height={0} sizes="100vw" />
-                    {img.figcaption && <figcaption>{img.figcaption}</figcaption>}
-                  </figure>
-                ))}
-              </div>
-            </section>
-          ))}
         </div>
       </div>
     </section>
   );
+}
+
+export async function getStaticPaths() {
+  const paths = projectData.map((project) => ({
+    params: { id: project.id },
+  }));
+
+  return { paths, fallback: false };
+}
+
+export async function getStaticProps({ params }) {
+  const project = projectData.find((item) => item.id === params.id);
+
+  if (!project) {
+    return { notFound: true };
+  }
+
+  return {
+    props: {
+      title: `${project.title} 프로젝트 상세`,
+      description: `${project.title} 프로젝트의 UI 개발 상세 내역입니다. 기술 스택: ${project.techStack.join(', ')}`,
+      url: `/project/${params.id}`,
+      ogImage: project.thumbnail,
+      project: project,
+    },
+  };
 }

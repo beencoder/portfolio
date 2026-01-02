@@ -81,7 +81,6 @@ export default function WorkBlock({ workItem, index, isActive, isMobile, onActiv
           onClick={(e) => handleViewBtnClick(e, workItem.url.detail)}
           tabIndex={isMobile && !isActive ? -1 : 0}
           aria-hidden={isMobile && !isActive ? true : undefined}
-          size="md"
         />
       </div>
     </li>

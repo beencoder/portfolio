@@ -135,7 +135,7 @@
 
   .tech-list {
     li {
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.4rem;
       overflow: hidden;
 
       span {
@@ -157,22 +157,23 @@
       height: 100%;
       clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
       object-fit: cover;
+      object-position: top;
       transform: scale(1.4);
       transition: all 0s;
     }
   }
 }
 .summary {
-  font-size: 1.1rem;
   margin-top: 3rem;
+  font-size: 1.2rem;
+  line-height: var(--lh-loose);
   opacity: 0;
   transition: opacity 0.1s var(--transition-main);
 }
 .link {
   position: absolute;
-  bottom: 2rem;
+  bottom: 2.4rem;
   right: 1rem;
-  margin-top: 1.4rem;
   text-align: right;
   opacity: 0;
   pointer-events: none;
@@ -196,6 +197,14 @@
   }
 }
 
+@include respond(max, lg) {
+  .contents {
+    .img-wrap {
+      height: 14rem;
+    }
+  }
+}
+
 @include respond(max, md) {
   .work-item {
     flex: none;
@@ -211,7 +220,7 @@
     }
   }
   .work-item.is-active {
-    max-height: 40rem;
+    max-height: 45rem;
 
     &::before,
     &::after {
@@ -248,26 +257,28 @@
     }
   }
   .contents {
-    padding-top: 40px;
+    margin-top: 30px;
 
     dd:has(.img-wrap) {
       width: 50%;
     }
     .tech-list {
       li span {
-        font-size: 16px;
+        font-size: 17px;
       }
     }
     .img-wrap {
       width: 100%;
-      height: auto;
+      height: 16rem;
     }
   }
   .summary {
+    margin-top: 24px;
+    margin-bottom: 24px;
     font-size: 16px;
   }
   .link {
-    bottom: 20px;
+    bottom: 34px;
     right: 20px;
   }
 }

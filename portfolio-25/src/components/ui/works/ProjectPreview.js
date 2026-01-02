@@ -11,7 +11,7 @@ export default function ProjectPreview({ project, position, isVisible }) {
   const [currentProject, setCurrentProject] = useState(null);
   const previewRef = useRef(null);
 
-  const root = typeof document !== 'undefined' ? document.getElementById('modal-root') || document.body : null;
+  const root = typeof document !== 'undefined' ? document.getElementById('tooltip-root') || document.body : null;
 
   useEffect(() => {
     if (!project || !isVisible) {

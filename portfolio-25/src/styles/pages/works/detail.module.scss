@@ -20,13 +20,16 @@
 
 .thumb-wrap {
   width: 100%;
-  aspect-ratio: 12 / 7;
   margin-bottom: 2rem;
+  border-radius: 40px 40px 4px 4px;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
 
+  &.has-ratio {
+    aspect-ratio: 12 / 7;
+  }
   img {
     width: 100%;
-    border-radius: 40px 40px 4px 4px;
-    box-shadow: var(--shadow-lg);
   }
 }
 .title-wrap {
@@ -224,15 +227,20 @@
   }
 }
 .img-list {
-  display: flex;
-  justify-content: space-around;
+  width: 100%;
+  align-self: center;
+  display: grid;
+  grid-template-columns: minmax(0, 1024px);
+  justify-content: center;
+  gap: 2rem;
 
   &.is-double {
-    .img-wrap {
-      max-width: 300px;
-    }
+    grid-template-columns: repeat(2, minmax(0, 320px));
+    justify-content: space-around;
+    gap: 4rem 2rem;
   }
   .img-wrap {
+    position: relative;
     width: 100%;
 
     img {
@@ -330,5 +338,8 @@
     & + .content {
       margin-top: 48px;
     }
+  }
+  .img-list {
+    gap: 16px;
   }
 }

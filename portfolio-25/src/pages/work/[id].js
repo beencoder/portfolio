@@ -9,16 +9,11 @@ import styles from '@/styles/pages/works/detail.module.scss';
 
 const TYPE_TITLES = {
   preview: 'App Store Preview',
-  landing: 'Landing Page',
-  'landing-mo': 'Mobile Landing Page',
+  overview: 'Overview',
+  'overview-mo': 'Mobile Overview',
 };
 
-export default function WorkDetail() {
-  const router = useRouter();
-  const { id } = router.query;
-  const work = workData.find((item) => item.id === id);
-
-  if (!router.isReady || !id) return <div>Loading...</div>;
+export default function WorkDetail({ work }) {
   if (!work) return <div>존재하지 않는 프로젝트입니다.</div>;
 
   const { detail } = work;
@@ -42,14 +37,14 @@ export default function WorkDetail() {
     <section className={clsx('section', styles.detail)} aria-labelledby="work-title">
       <div className={clsx('container', styles.layout)}>
         <header className={styles.header}>
-          <div className={styles['thumb-wrap']}>
+          <div className={clsx(styles['thumb-wrap'], styles['has-ratio'])}>
             <Image
               src={work.thumbnail}
               alt={`${work.title[0]}${work.title[1] ? ` ${work.title[1]}` : ''}.`}
-              width={0}
-              height={0}
-              sizes="100vw"
+              width={1200}
+              height={700}
               priority
+              quality={70}
             />
           </div>
 
@@ -97,7 +92,6 @@ export default function WorkDetail() {
               </>
             )}
           </dl>
-
           <div className={styles.divider} aria-hidden="true"></div>
         </header>
 
@@ -155,7 +149,6 @@ export default function WorkDetail() {
               </div>
             )}
           </div>
-
           <div className={styles.divider} aria-hidden="true"></div>
 
           {Object.entries(groupedImages).map(([type, imageList]) => (
@@ -167,11 +160,17 @@ export default function WorkDetail() {
                 <h2 className={styles.heading}>{TYPE_TITLES[type] || type.replace('-', ' ')}</h2>
               </div>
 
-              <div className={clsx(styles['img-list'], { [styles['is-double']]: type === 'landing-mo' })}>
+              <div className={clsx(styles['img-list'], { [styles['is-double']]: type === 'overview-mo' })}>
                 {imageList.map((img, index) => (
                   <figure key={`${type}-${index}`} className={styles['img-wrap']}>
-                    <Image src={img.src} alt={img.alt || ''} width={0} height={0} sizes="100vw" />
-                    {img.figcaption && <figcaption>{img.figcaption}</figcaption>}
+                    <Image
+                      src={img.src}
+                      alt={img.alt || ''}
+                      width={1200}
+                      height={3000}
+                      // sizes="(max-width: 768px) 100vw, 1200px"
+                      quality={60}
+                    />
                   </figure>
                 ))}
               </div>
@@ -181,4 +180,30 @@ export default function WorkDetail() {
       </div>
     </section>
   );
+}
+
+export async function getStaticPaths() {
+  const paths = workData.map((work) => ({
+    params: { id: work.id },
+  }));
+
+  return { paths, fallback: false };
+}
+
+export async function getStaticProps({ params }) {
+  const work = workData.find((item) => item.id === params.id);
+
+  if (!work) {
+    return { notFound: true };
+  }
+
+  return {
+    props: {
+      title: `${work.title[0]}${work.title[1] ? ` ${work.title[1]}` : ''} 프로젝트 상세`,
+      description: `${work.title[0]} 프로젝트의 UI 개발 상세 내역입니다. 기술 스택: ${work.techStack.join(', ')}`,
+      url: `/work/${params.id}`,
+      ogImage: work.thumbnail,
+      work: work,
+    },
+  };
 }
