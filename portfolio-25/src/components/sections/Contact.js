@@ -63,7 +63,7 @@ export default function ContactSection({ id }) {
                 rel="noopener noreferrer"
               /> */}
               <LinkButton
-                href="/resume.pdf"
+                href="/files/resume_2025_v1.pdf"
                 label="Resume"
                 size="md"
                 markIcon={<FileText className="text-icon" aria-hidden="true" />}

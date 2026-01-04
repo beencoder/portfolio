@@ -94,7 +94,13 @@ export default function HeroSection({ id }) {
         </div>
 
         <div ref={btnWrapRef} className={clsx(styles.links, common['btn-wrap'])}>
-          <LinkButton href="/resume.pdf" label="Resume" size="md" target="_blank" rel="noopener noreferrer" />
+          <LinkButton
+            href="/files/resume_2025_v1.pdf"
+            label="Resume"
+            size="md"
+            target="_blank"
+            rel="noopener noreferrer"
+          />
           <LinkButton
             href="/work/travelover"
             label="Recent Work"

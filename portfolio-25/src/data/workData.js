@@ -343,8 +343,8 @@ export const projectData = [
     images: [''],
     url: {
       detail: '/project/portfolio',
-      site: 'https://demo.com',
-      github: 'https://github.com/beencoder/',
+      site: 'https://been-portfolio-2025.vercel.app',
+      github: 'https://github.com/beencoder/portfolio',
     },
   },
   {
