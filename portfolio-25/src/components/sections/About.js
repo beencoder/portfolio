@@ -10,6 +10,13 @@ import { WavyButton, WavyLinkButton } from '../ui/wavy';
 import AboutStacks from '@/components/ui/about/AboutStacks';
 import { removeScrollLock } from '@/lib/scrollLock';
 
+const ABOUT_LAYERS = [
+  { src: '/images/about/bg_1.png', depth: -0.05 },
+  { src: '/images/about/bg_2.png', depth: -0.15 },
+  { src: '/images/about/bg_3.png', depth: -0.25 },
+  { src: '/images/about/bg_4.png', depth: -0.4 },
+];
+
 export default function AboutSection({ id }) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const layersRef = useRef(null);
@@ -21,22 +28,25 @@ export default function AboutSection({ id }) {
     if (!layersEl) return;
 
     const layers = gsap.utils.toArray(`.${styles.layer}`, layersEl);
-    gsap.set(layers, {});
+    const setters = layers.map((layer) => {
+      const depth = Number(layer.dataset.depth) || -0.2;
+      return {
+        x: gsap.quickTo(layer, 'x', { duration: 0.8, ease: 'power3.out' }),
+        y: gsap.quickTo(layer, 'y', { duration: 0.8, ease: 'power3.out' }),
+        rotationY: gsap.quickTo(layer, 'rotationY', { duration: 0.8, ease: 'power3.out' }),
+        rotationX: gsap.quickTo(layer, 'rotationX', { duration: 0.8, ease: 'power3.out' }),
+        depth,
+      };
+    });
 
     const handleMouseMove = (e) => {
       const { innerWidth, innerHeight } = window;
       const xRatio = (e.clientX / innerWidth - 0.5) * 2;
       const yRatio = (e.clientY / innerHeight - 0.5) * 2;
 
-      layers.forEach((layer) => {
-        const depth = Number(layer.dataset.depth) || -0.2;
-
-        gsap.to(layer, {
-          x: xRatio * 70 * depth,
-          y: yRatio * 70 * depth,
-          duration: 0.35,
-          ease: 'power2.out',
-        });
+      setters.forEach((s) => {
+        s.x(xRatio * 100 * s.depth);
+        s.y(yRatio * 100 * s.depth);
       });
     };
 
@@ -56,46 +66,18 @@ export default function AboutSection({ id }) {
 
         <div className={styles.contents}>
           <div className={styles['layer-area']} aria-hidden="true" ref={layersRef}>
-            <div className={styles.layer} data-depth="-0.05">
-              <Image
-                src="/images/about/bg_1.png"
-                alt=""
-                width="900"
-                height="900"
-                sizes="(max-width: 1080px) 100vw, (max-width: 1440px) 46.875vw, (max-width: 1920px) 46.875vw, 46.875vw"
-                loading="lazy"
-              />
-            </div>
-            <div className={styles.layer} data-depth="-0.18">
-              <Image
-                src="/images/about/bg_2.png"
-                alt=""
-                width="900"
-                height="900"
-                sizes="(max-width: 1080px) 100vw, (max-width: 1440px) 46.875vw, (max-width: 1920px) 46.875vw, 46.875vw"
-                loading="lazy"
-              />
-            </div>
-            <div className={styles.layer} data-depth="-0.18">
-              <Image
-                src="/images/about/bg_3.png"
-                alt=""
-                width="900"
-                height="900"
-                sizes="(max-width: 1080px) 100vw, (max-width: 1440px) 46.875vw, (max-width: 1920px) 46.875vw, 46.875vw"
-                loading="lazy"
-              />
-            </div>
-            <div className={styles.layer} data-depth="-0.18">
-              <Image
-                src="/images/about/bg_4.png"
-                alt=""
-                width="900"
-                height="900"
-                sizes="(max-width: 1080px) 100vw, (max-width: 1440px) 46.875vw, (max-width: 1920px) 46.875vw, 46.875vw"
-                loading="lazy"
-              />
-            </div>
+            {ABOUT_LAYERS.map((layer, idx) => (
+              <div key={`layer-${idx}`} className={styles.layer} data-depth={layer.depth}>
+                <Image
+                  src={layer.src}
+                  alt=""
+                  width="900"
+                  height="900"
+                  sizes="(max-width: 1080px) 100vw, (max-width: 1440px) 46.875vw, 46.875vw"
+                  loading="lazy"
+                />
+              </div>
+            ))}
           </div>
 
           <div className={styles['content-area']}>

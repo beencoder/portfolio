@@ -5,6 +5,8 @@
   inset: 0 0 auto 0;
   color: var(--color-text-inverse);
   mix-blend-mode: difference;
+  will-change: transform opacity;
+  opacity: 0;
   z-index: layer('sticky');
 
   a,
@@ -26,9 +28,6 @@
 
 @include respond(min, md) {
   .header {
-    will-change: transform opacity;
-    opacity: 0;
-
     a,
     button {
       &::before,
