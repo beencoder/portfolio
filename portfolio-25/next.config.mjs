@@ -2,6 +2,9 @@
 const nextConfig = {
   reactCompiler: true,
   reactStrictMode: true,
+  images: {
+    qualities: [60, 70],
+  },
 
   async redirects() {
     return [
