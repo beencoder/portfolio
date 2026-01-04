@@ -76,7 +76,7 @@ html {
     #{$fluid-max-root}
   );
   background: var(--color-bg) url(/images/common/bg-paper.webp);
-  background-size: 6.4rem;
+  background-size: 7.5rem;
   scroll-padding-top: var(--header-offset);
 }
 html.is-scroll-locked {
@@ -194,6 +194,12 @@ p {
   &:focus,
   &:focus-visible {
     @include sr-only-focus;
+  }
+}
+
+@media (pointer: coarse) {
+  .cursor-wrap {
+    display: none !important;
   }
 }
 

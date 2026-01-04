@@ -1,7 +1,8 @@
 @use '../../base/mixins' as *;
 
 .contents {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
   justify-content: space-between;
   align-items: center;
   gap: var(--space-10);
@@ -9,7 +10,6 @@
 
   .layer-area {
     position: relative;
-    width: calc(100% - var(--space-5));
     aspect-ratio: 1;
 
     .layer {
@@ -21,26 +21,42 @@
   .content-area {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
-    width: calc(80% - var(--space-5));
+    gap: 2.4rem;
   }
 }
 .about-title {
   font-family: 'Marck Script';
-  @include fluid-step(25, 40);
+  @include fluid-step(12, 62);
   letter-spacing: -0.04em;
-  color: var(--color-primary-active);
+
+  strong {
+    background: linear-gradient(
+      90deg,
+      var(--color-primary-active),
+      var(--color-primary),
+      var(--color-secondary),
+      var(--color-primary)
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    animation: shine 4.5s linear infinite;
+  }
 }
 .text-wrap p {
-  font-size: 1.1rem;
+  font-size: 18px;
+  line-height: var(--lh-loose);
+  color: var(--color-on-surface);
 }
 
 // modal body
 body .about-body {
   display: flex;
   flex-direction: column;
-  gap: 3rem;
-  padding: 4rem 7.8rem 4rem 3.6rem;
+  gap: 3.6rem;
+  padding: 4.8rem 7.8rem 4.8rem 3.6rem;
 
   .stacks-wrap {
     flex-shrink: 0;
@@ -54,23 +70,28 @@ body .about-body {
     display: flex;
     width: max-content;
     animation: stacks-marquee 22s linear infinite;
+  }
+  .stack-list {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    flex: 0 0 auto;
+    padding-right: 3rem;
+  }
+  .stack-item {
+    img {
+      width: auto;
+      height: 64px;
+    }
+    &.resize img {
+      height: 32px;
+    }
+  }
+}
 
-    .stack-list {
-      display: flex;
-      align-items: center;
-      gap: 3rem;
-      flex: 0 0 auto;
-      padding-right: 3rem;
-    }
-    .stack-item {
-      img {
-        width: auto;
-        height: 64px;
-      }
-      &.resize img {
-        height: 32px;
-      }
-    }
+@keyframes shine {
+  to {
+    background-position: 200% center;
   }
 }
 
@@ -83,22 +104,43 @@ body .about-body {
   }
 }
 
+@include respond(max, xl) {
+  .contents {
+    grid-template-columns: 1fr 1fr;
+  }
+  .about-title {
+    @include fluid-step(14, 66);
+  }
+}
+
+@include respond(max, lg) {
+  .about-title {
+    @include fluid-step(16, 64);
+  }
+}
+
 @include respond(max, md) {
   .contents {
-    flex-direction: column;
+    grid-template-columns: 1fr;
 
     .layer-area {
       width: 100%;
     }
     .content-area {
       width: 100%;
-
-      .about-title {
-        text-align: center;
-      }
+      gap: 3rem;
     }
   }
+  .about-title {
+    @include fluid-step(39, 88);
+  }
+  .text-wrap p {
+    font-size: 16px;
+  }
+}
 
-  .about-body {
+@include respond(max, sm) {
+  .about-title {
+    @include fluid-step(29, 150);
   }
 }

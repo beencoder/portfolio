@@ -16,11 +16,10 @@
     z-index: 1;
   }
   .title {
-    @include fluid-step(40, 96);
+    @include fluid-step(70, 96);
     color: var(--color-secondary);
     text-align: right;
     overflow: hidden;
-    opacity: 0.2;
   }
 }
 .contents {
@@ -46,7 +45,6 @@
     background-clip: text;
 
     strong {
-      display: block;
       padding: 0 0.1em 0.02em 0;
       background: linear-gradient(90deg, var(--color-primary), var(--color-secondary), var(--color-primary));
       background-size: 200% auto;
@@ -90,6 +88,7 @@
       }
     }
     &:hover .tooltip,
+    &:focus-within .tooltip,
     &:focus-visible .tooltip {
       opacity: 1;
       transform: translateX(-50%) translateY(0);
@@ -150,6 +149,31 @@
     gap: 3rem;
     flex-wrap: wrap;
     margin-top: 5rem;
+
+    .copied {
+      color: var(--color-success) !important;
+
+      &::before,
+      &::after {
+        background-color: var(--color-success);
+      }
+    }
+    .success {
+      color: var(--color-success);
+      animation: bounce 0.4s var(--ease-power3-out);
+    }
+
+    @keyframes bounce {
+      0% {
+        transform: scale(0.4);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
   }
 }
 .action-area {
@@ -164,7 +188,7 @@
     position: relative;
     height: 100%;
     min-height: 300px;
-    padding: 2.8rem 2.4rem;
+    padding: 3rem 2.4rem;
     border: 2px double var(--color-primary);
     border-radius: 2rem;
     box-shadow: var(--shadow-md);
@@ -255,13 +279,10 @@
         font-size: 12px;
       }
     }
-    .links {
-      margin-top: 3rem;
-    }
   }
   .action-area {
     .card {
-      padding: 32px 28px;
+      padding: 36px 28px;
 
       &-title {
         font-size: 32px;
@@ -303,6 +324,9 @@
 }
 
 @include respond(max, sm) {
+  .contact .title {
+    font-size: 52px;
+  }
   .info-area {
     .headline {
       font-size: 3.6rem;

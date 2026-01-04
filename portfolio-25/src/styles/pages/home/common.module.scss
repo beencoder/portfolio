@@ -1,7 +1,7 @@
 @use '../../base/mixins' as *;
 
 .section-title {
-  @include fluid-step(40, 96);
+  @include fluid-step(70, 96);
   text-align: center;
   overflow: hidden;
 }
@@ -31,6 +31,6 @@
 
 @include respond(max, sm) {
   .section-title {
-    font-size: 50px;
+    font-size: 52px;
   }
 }

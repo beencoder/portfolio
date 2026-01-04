@@ -26,6 +26,9 @@
 
 @include respond(min, md) {
   .header {
+    will-change: transform opacity;
+    opacity: 0;
+
     a,
     button {
       &::before,

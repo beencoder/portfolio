@@ -13,31 +13,32 @@ $font-size-40: 40;
 
 /* color palette */
 /* base */
-$color-bg: #e7dcc3;
-$color-surface: #b49a7a;
-$color-surface-alt: #f2ecdf;
-$color-border: #c8bda8;
+$color-bg: #f4ecdf;
+$color-surface: #dac7af;
+$color-surface-alt: #fbf6ee;
+$color-border: #e0d2be;
 /* text */
-$color-text: #4a4233;
-$color-text-muted: rgba(#4a4233, 0.5);
-$color-text-inverse: #f8f6f2;
+$color-text: #453a2f;
+$color-text-muted: rgba(#453a2f, 0.65);
+$color-text-inverse: #fdfaf5;
 /* accent */
-$color-primary: #7c7158;
-$color-primary-hover: #6a604a;
-$color-primary-active: #584f3f;
-$color-secondary: #d3a86c;
-/* states */
-$color-success: #94b785;
-$color-warning: #e2b267;
-$color-error: #c76b5a;
-$color-info: #8aa1a8;
-/* shadow / overlay */
-$color-shadow: rgba(0, 0, 0, 0.25);
-$color-overlay: rgba(60, 55, 40, 0.65);
+$color-primary: #7b6953;
+$color-primary-hover: #6a5b49;
+$color-primary-active: #564a3c;
+$color-secondary: #d1a46a;
 /* on-colors */
-$color-on-primary: #f5f1eb;
-$color-on-surface: #3e3528;
-$color-on-surface-alt: #4a4233;
+$color-on-primary: #f8f2ea;
+$color-on-surface: #30261f;
+$color-on-surface-alt: #4b3d32;
+/* states */
+$color-success: #628c52;
+$color-warning: #cf8a2e;
+$color-error: #ae4b3a;
+$color-info: #5e838f;
+$color-focus: #d17d3a;
+/* shadow / overlay */
+$color-shadow: rgba(0, 0, 0, 0.2);
+$color-overlay: rgba(60, 55, 40, 0.75);
 
 /* space */
 $space-0: 0;
@@ -56,9 +57,9 @@ $radius-sm: 6px;
 $radius-md: 12px;
 $radius-lg: 20px;
 
-$shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.18);
-$shadow-md: 0 6px 20px rgba(0, 0, 0, 0.25);
-$shadow-lg: 0 18px 40px rgba(0, 0, 0, 0.35);
+$shadow-sm: 0 2px 8px $color-shadow;
+$shadow-md: 0 10px 20px $color-shadow;
+$shadow-lg: 0 0px 30px $color-shadow;
 
 /* z-index */
 $z-stack: (
@@ -73,6 +74,7 @@ $z-stack: (
 
 /* breakpoints */
 $breakpoints: (
+  'xs': 320px,
   'sm': 480px,
   'md': 768px,
   'lg': 1024px,
@@ -81,16 +83,12 @@ $breakpoints: (
 
 /* layout 상수 */
 $container-max: 1920px;
-$header-offset: 79px;
+$header-offset: 80px;
 $grid-gap: 1.6rem;
-$space-section: 30rem;
+$space-section: 15rem;
 
 /* fluid (rem 유동화) */
 $fluid-min-vw: 360px;
 $fluid-max-vw: 1660px;
 $fluid-min-root: 10px;
 $fluid-max-root: 16px;
-
-@media (max-width: 767px) {
-  $header-offset: 70px;
-}

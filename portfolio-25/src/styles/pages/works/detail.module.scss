@@ -107,9 +107,9 @@
       left: 0;
       width: 100%;
       height: 8px;
-      background-color: var(--color-secondary);
+      background-color: var(--color-info);
       border-radius: 4px 0px 4px 4px;
-      opacity: 0.3;
+      opacity: 0.2;
     }
   }
   .text {
@@ -134,7 +134,7 @@
         margin-top: 10px;
       }
       &::marker {
-        color: var(--color-primary);
+        color: var(--color-info);
       }
     }
     dt {
