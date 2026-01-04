@@ -31,31 +31,27 @@ export const workData = [
           'window.matchMedia로 실행 환경을 감지하여 이벤트 리스너를 분기하고, JS로 셀 너비를 동적으로 재계산하여 레이아웃 무너짐 방지.',
       },
     },
-    thumbnail: '/images/works/portfolio/project-thumb-1.png',
+    thumbnail: '/images/works/travelover/thumb.png',
     images: [
       {
-        type: 'preview',
-        src: '/images/works/portfolio/project-thumb-1.png',
-        alt: 'alt',
-        figcaption: '',
+        type: 'overview',
+        src: '/images/works/travelover/main.png',
+        alt: '트래블로버 메인 화면',
       },
       {
-        type: 'landing',
-        src: '/images/works/portfolio/project-thumb-1.png',
-        alt: 'alt',
-        figcaption: '',
+        type: 'overview',
+        src: '/images/works/travelover/direct_step_1.png',
+        alt: '트래블로버 단계별 보험가입 화면',
       },
       {
-        type: 'landing-mo',
-        src: '/images/works/portfolio/project-thumb-1.png',
-        alt: 'alt',
-        figcaption: '',
+        type: 'overview-mo',
+        src: '/images/works/travelover/main_mo.png',
+        alt: '트래블로버 메인 모바일 화면',
       },
       {
-        type: 'landing-mo',
-        src: '/images/works/portfolio/project-thumb-1.png',
-        alt: 'alt',
-        figcaption: '',
+        type: 'overview-mo',
+        src: '/images/works/travelover/direct_step_1_mo.png',
+        alt: '트래블로버 단계별 보험가입 모바일 화면',
       },
     ],
     url: {
@@ -95,11 +91,32 @@ export const workData = [
           'requestAnimationFrame을 활용한 스로틀링(Throttling) 기법을 적용하여, 스크롤 이벤트 실행 빈도를 모니터 주사율에 맞춰 최적화.',
       },
     },
-    thumbnail: '/images/works/portfolio/project-thumb-1.png',
-    images: [''],
+    thumbnail: '/images/works/jss/thumb.png',
+    images: [
+      {
+        type: 'overview',
+        src: '/images/works/jss/main.png',
+        alt: 'jss 메인 화면',
+      },
+      {
+        type: 'overview',
+        src: '/images/works/jss/company.png',
+        alt: 'jss 회사소개 화면',
+      },
+      {
+        type: 'overview-mo',
+        src: '/images/works/jss/main_mo.png',
+        alt: 'jss 메인 모바일 화면',
+      },
+      {
+        type: 'overview-mo',
+        src: '/images/works/jss/company_mo.png',
+        alt: 'jss 회사소개 모바일 화면',
+      },
+    ],
     url: {
       detail: '/work/jss-corporation',
-      site: 'https://jsscorporation.kr/',
+      site: 'https://jsscorporation.kr',
     },
   },
   {
@@ -134,8 +151,39 @@ export const workData = [
           'Input 이벤트 내 정규식(RegEx)을 활용해 트리거 문자를 감지하고, 선택된 데이터를 기존 문자열 사이에 정확히 삽입(Insert)하는 로직을 직접 구현.',
       },
     },
-    thumbnail: '/images/works/portfolio/project-thumb-1.png',
-    images: [''],
+    thumbnail: '/images/works/bnk/thumb.png',
+    images: [
+      {
+        type: 'overview',
+        src: '/images/works/bnk/board_pc.png',
+        alt: '부산은행 모락 PC 설문/투표 화면',
+      },
+      {
+        type: 'overview',
+        src: '/images/works/bnk/schedule.png',
+        alt: '부산은행 모락 PC 일정 화면',
+      },
+      {
+        type: 'overview-mo',
+        src: '/images/works/bnk/login.png',
+        alt: '부산은행 모락 로그인 화면',
+      },
+      {
+        type: 'overview-mo',
+        src: '/images/works/bnk/home.png',
+        alt: '부산은행 모락 홈 화면',
+      },
+      {
+        type: 'overview-mo',
+        src: '/images/works/bnk/main.png',
+        alt: '부산은행 모락 메인 화면',
+      },
+      {
+        type: 'overview-mo',
+        src: '/images/works/bnk/board.png',
+        alt: '부산은행 모락 게시물 상세 화면',
+      },
+    ],
     url: {
       detail: '/work/busan-bank',
       site: null,
@@ -172,8 +220,19 @@ export const workData = [
           'Markdown 기반의 Toast UI Editor로 교체 및 스타일 재정의. 서버 단에서 정제된 HTML을 생성하는 구조를 확립하여 안정성 확보.',
       },
     },
-    thumbnail: '/images/works/portfolio/project-thumb-1.png',
-    images: [''],
+    thumbnail: '/images/works/nh/thumb.png',
+    images: [
+      {
+        type: 'overview',
+        src: '/images/works/nh/user_rcs.png',
+        alt: '농협 UMS 테스트 전송 사용자 화면',
+      },
+      {
+        type: 'overview',
+        src: '/images/works/nh/menu_setting.png',
+        alt: '농협 UMS 메뉴 권한 관리 관리자 화면',
+      },
+    ],
     url: {
       detail: '/work/nh-bank',
       site: null,
@@ -211,8 +270,34 @@ export const workData = [
           'SafeAreaView 컴포넌트와 react-native-safe-area-context를 활용하여 유동적인 안전 영역을 확보하고, OS별 동적 Padding을 적용하여 해결.',
       },
     },
-    thumbnail: '/images/works/portfolio/project-thumb-1.png',
-    images: [''],
+    thumbnail: '/images/works/doazoom/thumb.png',
+    images: [
+      {
+        type: 'preview',
+        src: '/images/works/doazoom/app_preview.png',
+        alt: '도아줌T 앱스토어 프리뷰',
+      },
+      {
+        type: 'overview-mo',
+        src: '/images/works/doazoom/app_1.png',
+        alt: '도아줌T 플래너 상세 화면',
+      },
+      {
+        type: 'overview-mo',
+        src: '/images/works/doazoom/app_2.png',
+        alt: '도아줌T 플래너 피드백 화면',
+      },
+      {
+        type: 'overview-mo',
+        src: '/images/works/doazoom/app_3.png',
+        alt: '도아줌T 질문하기 화면',
+      },
+      {
+        type: 'overview-mo',
+        src: '/images/works/doazoom/app_4.png',
+        alt: '도아줌T 플래너 등록 화면',
+      },
+    ],
     url: {
       detail: '/work/doazoom',
       site: null,
@@ -254,33 +339,8 @@ export const projectData = [
           'useEffect 내에서 GSAP Context를 사용하거나 Cleanup 함수(return)에서 이벤트 리스너를 명확히 제거하여 메모리 누수를 방지하고 성능 최적화.',
       },
     },
-    thumbnail: '/images/works/portfolio/project-thumb-1.png',
-    images: [
-      {
-        type: 'preview',
-        src: '/images/works/portfolio/project-thumb-1.png',
-        alt: 'alt',
-        figcaption: '',
-      },
-      {
-        type: 'landing',
-        src: '/images/works/portfolio/project-thumb-1.png',
-        alt: 'alt',
-        figcaption: '',
-      },
-      {
-        type: 'landing-mo',
-        src: '/images/works/portfolio/project-thumb-1.png',
-        alt: 'alt',
-        figcaption: '',
-      },
-      {
-        type: 'landing-mo',
-        src: '/images/works/portfolio/project-thumb-1.png',
-        alt: 'alt',
-        figcaption: '',
-      },
-    ],
+    thumbnail: '/images/works/projects/project_thumb_portfolio.png',
+    images: [''],
     url: {
       detail: '/project/portfolio',
       site: 'https://demo.com',
@@ -290,164 +350,185 @@ export const projectData = [
   {
     id: 'foodie-hub',
     title: 'FoodieHub',
-    subtitle: '나만의 요리법을 공유하는 레시피 커뮤니티',
+    subtitle: '나만의 요리법을 기록하고 공유하는 레시피 플랫폼',
     category: 'Community Platform',
     date: '2025',
-    roles: ['Frontend Dev', 'UI/UX Design'],
-    techStack: ['Next.js 15', 'React 19', 'Supabase', 'Better-SQLite3'],
-    summary: 'Next.js 15(App Router), Supabase를 활용한 풀스택 레시피 공유 커뮤니티',
+    roles: ['Frontend Dev', 'Backend Logic', 'DB Architecture'],
+    techStack: ['Next.js 16', 'React 19', 'Supabase (DB/Storage)', 'Server Actions'],
+    summary: '로컬 데이터베이스에서 클라우드 인프라(Supabase)로의 아키텍처 전환 및 리팩토링',
     detail: {
       overview:
-        '나만의 레시피를 기록하고 공유하는 커뮤니티입니다. Next.js 15의 App Router와 최신 React 19 기능을 실험적으로 도입하여 풀스택 개발 역량을 키웠습니다.',
+        'Next.js 16의 최신 기능을 활용하여 개발된 레시피 공유 플랫폼입니다. 초기 SQLite 기반의 로컬 환경에서 발생할 수 있는 데이터 휘발성 문제를 해결하기 위해, Supabase를 활용한 데이터베이스 및 스토리지 통합 클라우드 아키텍처로 전면 리팩토링을 수행하며 실무적인 풀스택 역량을 강화했습니다.',
       userRole: [
-        'Full-Stack Logic: Supabase Auth와 Storage를 연동하여 회원 관리 및 레시피 이미지 업로드/삭제 프로세스 구현',
-        'Modern Stack: Next.js App Router의 Server Component와 Server Action을 적극 활용하여 클라이언트 번들 사이즈 최소화',
+        'Architecture Refactoring: 로컬 SQLite 환경을 Supabase(PostgreSQL) 기반의 비동기 클라우드 DB로 전환하여 데이터 영속성 및 확장성 확보',
+        'Advanced URL Design: 한글 제목 입력 시 발생하는 URL 인코딩 문제와 중복 슬러그 문제를 해결하기 위해 랜덤 ID 조합형 Slug 생성 로직 구현',
+        'Server-Side Logic: Server Components와 Server Actions를 결합하여 API 엔드포인트 노출 없이 보안이 강화된 데이터 뮤테이션 로직 구축',
       ],
       features: [
         {
-          title: 'Recipe Management',
-          desc: '레시피 작성(Create), 목록 조회(Read), 삭제(Delete) 기능을 구현하고, 각 레시피별 썸네일 이미지를 클라우드 스토리지에 저장.',
+          title: 'Cloud-Based Recipe Management',
+          desc: 'Supabase Database와 연결된 비동기 CRUD를 통해 전 세계 어디서든 접근 가능한 레시피 작성, 조회, 삭제 기능 구현.',
         },
         {
-          title: 'Image Handling',
-          desc: '게시글 삭제 시 연동된 이미지 파일까지 스토리지에서 깔끔하게 정리되는 데이터 무결성 로직 작성.',
+          title: 'Hybrid Image Storage',
+          desc: '이미지는 Supabase Storage에, 메타데이터는 Database에 저장하는 이원화 구조를 설계하고, 삭제 시 두 데이터가 동시에 제거되는 트랜잭션급 로직 구현.',
+        },
+        {
+          title: 'Security & Validation',
+          desc: 'bcrypt를 활용한 게시글 보호 비밀번호 해싱 저장 및 클라이언트-서버 이중 유효성 검사로 데이터 무결성 강화.',
         },
       ],
       troubleshooting: {
         issue:
-          '게시글 삭제 시 DB 데이터는 삭제되지만, 스토리지의 이미지 파일은 남아있는 "고아 파일(Orphan File)" 문제 발생.',
+          '로컬 SQLite(better-sqlite3) 기반 배포 시 Vercel의 휘발성 파일 시스템으로 인해 사용자가 등록한 레시피 데이터가 소실되는 문제 발생.',
         resolution:
-          '이미지의 전체 URL 문자열을 파싱(new URL)하여 스토리지 내 실제 객체 경로(Object Path)만 추출하는 로직을 구현, Supabase Admin API로 파일까지 완벽하게 삭제하도록 처리.',
+          '데이터베이스를 클라우드 서비스(Supabase)로 이전하고, 동기적(Synchronous)이었던 기존 쿼리 로직을 전부 비동기(Async/Await) API 호출 방식으로 리팩토링하여 서버리스 환경에서의 안정적 배포 완료.',
       },
     },
-    thumbnail: '/images/works/portfolio/project-thumb-1.png',
+    thumbnail: '/images/works/projects/project_thumb_foodie.png',
     images: [''],
     url: {
       detail: '/project/foodie-hub',
-      site: 'https://demo.com',
-      github: 'https://github.com/beencoder/',
+      site: 'https://foodiehub-rho.vercel.app',
+      github: 'https://github.com/beencoder/next-project/tree/master/next-community-app',
     },
   },
   {
     id: 'todo-list',
-    title: 'TodoList',
-    subtitle: '할 일을 간편하게 관리하는 투두 리스트',
+    title: 'To do List',
+    subtitle: '할 일을 간편하게 관리하는 투두 리스트 앱',
     category: 'Utility App',
-    date: '2023',
+    date: '2023 (Refactored 2025)',
     roles: ['Frontend Dev'],
-    techStack: ['React', 'CSS3', 'JavaScript'],
-    summary: 'React의 State 관리 흐름과 LocalStorage를 활용한 데이터 영속성 구현',
+    techStack: ['React 18', 'Sass', 'Axios', 'Moment.js', 'LocalStorage'],
+    summary: 'React의 단방향 데이터 흐름을 이해하고 LocalStorage와 외부 API를 결합한 유틸리티 앱',
     detail: {
       overview:
-        '할 일을 간편하게 관리하는 웹 애플리케이션입니다. React의 핵심 개념인 State와 Lifecycle, 그리고 컴포넌트 간 데이터 흐름을 체득하기 위해 제작했습니다.',
+        '단순한 ToDo 기능을 넘어, 컴포넌트의 재사용성과 사용자 경험(UX)을 고려하여 리팩토링된 프로젝트입니다. React의 핵심 훅(useState, useEffect, useCallback)을 적재적소에 배치하여 최적화된 렌더링 구조를 설계했으며, 브라우저 종료 후에도 데이터가 유지되는 영속성을 구현했습니다.',
       userRole: [
-        'State Management: useState와 Props를 활용하여 할 일의 추가/수정/삭제/완료 상태를 관리하는 CRUD 로직 완성',
-        'Data Persistence: 브라우저를 새로고침해도 데이터가 유지되도록 Web Storage API(LocalStorage) 연동',
+        'Component Architecture: App-List-Item으로 이어지는 계층 구조를 설계하고, Props와 Callback 함수를 통한 효율적인 단방향 데이터 흐름 제어',
+        'Data Persistence: Web Storage API(LocalStorage)를 활용한 커스텀 Hook 로직을 구현하여 새로고침 시에도 데이터가 소실되지 않는 환경 구축',
+        'External API Integration: Geolocation과 OpenWeatherMap API를 연동하여 실시간 위치 기반 날씨 정보를 제공하는 부가 기능 구현',
       ],
       features: [
         {
-          title: 'CRUD Implementation',
-          desc: '할 일 목록을 배열(Array) 상태로 관리하며 불변성을 지키는 방식으로 아이템 추가, 수정, 삭제 기능 구현.',
+          title: 'Full CRUD with Modal UI',
+          desc: '단순 인라인 수정을 넘어 전용 모달(Modal) UI를 통해 할 일 내용을 정교하게 수정할 수 있는 기능을 구현하고, UX 향상을 위해 Auto-focus 로직 적용.',
         },
         {
-          title: 'Dynamic UI',
-          desc: '완료 여부(isDone)에 따라 텍스트 취소선 스타일을 동적으로 적용하고, 조건부 렌더링을 통해 UI 상태 제어.',
-        },
-      ],
-      troubleshooting: {
-        issue: '앱을 새로고침하면 React State가 초기화되어 작성한 할 일 목록이 모두 사라지는 휘발성 문제.',
-        resolution:
-          'useEffect를 활용하여 컴포넌트 마운트 시 LocalStorage의 데이터를 불러오고, 상태 변경 시마다 스토리지를 업데이트하여 데이터 영속성을 확보.',
-      },
-    },
-    thumbnail: '/images/works/portfolio/project-thumb-1.png',
-    images: [''],
-    url: {
-      detail: '/project/todo-list',
-      site: 'https://demo.com',
-      github: 'https://github.com/beencoder/',
-    },
-  },
-  {
-    id: 'auth-flow',
-    title: 'AuthFlow',
-    subtitle: '회원가입 및 로그인 인증 기능 구현 데모',
-    category: 'Auth System Demo',
-    date: '2023',
-    roles: ['Frontend Dev'],
-    techStack: ['Vue.js', 'Firebase', 'CSS3', 'JavaScript'],
-    summary: 'Vue.js와 Firebase Auth를 연동하여 안전한 회원가입/로그인 프로세스 구현',
-    detail: {
-      overview:
-        '사용자 인증 프로세스를 깊이 있게 이해하기 위한 데모 프로젝트입니다. Vue.js 환경에서 Firebase Authentication을 연동하여 실제 서비스 수준의 로그인을 구현했습니다.',
-      userRole: [
-        'Auth Integration: Firebase SDK를 활용하여 이메일/비밀번호 기반의 회원가입, 로그인, 비밀번호 변경 기능 구현',
-        'State Observer: 로그인 상태 변화를 실시간으로 감지하여 UI를 업데이트하는 옵저버 패턴 적용',
-      ],
-      features: [
-        {
-          title: 'User Management',
-          desc: '회원가입 시 유효성 검사(Validation)를 거쳐 Firebase에 유저를 생성하고, 로그인 성공 시 메인 화면으로 라우팅 처리.',
+          title: 'Real-time Time & Weather',
+          desc: 'Moment.js와 setInterval을 활용하여 1초 단위로 갱신되는 실시간 시계를 구현하고, 비동기 통신(Axios)으로 실시간 기상 상태 데이터 바인딩.',
         },
         {
-          title: 'Conditional Rendering',
-          desc: '인증 상태(User Object) 유무에 따라 로그인 전/후의 헤더 UI와 접근 가능한 페이지를 다르게 보여주는 로직 구현.',
+          title: 'Advanced Word-break Styling',
+          desc: '긴 영문 텍스트나 URL 입력 시 레이아웃이 무너지는 현상을 방지하기 위해 CSS의 overflow-wrap 및 word-break 속성을 활용한 유연한 텍스트 렌더링 처리.',
         },
       ],
       troubleshooting: {
         issue:
-          '페이지 새로고침 시 Firebase의 인증 체크(비동기)보다 Vue 앱 렌더링이 먼저 일어나 로그인이 풀린 것처럼 보이는 현상.',
+          '초기 개발 시 리스트 아이템의 체크박스 상태와 레이블(Label)이 ID 중복으로 인해 잘못 매칭되거나, 모달 열림 시 폼 전송 에러가 발생하는 문제.',
         resolution:
-          'Firebase의 onAuthStateChanged 리스너가 인증 상태를 확정지을 때까지 앱 초기화를 지연시키거나, 로딩 인디케이터를 적용하여 사용자 경험 개선.',
+          '고유 ID 생성 로직을 `Date.now()` 기반으로 변경하고, label의 `htmlFor`와 input의 `id`를 유동적으로 결합하여 접근성 에러 해결. 또한, 모달 배경(Overlay) 클릭 시 닫기 기능을 추가하여 사용 편의성 증대.',
       },
     },
-    thumbnail: '/images/works/portfolio/project-thumb-1.png',
+    thumbnail: '/images/works/projects/project_thumb_todo.png',
     images: [''],
     url: {
-      detail: '/project/auth-flow',
-      site: 'https://demo.com',
-      github: 'https://github.com/beencoder/',
+      detail: '/project/todo-list',
+      site: 'https://beencoder.github.io/to-do-list',
+      github: 'https://github.com/beencoder/to-do-list',
     },
   },
   {
-    id: 'type-master',
-    title: 'TypeMaster',
+    id: 'auth-flow',
+    title: 'Auth Flow',
+    subtitle: 'Firebase & Pinia 기반의 인증 시스템',
+    category: 'Auth System & State Management',
+    date: '2023 (Refactored 2026)',
+    roles: ['Frontend Dev', 'State Architecture'],
+    techStack: ['Vue 3', 'Pinia', 'Firebase Auth', 'Vue Router'],
+    summary: '비즈니스 로직 분리 및 Pinia를 활용한 전역 인증 상태 관리 아키텍처 구축',
+    detail: {
+      overview:
+        '기존 컴포넌트 단위로 파편화되어 있던 인증 로직을 전역 상태 관리 라이브러리인 Pinia와 Firebase Authentication을 결합하여 중앙 집중형 구조로 전면 리팩토링했습니다. 단순 로그인 구현을 넘어, 새로고침 시 인증 영속성 유지와 라우터 가드(Router Guard)를 통한 보안 고도화에 초점을 맞췄습니다.',
+      userRole: [
+        'State Architecture: Pinia 스토어를 구축하여 유저 객체 및 로그인 상태를 전역화하고, 컴포넌트 간 데이터 의존성을 제거하여 유지보수성 향상',
+        'Auth Synchronization: Firebase의 onAuthStateChanged 리스너를 App 초기화 단계(main.js)에 배치하여 서버와 클라이언트 간의 인증 상태 동기화 로직 최적화',
+        'Security & Routing: Navigation Guard를 설계하여 인증 토큰 유무에 따른 접근 권한(Private/Public Route)을 엄격히 제어하고 비정상적 접근 원천 차단',
+      ],
+      features: [
+        {
+          title: 'Centralized Auth Store',
+          desc: '유저 프로필 정보(UID, DisplayName, Email 등)를 Reactive 객체로 관리하고, Computed 속성을 활용하여 로그인 여부를 실시간으로 반영하는 스토어 로직 구현.',
+        },
+        {
+          title: 'Profile Update Logic',
+          desc: 'Firebase updateProfile API 연동을 통해 가입 및 수정 시 닉네임을 동적으로 반영하고, 변경된 정보를 스토어에 즉시 동기화하여 UI 피드백 속도 개선.',
+        },
+        {
+          title: 'Reliable Session Management',
+          desc: '새로고침 시 Firebase SDK의 비동기 인증 세션을 기다린 후 Vue 앱이 마운트되도록 초기화 순서를 설계하여 로그인이 풀리는 사용자 경험 저하 문제 해결.',
+        },
+      ],
+      troubleshooting: {
+        issue:
+          '컴포넌트마다 인증 체크 로직이 산재하여 코드 중복이 발생하고, 닉네임 변경 후 헤더 등 다른 컴포넌트의 정보가 즉시 갱신되지 않는 데이터 불일치 현상.',
+        resolution:
+          '기존의 파편화된 로직을 전역 Store의 Action으로 통합하고, Firebase 감시자(Observer)가 상태 변화를 감지할 때마다 새로운 유저 객체를 Store에 할당하는 방식으로 반응형(Reactivity) 이슈를 완벽히 해결.',
+      },
+    },
+    thumbnail: '/images/works/projects/project_thumb_auth.png',
+    images: [''],
+    url: {
+      detail: '/project/auth-flow',
+      site: 'https://auth-flow-blond.vercel.app',
+      github: 'https://github.com/beencoder/vue-auth-flow',
+    },
+  },
+  {
+    id: 'typing-master',
+    title: 'Typing Master',
     subtitle: '타자 연습 서비스',
     category: 'Interactive Game',
-    date: '2023',
-    roles: ['Scripting', 'Game Logic'],
+    date: '2023 (Refactored 2026)',
+    roles: ['Frontend Dev', 'Game Logic'],
     techStack: ['HTML5', 'CSS3', 'JavaScript', 'Axios'],
     summary: 'Random Word API 연동 및 Axios를 활용한 실시간 타자 연습 게임',
     detail: {
       overview:
         '제한 시간 내에 주어진 영단어를 빠르게 입력하는 타자 연습 게임입니다. 고정된 데이터가 아닌 외부 API를 연동하여 매번 새로운 단어로 연습할 수 있도록 구현했습니다.',
       userRole: [
-        'API Integration: Axios 라이브러리를 사용하여 Random Word API로부터 무작위 단어 데이터를 비동기로 호출(Fetch) 및 관리',
-        'State Management: 게임 진행 여부(isPlaying), 점수, 시간 등 게임의 상태를 전역 변수로 관리하고 DOM에 실시간 반영',
+        'State Management: 전역 변수로 산재해 있던 게임 데이터들을 `gameState` 객체로 통합하여 상태 추적 및 관리 효율성 증대',
+        'Asynchronous Flow: 기존 `.then()` 기반의 비동기 코드를 `async/await` 방식으로 전환하여 동기적 흐름의 가독성 확보',
+        'Code Quality: 중첩된 if문을 제거하는 Early Return 패턴을 적용하고, 선언적인 Array 메서드(filter 등)를 활용하여 로직 단순화',
       ],
       features: [
         {
-          title: 'Async Data Fetching',
-          desc: '게임 초기화 시 비동기 통신으로 단어 리스트를 미리 받아오고, 데이터 수신 전까지 "로딩 중" 상태를 UI에 표시하여 UX 개선.',
+          title: 'Centralized Game Engine',
+          desc: '게임의 시작, 진행, 종료 상태를 단일 상태 객체 기반으로 제어하여 예측 가능한 데이터 흐름(Data Flow) 구현.',
         },
         {
-          title: 'Real-time Validation',
-          desc: 'Input 이벤트를 감지하여 사용자가 입력한 값과 제시어를 실시간으로 비교하고, 일치 시 점수 획득 및 다음 단어로 즉시 전환.',
+          title: 'Reliable API Interaction',
+          desc: 'Random Word API 수신 완료 전까지 UI를 로딩 상태로 제어하고, 에러 핸들링(try-catch)을 통해 견고한 네트워크 통신 구현.',
+        },
+        {
+          title: 'Adaptive Game Logic',
+          desc: '클래스 제어와 DOM 조작을 분리하여 상태 변화에 따른 UI 피드백(버튼 상태, 카운트다운)을 직관적으로 제공.',
         },
       ],
       troubleshooting: {
         issue:
-          'API 응답 속도에 따라 데이터가 오기 전에 게임이 시작되거나, 단어 목록이 비어있는 상태에서 로직이 실행되는 문제.',
+          '비즈니스 로직과 UI 업데이트 로직이 복잡하게 뒤섞여 있어, 새로운 기능을 추가하거나 버그를 수정할 때 코드 파악이 어려운 문제.',
         resolution:
-          'Axios의 Promise 패턴(.then)을 활용하여 데이터 수신이 확실히 완료된 시점에만 게임 시작 버튼을 활성화(Callback)하도록 비동기 흐름을 제어.',
+          '기능별로 함수를 잘게 쪼개는 모듈화 작업을 진행하고, 전역 상태 객체를 도입하여 "데이터가 변하면 UI가 변한다"는 선언적 구조로 리팩토링하여 유지보수성 해결.',
       },
     },
-    thumbnail: '/images/works/portfolio/project-thumb-1.png',
+    thumbnail: '/images/works/projects/project_thumb_typing.png',
     images: [''],
     url: {
-      detail: '/project/type-master',
-      site: 'https://demo.com',
-      github: 'https://github.com/beencoder/',
+      detail: '/project/typing-master',
+      site: 'https://beencoder.github.io/javascript-project/typing-game2',
+      github: 'https://github.com/beencoder/javascript-project/tree/main/typing-game2',
     },
   },
   {
@@ -455,39 +536,45 @@ export const projectData = [
     title: 'Mini Blocks',
     subtitle: '테트리스를 모티브로 한 블록 쌓기 게임',
     category: 'Puzzle Game',
-    date: '2023',
-    roles: ['Scripting', 'Game Logic'],
+    date: '2023 (Refactored 2026)',
+    roles: ['Frontend Dev', 'Game Logic'],
     techStack: ['HTML5', 'CSS3', 'JavaScript'],
-    summary: '2차원 배열 그리드 시스템과 충돌 감지 알고리즘을 활용한 블록 게임',
+    summary: '2차원 배열 그리드 시스템과 충돌 감지 알고리즘을 활용한 순수 자바스크립트 게임',
     detail: {
       overview:
-        '테트리스를 모티브로 한 블록 쌓기 게임입니다. Canvas API 없이 순수 DOM 조작과 자바스크립트 로직만으로 게임 엔진을 구현했습니다.',
+        'Canvas API 없이 오직 순수 DOM 조작과 자바스크립트 로직만으로 구현한 테트리스 게임입니다. 초기 개발 버전의 복잡한 스파게티 코드를 상태 기반의 객체 지향적 구조로 리팩토링하여 유지보수성을 높였습니다.',
       userRole: [
-        'Grid System: 2차원 배열과 DOM 요소를 매핑하여 게임 보드를 렌더링하고, 블록의 좌표(x, y)를 계산하여 이동 로직 구현',
-        'Algorithm: 블록의 회전, 이동 시 벽이나 다른 블록과의 충돌을 감지하는 충돌 처리(Collision Detection) 알고리즘 작성',
+        'Grid System & Mapping: 2차원 좌표(x, y)를 DOM 인덱스와 매핑하여 블록의 이동과 렌더링을 제어하는 게임 엔진 설계',
+        'Algorithm Optimization: `every`와 `some` 등 선언적 배열 메서드를 활용하여 라인 삭제 및 충돌 감지 로직의 가독성과 성능 최적화',
+        'Input Logic Refactoring: 기존의 중첩된 `switch-case`문을 `Actions Object` 매핑 방식으로 전환하여 키보드 인터랙션 확장성 확보',
       ],
       features: [
         {
-          title: 'Block Rendering',
-          desc: '블록의 모양(Shape)과 회전 상태(Direction) 데이터를 객체로 관리하고, 좌표 변경 시마다 Class를 업데이트하여 렌더링.',
+          title: 'Collision Detection',
+          desc: '블록 이동 시 벽이나 기배치된 블록(`seized`)과의 충돌을 실시간으로 감지하고 위치를 보정하는 안정적인 엔진 로직 구현.',
         },
         {
-          title: 'Game Loop',
-          desc: '일정 시간마다 블록을 한 칸씩 내리는 인터벌 로직과 라인이 꽉 찼을 때 삭제하고 점수를 올리는 클리어 로직 구현.',
+          title: 'Line Clear & Score System',
+          desc: '특정 행의 모든 셀이 활성화되었을 때 해당 노드를 제거하고 상단 노드들을 하강시키는 동적 DOM 조작 및 점수 산정 로직 구축.',
+        },
+        {
+          title: 'Modular Direction Control',
+          desc: '나머지 연산자(`%`)를 이용해 4개 방향의 회전 상태를 순환시키는 로직으로 복잡한 분기 조건문 제거.',
         },
       ],
       troubleshooting: {
-        issue: '블록이 이동할 때마다 전체 그리드를 다시 그리면 발생하는 리플로우(Reflow) 성능 저하.',
+        issue:
+          '방향키를 연타하거나 블록이 빠르게 하강할 때, 이전 렌더링 잔상이 남거나 충돌 판정이 어긋나 게임 오버가 비정상적으로 발생하는 현상.',
         resolution:
-          '초기에 생성된 DOM 노드를 재사용하고, 좌표에 해당하는 셀(Cell)의 CSS 클래스만 토글(Toggle)하는 방식으로 렌더링 비용을 최소화.',
+          '렌더링 함수 초입에서 클래스를 일괄 제거하는 로직을 강화하고, `gameState` 객체를 도입하여 실제 위치 데이터와 렌더링 데이터의 동기화 흐름을 일원화하여 해결.',
       },
     },
-    thumbnail: '/images/works/portfolio/project-thumb-1.png',
+    thumbnail: '/images/works/projects/project_thumb_blocks.png',
     images: [''],
     url: {
       detail: '/project/mini-blocks',
-      site: 'https://demo.com',
-      github: 'https://github.com/beencoder/',
+      site: 'https://beencoder.github.io/javascript-project/tetris-game',
+      github: 'https://github.com/beencoder/javascript-project/tree/main/tetris-game',
     },
   },
   {
@@ -495,39 +582,45 @@ export const projectData = [
     title: 'PlayTune',
     subtitle: '기본 재생 기능을 갖춘 웹 뮤직 플레이어',
     category: 'Web Application',
-    date: '2023',
-    roles: ['UI Implementation', 'Scripting'],
+    date: '2023 (Refactored 2026)',
+    roles: ['Frontend Dev', 'UI Implementation'],
     techStack: ['HTML5', 'CSS3', 'JavaScript'],
-    summary: 'HTML5 Audio API 활용 및 커스텀 컨트롤러 UI 구현',
+    summary: '오디오 스트리밍 제어 및 효율적인 이벤트 위임 구조를 적용한 웹 뮤직 플레이어',
     detail: {
       overview:
-        '좋아하는 밴드의 음악을 나만의 플레이리스트로 듣기 위해 제작한 웹 뮤직 플레이어입니다. 브라우저 기본 컨트롤러 대신 커스텀 UI를 입혔습니다.',
+        '단순한 음악 재생을 넘어, 실제 스트리밍 서비스와 유사한 사용자 경험을 제공하기 위해 제작된 뮤직 플레이어입니다. 오디오 객체의 복잡한 상태 변화를 효율적으로 관리하고, 대규모 플레이리스트에서도 성능 저하가 없는 구조로 리팩토링을 진행했습니다.',
       userRole: [
-        'Audio API Control: HTML5 Audio 객체의 메서드(play, pause, load)와 속성(currentTime, duration)을 활용하여 재생 로직 제어',
-        'UI Customization: 진행 바(Progress Bar) 드래그 이동, 셔플/반복 재생 등 사용자 친화적인 커스텀 컨트롤러 구현',
+        'Event Delegation: 플레이리스트 내 수많은 곡 아이템에 개별 리스너를 등록하는 대신, 부모 요소에 이벤트를 위임하여 메모리 사용량 최적화',
+        'Audio State Management: 재생 모드(반복/셔플)를 객체 리터럴로 매핑하여 switch문의 복잡도를 제거하고 확장성 있는 로직으로 재설계',
+        'UI/UX Optimization: 시간 포맷팅 및 프로그레스 바 동기화 로직을 모듈화하여 재생 상태를 1초 미만 단위로 정밀하게 UI에 반영',
       ],
       features: [
         {
-          title: 'Progress Sync',
-          desc: 'timeupdate 이벤트를 통해 현재 재생 시간을 계산하고, 진행 바의 너비를 실시간으로 동기화하여 시각적 피드백 제공.',
+          title: 'Custom Audio Controller',
+          desc: 'HTML5 Audio API의 play, pause, seek 로직을 커스텀 UI와 바인딩하여 브라우저 독립적인 일관된 조작 환경 구현.',
         },
         {
-          title: 'Playlist Management',
-          desc: '자바스크립트 배열로 관리되는 음악 리스트를 순회하며 이전 곡/다음 곡 재생 및 랜덤 재생 기능 구현.',
+          title: 'Smart Playlist & Sync',
+          desc: '플레이리스트 렌더링 시 각 곡의 메타데이터를 비동기로 병렬 로드하고, 현재 재생 곡 상태(`playing` class)를 실시간으로 동기화.',
+        },
+        {
+          title: 'Advanced Playback Modes',
+          desc: '셔플 알고리즘(do-while 기반 중복 방지)과 루프 모드를 지원하여 사용자 맞춤형 재생 흐름 제공.',
         },
       ],
       troubleshooting: {
-        issue: '음원 파일이 완전히 로드되기 전에 재생 정보를 읽으려 할 때 발생하는 NaN(Not a Number) 에러.',
+        issue:
+          '음원 메타데이터가 로드되기 전(`NaN`) UI에 접근하거나, `timeupdate` 이벤트 내에 무거운 로직이 포함되어 재생 바 이동 시 끊김 현상 발생.',
         resolution:
-          'loadeddata 이벤트를 리스닝하여 메타데이터가 확보된 시점에 전체 시간(Duration)을 계산하고 UI를 업데이트하도록 비동기 처리.',
+          '`loadeddata` 이벤트를 통한 안전한 데이터 바인딩과 시간 계산 로직 유틸리티화를 통해 연산 비용을 줄여 부드러운 UI 업데이트 구현.',
       },
     },
-    thumbnail: '/images/works/portfolio/project-thumb-1.png',
+    thumbnail: '/images/works/projects/project_thumb_tune.png',
     images: [''],
     url: {
       detail: '/project/play-tune',
-      site: 'https://demo.com',
-      github: 'https://github.com/beencoder/',
+      site: 'https://beencoder.github.io/javascript-project/music-player',
+      github: 'https://github.com/beencoder/javascript-project/tree/main/music-player',
     },
   },
   {
@@ -536,9 +629,9 @@ export const projectData = [
     subtitle: 'CSS 3D 효과를 활용한 인터랙티브',
     category: 'Creative Experiment',
     date: '2025',
-    roles: ['Motion & Interaction'],
+    roles: ['Motion & Interaction Design'],
     techStack: ['HTML5', 'CSS3', 'JavaScript'],
-    summary: 'CSS3 transform-style: preserve-3d 속성을 활용한 입체적 인터랙티브 구현',
+    summary: 'CSS3의 preserve-3d와 perspective 속성을 활용한 무한 회전 3D UI 구현',
     detail: {
       overview:
         '웹에서의 3D 공간감과 인터랙션 가능성을 실험하기 위해 제작했습니다. 자바스크립트 라이브러리 없이 순수 CSS 속성만으로 입체 회전을 구현했습니다.',
@@ -548,26 +641,31 @@ export const projectData = [
       ],
       features: [
         {
-          title: 'Hardware Acceleration',
-          desc: 'transform 속성(rotateY, translateZ)을 적극 활용하여 GPU 가속을 유도, 부드러운 60fps 애니메이션 구현.',
+          title: 'Preserve-3D Interaction',
+          desc: '부모-자식 간의 3D 계층 구조를 유지하여, 전체 공간이 회전하는 중에도 개별 패널이 마우스 호버에 독립적으로 반응하도록 구현.',
         },
         {
-          title: 'Carousel Logic',
-          desc: '각 패널(Article)을 원형으로 배치하기 위해 각도(deg)를 계산하여 회전시키고, JS로 제어하여 입체적인 캐러셀 동작.',
+          title: 'Multi-Media Integration',
+          desc: '배경 및 개별 페이스에 루프 비디오를 배치하고, CSS filter와 opacity 조절을 통해 미래지향적인 사이버펑크 스타일의 UI 톤앤매너 구축.',
+        },
+        {
+          title: 'Reflection & Visual Effects',
+          desc: '가상 그림자 및 반사 효과(Reflection)를 CSS로 모사하여 평면적인 웹 페이지에 실제 오브젝트와 같은 입체감 부여.',
         },
       ],
       troubleshooting: {
-        issue: '3D 회전 시 요소의 뒷면이 비쳐 보이거나 텍스트 가독성이 떨어지는 문제.',
+        issue:
+          '3D 회전 시 특정 각도에서 요소들이 겹치거나, 뒷면이 투과되어 콘텐츠의 가독성이 현저히 떨어지는 현상 발생.',
         resolution:
-          'backface-visibility: hidden 속성을 사용하여 요소의 뒷면 렌더링을 막고, 3D 공간에서의 레이어 겹침 현상을 깔끔하게 정리.',
+          '`backface-visibility: hidden` 설정을 통해 렌더링 부하를 줄이고, `transform-style: preserve-3d`의 명확한 선언을 통해 요소 간의 전후 관계를 정의하여 시각적 오류 해결.',
       },
     },
-    thumbnail: '/images/works/portfolio/project-thumb-1.png',
+    thumbnail: '/images/works/projects/project_thumb_3d.png',
     images: [''],
     url: {
       detail: '/project/css-3d-lab',
-      site: 'https://demo.com',
-      github: 'https://github.com/beencoder/',
+      site: 'https://beencoder.github.io/javascript-project/panorama-interactive',
+      github: 'https://github.com/beencoder/javascript-project/tree/main/panorama-interactive',
     },
   },
 ];
