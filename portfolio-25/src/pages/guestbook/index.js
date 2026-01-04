@@ -3,9 +3,9 @@ import clsx from 'clsx';
 import { MessageCircleMore, MessageCircleHeart, Sparkles, Loader2, Ghost } from 'lucide-react';
 
 import styles from '@/styles/pages/guestbook/guestbook.module.scss';
-import SectionTitle from '@/components/ui/section-title';
-import { PostDetailModal } from '@/components/ui/guestbook/guestbook-modal';
-import GuestbookForm from '@/components/ui/guestbook/guestbook-form';
+import SectionTitle from '@/components/ui/SectionTitle';
+import { PostDetailModal } from '@/components/ui/guestbook/GuestbookModal';
+import GuestbookForm from '@/components/ui/guestbook/GuestbookForm';
 
 export default function GuestbookPage() {
   const [messages, setMessages] = useState([]);
@@ -102,7 +102,7 @@ export default function GuestbookPage() {
       <div className={clsx('container', styles.layout)}>
         <header className={styles.header}>
           <p className={styles['page-title']}>Guestbook</p>
-          <SectionTitle id="guestbook-title" className={styles.title} mode="fix">
+          <SectionTitle id="guestbook-title" className={styles.title} mode="fix" play={true}>
             <span>Leave a Mark</span>
           </SectionTitle>
           <div className={styles.description}>
@@ -204,4 +204,14 @@ export default function GuestbookPage() {
       />
     </section>
   );
+}
+
+export async function getStaticProps() {
+  return {
+    props: {
+      title: 'Guestbook',
+      description: '김다빈 포트폴리오의 방명록입니다. 소중한 한마디를 남겨주세요!',
+      url: '/guestbook',
+    },
+  };
 }

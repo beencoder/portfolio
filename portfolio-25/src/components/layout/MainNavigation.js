@@ -22,9 +22,9 @@ export default function MainNavigation({ navItems = [] }) {
   const [activeSection, setActiveSection] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const isDesktop = useMedia('(min-width: 768.02px)');
+  const navRef = useRef(null);
   const immediateCloseRef = useRef(false);
   const toggleBtnRef = useRef(null);
-  const menuWrapRef = useRef(null);
   const isHome = pathname === '/';
   const showSectionLinks = isHome;
 
@@ -120,7 +120,7 @@ export default function MainNavigation({ navItems = [] }) {
   useScrollLock(isHome && !isDesktop && isOpen);
 
   // 모바일 포커스 트랩
-  useFocusTrap(menuWrapRef, isHome && !isDesktop && isOpen, {
+  useFocusTrap(navRef, isHome && !isDesktop && isOpen, {
     initial: 'first',
     returnTo: toggleBtnRef,
     onEscape: () => closeMenu(),
@@ -201,7 +201,7 @@ export default function MainNavigation({ navItems = [] }) {
   }, [router.events]);
 
   return (
-    <nav className={styles.nav} aria-label="Primary" ref={menuWrapRef}>
+    <nav ref={navRef} className={styles.nav} aria-label="Primary">
       {/* 상단 버튼: 홈이면 토글 버튼, 홈이 아니면 뒤로가기 버튼 */}
       {isHome ? (
         <>

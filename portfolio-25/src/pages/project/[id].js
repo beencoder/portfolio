@@ -1,17 +1,10 @@
 import { Fragment } from 'react';
-import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Link from 'next/link';
 import clsx from 'clsx';
 
 import { projectData } from '@/data/workData';
 import styles from '@/styles/pages/works/detail.module.scss';
-
-const TYPE_TITLES = {
-  preview: 'App Store Preview',
-  landing: 'Landing Page',
-  'landing-mo': 'Mobile Landing Page',
-};
 
 export default function projectDetail({ project }) {
   if (!project) return <div>존재하지 않는 프로젝트입니다.</div>;

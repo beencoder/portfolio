@@ -43,7 +43,7 @@ function createSplitChildren(children) {
   });
 }
 
-export default function SectionTitle({ id, className, mode = 'scroll', children }) {
+export default function SectionTitle({ id, className, mode = 'scroll', children, play = false }) {
   const titleRef = useRef(null);
   const animatedRef = useRef(false);
   const splitChildren = useMemo(() => createSplitChildren(children), [children]);
@@ -54,7 +54,8 @@ export default function SectionTitle({ id, className, mode = 'scroll', children 
     const el = titleRef.current;
     if (!el) return;
 
-    // fix 모드일 때 이미 애니메이션이 실행되었다면 다시 실행하지 않음
+    // fix 모드일 때 play가 false이거나, 이미 애니메이션이 실행되었다면 대기
+    if (mode === 'fix' && !play) return;
     if (mode === 'fix' && animatedRef.current) return;
 
     const letters = el.querySelectorAll(`.${common['char']}`);
@@ -144,7 +145,7 @@ export default function SectionTitle({ id, className, mode = 'scroll', children 
         ctx.revert(); // tween/ScrollTrigger 제거
       }
     };
-  }, [mode, children]);
+  }, [mode, children, play]);
 
   return (
     <h1 id={id} ref={titleRef} className={className}>

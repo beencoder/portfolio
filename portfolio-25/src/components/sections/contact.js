@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import clsx from 'clsx';
-import { Copy, Check, Github, Linkedin, FileText } from 'lucide-react';
+import { Mail, MailPlus, Github, Linkedin, FileText } from 'lucide-react';
 
 import styles from '@/styles/pages/home/contact.module.scss';
 import SectionTitle from '../ui/SectionTitle';
-import { LinkButton } from '../ui/Button';
+import { Button, LinkButton } from '../ui/Button';
 
 export default function ContactSection({ id }) {
   const [isCopied, setIsCopied] = useState(false);
@@ -37,13 +37,13 @@ export default function ContactSection({ id }) {
               <p>새로운 기회와 협업 제안은 언제나 환영합니다.</p>
             </div>
 
-            <div className={styles['email-wrap']} data-clickable="true" onClick={handleCopyEmail}>
+            {/* <div className={styles['email-wrap']} data-clickable="true" onClick={handleCopyEmail}>
               <span className={styles.email}>{email}</span>
               <button className={styles['copy-btn']} aria-label="이메일 복사">
                 {isCopied ? <Check className={styles.successIcon} /> : <Copy />}
                 <span className={styles.tooltip}>{isCopied ? 'Copied!' : 'Click to Copy'}</span>
               </button>
-            </div>
+            </div> */}
 
             <div className={styles.links}>
               <LinkButton
@@ -54,14 +54,14 @@ export default function ContactSection({ id }) {
                 target="_blank"
                 rel="noopener noreferrer"
               />
-              <LinkButton
+              {/* <LinkButton
                 href="https://linkedin.com/in/your-id"
                 label="LinkedIn"
                 size="md"
                 markIcon={<Linkedin className="text-icon" aria-hidden="true" />}
                 target="_blank"
                 rel="noopener noreferrer"
-              />
+              /> */}
               <LinkButton
                 href="/resume.pdf"
                 label="Resume"
@@ -69,6 +69,20 @@ export default function ContactSection({ id }) {
                 markIcon={<FileText className="text-icon" aria-hidden="true" />}
                 target="_blank"
                 rel="noopener noreferrer"
+              />
+              <Button
+                onClick={handleCopyEmail}
+                label={isCopied ? 'Copied!' : 'Email'}
+                size="md"
+                isActive={isCopied ? true : false}
+                markIcon={
+                  isCopied ? (
+                    <MailPlus className={clsx('text-icon', styles.success)} aria-hidden="true" />
+                  ) : (
+                    <Mail className="text-icon" aria-hidden="true" />
+                  )
+                }
+                className={clsx(isCopied && styles.copied)}
               />
             </div>
           </div>

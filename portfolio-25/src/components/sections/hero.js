@@ -1,77 +1,149 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 import clsx from 'clsx';
 import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 
 import common from '@/styles/pages/home/common.module.scss';
 import styles from '@/styles/pages/home/hero.module.scss';
-import SectionTitle from '../ui/section-title';
-import { LinkButton } from '../ui/button';
+import SectionTitle from '../ui/SectionTitle';
+import { LinkButton } from '../ui/Button';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function HeroSection({ id }) {
-  const bgRef = useRef(null);
+  const [isTitlePlay, setIsTitlePlay] = useState(false);
+  const sectionRef = useRef(null);
+  const subTitleRef = useRef(null);
+  const titleRef = useRef(null);
+  const taglineRef = useRef(null);
+  const btnWrapRef = useRef(null);
+  const cloudLeftWrapRef = useRef(null);
+  const cloudRightWrapRef = useRef(null);
+  const cloudLeftInnerRef = useRef(null);
+  const cloudRightInnerRef = useRef(null);
+  const sunInnerRef = useRef(null);
 
   useEffect(() => {
-    if (typeof window === 'undefined') return;
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline();
 
-    const bgEl = bgRef.current;
-    if (!bgEl) return;
+      tl.fromTo(
+        [cloudLeftInnerRef.current, cloudRightInnerRef.current],
+        { x: (i) => (i === 0 ? 300 : -350), opacity: 0 },
+        { x: 0, opacity: 1, duration: 12, ease: 'power2.out' },
+        0,
+      );
+      tl.fromTo(
+        sunInnerRef.current,
+        { opacity: 0, scale: 0.8, rotation: 15 },
+        { opacity: 1, scale: 1, rotation: 0, duration: 2, ease: 'back.out(1.7)' },
+        0.5,
+      );
 
-    const layers = gsap.utils.toArray(`.${styles.layer}`, bgEl);
-    gsap.set(layers, { xPercent: -50, yPercent: -50 });
+      tl.fromTo(subTitleRef.current, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, 0.8);
+      tl.add(() => {
+        setIsTitlePlay(true);
+      }, 1.2);
+      tl.fromTo(
+        [taglineRef.current, btnWrapRef.current],
+        { y: 20, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8, stagger: 0.2 },
+        1.8,
+      );
 
-    const handleMouseMove = (e) => {
-      const { innerWidth, innerHeight } = window;
-      const xRatio = (e.clientX / innerWidth - 0.5) * 2;
-      const yRatio = (e.clientY / innerHeight - 0.5) * 2;
-
-      layers.forEach((layer) => {
-        const depth = Number(layer.dataset.depth) || -0.2;
-
-        gsap.to(layer, {
-          x: xRatio * 70 * depth,
-          y: yRatio * 70 * depth,
-          duration: 0.35,
-          ease: 'power2.out',
-        });
+      const scrollTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top top',
+          end: 'bottom top',
+          scrub: 1.8,
+        },
       });
-    };
 
-    window.addEventListener('mousemove', handleMouseMove);
+      scrollTl.to(cloudLeftWrapRef.current, { x: '10vw', ease: 'none' }, 0);
+      scrollTl.to(cloudRightWrapRef.current, { x: '12vw', ease: 'none' }, 0);
+    }, sectionRef);
 
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-    };
+    return () => ctx.revert();
   }, []);
 
   return (
-    <section id={id} className={clsx('section', styles.hero)} aria-labelledby={`${id}-title`} tabIndex={-1}>
+    <section
+      ref={sectionRef}
+      id={id}
+      className={clsx('section', styles.hero)}
+      aria-labelledby={`${id}-title`}
+      tabIndex={-1}>
       <div className={clsx('container', styles.layout)}>
-        {/* 배경 */}
-        <div className={styles['hero-bg']} aria-hidden="true" ref={bgRef}>
-          <div className={styles.layer} data-depth="-0.08">
-            <img src="/images/hero/gold-light.png" alt="" aria-hidden="true" />
-          </div>
-          <div className={styles.layer} data-depth="-0.18">
-            <img src="/images/hero/tree.png" alt="" aria-hidden="true" />
-          </div>
-        </div>
-
         <div className={styles.contents}>
-          <p className={styles['sub-title']}>2025 다콩 포트폴리오</p>
+          <p ref={subTitleRef} className={styles['sub-title']}>
+            2025 김다빈 포트폴리오
+          </p>
 
-          <div className={styles['title-inner']}>
-            <SectionTitle id={`${id}-title`} className={styles.title} mode="fix">
+          <div ref={titleRef} className={styles['title-inner']}>
+            <SectionTitle id={`${id}-title`} className={styles.title} mode="fix" play={isTitlePlay}>
               <span className={styles.top}>UX-Driven</span>
               <span className={styles.bottom}>UI Developer</span>
             </SectionTitle>
           </div>
 
-          <p className={styles.tagline}>사용자 경험을 기반으로 UI를 설계하고 구현합니다.</p>
+          <p ref={taglineRef} className={styles.tagline}>
+            사용자 경험을 기반으로 UI를 설계하고 구현합니다.
+          </p>
         </div>
 
-        <div className={clsx(styles['link-wrap'], common['btn-wrap'])}>
+        <div ref={btnWrapRef} className={clsx(styles.links, common['btn-wrap'])}>
           <LinkButton href="/resume.pdf" label="Resume" size="md" target="_blank" rel="noopener noreferrer" />
-          <LinkButton href="/works/travelover" label="Recent Work" size="md" />
+          <LinkButton
+            href="/work/travelover"
+            label="Recent Work"
+            size="md"
+            data-cursor="true"
+            data-cursor-label={'트래블로버'}
+          />
+        </div>
+      </div>
+
+      {/* 배경 */}
+      <div className={styles['hero-bg']} aria-hidden="true">
+        <div className={styles['bg-inner']}>
+          <div ref={cloudLeftWrapRef} className={clsx(styles.layer, styles.cloud, styles.left)}>
+            <div ref={cloudLeftInnerRef} className={styles['img-inner']}>
+              <Image
+                src="/images/hero/cloud.png"
+                alt=""
+                width="520"
+                height="520"
+                sizes="(max-width: 1080px) 100vw, (max-width: 1440px) 36.11111111111111vw, (max-width: 1920px) 36.11111111111111vw, 36.11111111111111vw"
+                priority
+              />
+            </div>
+          </div>
+          <div ref={cloudRightWrapRef} className={clsx(styles.layer, styles.cloud, styles.right)}>
+            <div ref={cloudRightInnerRef} className={styles['img-inner']}>
+              <Image
+                src="/images/hero/cloud.png"
+                alt=""
+                width="520"
+                height="520"
+                sizes="(max-width: 1080px) 100vw, (max-width: 1440px) 36.11111111111111vw, (max-width: 1920px) 36.11111111111111vw, 36.11111111111111vw"
+                priority
+              />
+            </div>
+          </div>
+          <div className={clsx(styles.layer, styles.sun)}>
+            <div ref={sunInnerRef} className={styles['img-inner']}>
+              <Image
+                src="/images/hero/sun.png"
+                alt=""
+                width="460"
+                height="460"
+                sizes="(max-width: 1080px) 100vw, (max-width: 1440px) 36.11111111111111vw, (max-width: 1920px) 36.11111111111111vw, 36.11111111111111vw"
+                priority
+              />
+            </div>
+          </div>
         </div>
       </div>
     </section>

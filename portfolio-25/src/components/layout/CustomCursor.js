@@ -4,6 +4,7 @@ import { motion, useSpring, useMotionValue } from 'framer-motion';
 export default function CustomCursor() {
   const [cursorType, setCursorType] = useState('default');
   const [cursorLabel, setCursorLabel] = useState('');
+  const [isDesktop, setIsDesktop] = useState(false);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   const springConfig = { stiffness: 150, damping: 25, mass: 0.6 };
@@ -11,6 +12,11 @@ export default function CustomCursor() {
   const cursorY = useSpring(mouseY, springConfig);
 
   useEffect(() => {
+    const canShowCursor = window.matchMedia('(pointer: fine)').matches;
+    setIsDesktop(canShowCursor);
+
+    if (!canShowCursor) return;
+
     const moveCursor = (e) => {
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
@@ -41,8 +47,11 @@ export default function CustomCursor() {
     };
   }, [mouseX, mouseY]);
 
+  if (!isDesktop) return null;
+
   return (
     <motion.div
+      className="cursor-wrap"
       style={{
         position: 'fixed',
         left: 0,
