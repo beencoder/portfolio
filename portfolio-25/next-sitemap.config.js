@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: 'https://your-portfolio.com', // 수정
+  siteUrl: 'https://been-portfolio-2025.vercel.app',
   generateRobotsTxt: true,
   generateIndexSitemap: false,
   robotsTxtOptions: {

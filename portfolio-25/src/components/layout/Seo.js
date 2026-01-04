@@ -5,8 +5,8 @@ export default function Seo({ title, description, ogImage, url }) {
   const defaultTitle = 'UI Developer 김다빈';
   const defaultDescription =
     'UI 개발자 김다빈의 포트폴리오입니다. 마크업, CSS, GSAP, Next.js를 활용한 프로젝트를 소개합니다.';
-  const defaultOgImage = '/og-image.png'; // 수정
-  const siteUrl = 'https://demo.com'; // 수정
+  const defaultOgImage = '/og-image.png';
+  const siteUrl = 'https://been-portfolio-2025.vercel.app';
 
   const seoTitle = title ? `${title} | ${siteName}` : `${defaultTitle} | ${siteName}`;
   const seoDescription = description || defaultDescription;
@@ -32,7 +32,12 @@ export default function Seo({ title, description, ogImage, url }) {
       <meta name="twitter:title" content={seoTitle} key="twitter:title" />
       <meta name="twitter:description" content={seoDescription} key="twitter:description" />
       <meta name="twitter:image" content={seoImage} key="twitter:image" />
-      <link rel="icon" href="/favicon.ico" key="favicon" /> {/* 수정 */}
+      {/* Favicon */}
+      <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+      <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+      <link rel="shortcut icon" href="/favicon.ico" key="favicon" />
+      <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+      <link rel="manifest" href="/site.webmanifest" />
     </Head>
   );
 }
