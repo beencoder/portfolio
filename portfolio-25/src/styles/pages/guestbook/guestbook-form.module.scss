@@ -24,7 +24,7 @@
     align-items: center;
   }
   .label {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     font-weight: 700;
 
     .required {
@@ -46,7 +46,7 @@
   .textarea {
     width: 100%;
     padding: 0.6rem 1rem;
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: var(--color-text);
     border-radius: 0.6rem;
     border: 1px solid var(--color-border);
@@ -141,7 +141,7 @@
     gap: 8px;
 
     .label {
-      font-size: 14px;
+      font-size: 16px;
     }
     .count {
       font-size: 12px;
@@ -149,7 +149,7 @@
     .input,
     .textarea {
       padding: 8px 10px;
-      font-size: 14px;
+      font-size: 15px;
     }
     .captcha-group {
       gap: 8px;
