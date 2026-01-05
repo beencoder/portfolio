@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { useRouter } from 'next/router';
 import { gsap } from 'gsap';
 
 import styles from '@/styles/layout/header.module.scss';
@@ -13,22 +14,35 @@ const navItems = [
   { type: 'page', href: '/guestbook', label: 'Guestbook' },
 ];
 
+let isInitialLoad = true;
+
 export default function Header() {
   const headerRef = useRef(null);
+  const router = useRouter();
 
   useEffect(() => {
-    gsap.fromTo(
-      headerRef.current,
-      { y: -20, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 2,
-        ease: 'power3.out',
-        delay: 2,
-      },
-    );
-  }, []);
+    const isHomePage = router.pathname === '/';
+
+    if (isHomePage && isInitialLoad) {
+      gsap.fromTo(
+        headerRef.current,
+        { y: -20, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 2,
+          ease: 'power3.out',
+          delay: 2,
+          onComplete: () => {
+            isInitialLoad = false;
+          },
+        },
+      );
+    } else {
+      gsap.set(headerRef.current, { y: 0, opacity: 1 });
+      // isInitialLoad = false;
+    }
+  }, [router.pathname]);
 
   const skipToContentHandler = (e) => {
     e.preventDefault();
