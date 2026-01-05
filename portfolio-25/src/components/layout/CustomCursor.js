@@ -5,6 +5,7 @@ export default function CustomCursor() {
   const [cursorType, setCursorType] = useState('default');
   const [cursorLabel, setCursorLabel] = useState('');
   const [isDesktop, setIsDesktop] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   const springConfig = { stiffness: 150, damping: 25, mass: 0.6 };
@@ -18,6 +19,8 @@ export default function CustomCursor() {
     if (!canShowCursor) return;
 
     const moveCursor = (e) => {
+      if (!isVisible) setIsVisible(true);
+
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
     };
@@ -38,20 +41,30 @@ export default function CustomCursor() {
       }
     };
 
+    const handleMouseLeave = () => setIsVisible(false);
+    const handleMouseEnter = () => setIsVisible(true);
+
     window.addEventListener('mousemove', moveCursor);
     window.addEventListener('mouseover', handleMouseOver);
+    window.addEventListener('mouseleave', handleMouseLeave);
+    window.addEventListener('mouseenter', handleMouseEnter);
 
     return () => {
       window.removeEventListener('mousemove', moveCursor);
       window.removeEventListener('mouseover', handleMouseOver);
+      window.removeEventListener('mouseleave', handleMouseLeave);
+      window.removeEventListener('mouseenter', handleMouseEnter);
     };
-  }, [mouseX, mouseY]);
+  }, [mouseX, mouseY, isVisible]);
 
   if (!isDesktop) return null;
 
   return (
     <motion.div
       className="cursor-wrap"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: isVisible ? 1 : 0 }}
+      transition={{ duration: 0.2 }}
       style={{
         position: 'fixed',
         left: 0,
