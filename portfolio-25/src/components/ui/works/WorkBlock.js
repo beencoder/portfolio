@@ -67,6 +67,7 @@ export default function WorkBlock({ workItem, index, isActive, isMobile, onActiv
               alt={`${workItem.title[0]}${workItem.title[1] ? ` ${workItem.title[1]}` : ''} 썸네일`}
               width={321}
               height={563}
+              loading="eager"
             />
           </div>
         </dd>

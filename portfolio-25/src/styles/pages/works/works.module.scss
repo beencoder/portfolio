@@ -3,7 +3,7 @@
 .work-list {
   display: flex;
   width: 100vw;
-  margin-block: 5.6rem 11.2rem;
+  margin-block: 5.6rem calc(var(--space-section) * 2);
   border-top: 2px solid var(--color-on-surface);
 }
 

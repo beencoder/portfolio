@@ -21,15 +21,14 @@
 .thumb-wrap {
   width: 100%;
   margin-bottom: 2rem;
-  border-radius: 40px 40px 4px 4px;
-  box-shadow: var(--shadow-lg);
-  overflow: hidden;
 
   &.has-ratio {
     aspect-ratio: 12 / 7;
   }
   img {
     width: 100%;
+    border-radius: 40px 40px 4px 4px;
+    box-shadow: var(--shadow-lg);
   }
 }
 .title-wrap {

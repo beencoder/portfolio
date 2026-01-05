@@ -40,11 +40,10 @@ export default function WorkDetail({ work }) {
           <div className={clsx(styles['thumb-wrap'], styles['has-ratio'])}>
             <Image
               src={work.thumbnail}
-              alt={`${work.title[0]}${work.title[1] ? ` ${work.title[1]}` : ''}.`}
+              alt={`${work.title[0]}${work.title[1] ? ` ${work.title[1]}` : ''} 썸네일`}
               width={1200}
               height={700}
               priority
-              quality={70}
             />
           </div>
 
@@ -169,7 +168,6 @@ export default function WorkDetail({ work }) {
                       width={1200}
                       height={3000}
                       // sizes="(max-width: 768px) 100vw, 1200px"
-                      quality={60}
                     />
                   </figure>
                 ))}
