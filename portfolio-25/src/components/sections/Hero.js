@@ -128,26 +128,12 @@ export default function HeroSection({ id }) {
           </div>
           <div ref={cloudRightWrapRef} className={clsx(styles.layer, styles.cloud, styles.right)}>
             <div ref={cloudRightInnerRef} className={styles['img-inner']}>
-              <Image
-                src="/images/hero/cloud.png"
-                alt=""
-                width="520"
-                height="520"
-                sizes="(max-width: 1080px) 100vw, (max-width: 1440px) 36.11111111111111vw, (max-width: 1920px) 36.11111111111111vw, 36.11111111111111vw"
-                priority
-              />
+              <Image src="/images/hero/cloud.png" alt="" width="520" height="520" priority />
             </div>
           </div>
           <div className={clsx(styles.layer, styles.sun)}>
             <div ref={sunInnerRef} className={styles['img-inner']}>
-              <Image
-                src="/images/hero/sun.png"
-                alt=""
-                width="460"
-                height="460"
-                sizes="(max-width: 1080px) 100vw, (max-width: 1440px) 36.11111111111111vw, (max-width: 1920px) 36.11111111111111vw, 36.11111111111111vw"
-                priority
-              />
+              <Image src="/images/hero/sun.png" alt="" width="460" height="460" priority />
             </div>
           </div>
         </div>

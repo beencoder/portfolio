@@ -61,7 +61,13 @@ export default function ProjectPreview({ project, position, isVisible }) {
       <div className={clsx(styles.inner, styles['inner-anim'])} key={currentProject.id}>
         {currentProject.thumbnail && (
           <div className={styles['img-wrap']}>
-            <Image src={currentProject.thumbnail} alt={`${currentProject.title} 썸네일`} fill sizes="220px" />
+            <Image
+              src={currentProject.thumbnail}
+              alt={`${currentProject.title} 썸네일`}
+              fill
+              sizes="300px"
+              loading="eager"
+            />
           </div>
         )}
 
