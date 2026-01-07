@@ -153,6 +153,7 @@ p {
 }
 .section {
   position: relative;
+  overflow: hidden;
 
   &:first-of-type {
     min-height: 100dvh;
