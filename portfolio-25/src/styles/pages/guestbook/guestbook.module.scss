@@ -2,6 +2,7 @@
 
 .guestbook {
   padding-block: calc(var(--header-offset) + 40px) 60px;
+  overflow: visible;
 }
 .layout {
   display: flex;
