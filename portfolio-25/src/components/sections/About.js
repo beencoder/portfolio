@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 
 import common from '@/styles/pages/home/common.module.scss';
 import styles from '@/styles/pages/home/about.module.scss';
@@ -9,6 +10,8 @@ import Modal from '@/components/ui/modal/index';
 import { WavyButton, WavyLinkButton } from '../ui/wavy';
 import AboutStacks from '@/components/ui/about/AboutStacks';
 import { removeScrollLock } from '@/lib/scrollLock';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const ABOUT_LAYERS = [
   { src: '/images/about/bg_1.png', depth: -0.05 },
@@ -19,68 +22,94 @@ const ABOUT_LAYERS = [
 
 export default function AboutSection({ id }) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const sectionRef = useRef(null);
   const layersRef = useRef(null);
+  const contentRef = useRef(null);
 
   useEffect(() => {
-    if (typeof window === 'undefined') return;
-
-    const layersEl = layersRef.current;
-    if (!layersEl) return;
-
-    const layers = gsap.utils.toArray(`.${styles.layer}`, layersEl);
-    const setters = layers.map((layer) => {
-      const depth = Number(layer.dataset.depth) || -0.2;
-      return {
-        x: gsap.quickTo(layer, 'x', { duration: 0.8, ease: 'power3.out' }),
-        y: gsap.quickTo(layer, 'y', { duration: 0.8, ease: 'power3.out' }),
-        rotationY: gsap.quickTo(layer, 'rotationY', { duration: 0.8, ease: 'power3.out' }),
-        rotationX: gsap.quickTo(layer, 'rotationX', { duration: 0.8, ease: 'power3.out' }),
-        depth,
-      };
-    });
-
-    const handleMouseMove = (e) => {
-      const { innerWidth, innerHeight } = window;
-      const xRatio = (e.clientX / innerWidth - 0.5) * 2;
-      const yRatio = (e.clientY / innerHeight - 0.5) * 2;
-
-      setters.forEach((s) => {
-        s.x(xRatio * 100 * s.depth);
-        s.y(yRatio * 100 * s.depth);
+    const ctx = gsap.context(() => {
+      const layers = gsap.utils.toArray(`.${styles.layer}`, layersRef.current);
+      const mouseSetters = layers.map((layer) => {
+        const inner = layer.querySelector(`.${styles['img-inner']}`);
+        const depth = Number(layer.dataset.depth) || -0.2;
+        return {
+          x: gsap.quickTo(inner, 'x', { duration: 0.8, ease: 'power3.out' }),
+          y: gsap.quickTo(inner, 'y', { duration: 0.8, ease: 'power3.out' }),
+          depth,
+        };
       });
-    };
 
-    window.addEventListener('mousemove', handleMouseMove);
+      const handleMouseMove = (e) => {
+        const { innerWidth, innerHeight } = window;
+        const xRatio = (e.clientX / innerWidth - 0.5) * 2;
+        const yRatio = (e.clientY / innerHeight - 0.5) * 2;
+        mouseSetters.forEach((s) => {
+          s.x(xRatio * 50 * s.depth);
+          s.y(yRatio * 50 * s.depth);
+        });
+      };
+      window.addEventListener('mousemove', handleMouseMove);
 
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-    };
+      layers.forEach((layer) => {
+        const depth = Number(layer.dataset.depth);
+        gsap.to(layer, {
+          y: depth * 400,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: true,
+          },
+        });
+      });
+
+      gsap.fromTo(
+        contentRef.current.children,
+        { y: 100, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          stagger: 0.1,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: contentRef.current,
+            start: 'top 80%',
+          },
+        },
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
   }, []);
 
   return (
-    <section id={id} className="section" aria-labelledby={`${id}-title`} tabIndex={-1}>
+    <section ref={sectionRef} id={id} className="section" aria-labelledby={`${id}-title`} tabIndex={-1}>
       <div className="container">
         <SectionTitle id={`${id}-title`} className={common['section-title']}>
           Who I Am
         </SectionTitle>
 
         <div className={styles.contents}>
-          <div className={styles['layer-area']} aria-hidden="true" ref={layersRef}>
+          <div ref={layersRef} className={styles['layer-area']} aria-hidden="true">
             {ABOUT_LAYERS.map((layer, idx) => (
               <div key={`layer-${idx}`} className={styles.layer} data-depth={layer.depth}>
-                <Image
-                  src={layer.src}
-                  alt=""
-                  width="900"
-                  height="900"
-                  sizes="(max-width: 1080px) 100vw, (max-width: 1440px) 46.875vw, 46.875vw"
-                  loading="lazy"
-                />
+                <div className={styles['img-inner']}>
+                  <Image
+                    src={layer.src}
+                    alt=""
+                    width="900"
+                    height="900"
+                    sizes="(max-width: 1080px) 100vw, (max-width: 1440px) 46.875vw, 46.875vw"
+                    loading="lazy"
+                  />
+                </div>
               </div>
             ))}
           </div>
 
-          <div className={styles['content-area']}>
+          <div className={styles['content-area']} ref={contentRef}>
             <h2 className={styles['about-title']}>
               Designed for <strong>Users, </strong>
               <span className="text-block">

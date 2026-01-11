@@ -105,9 +105,10 @@ export default function WorksSection({ id }) {
 
         <ul className={styles['project-list']}>
           <div className={styles.divider} aria-hidden="true"></div>
-          {projectData.map((project) => (
+          {projectData.map((project, index) => (
             <ProjectBlock
               key={project.id}
+              index={index}
               projectItem={project}
               isMobile={isMobile}
               onActivate={(e) => handleProjectActivate(project, e)}

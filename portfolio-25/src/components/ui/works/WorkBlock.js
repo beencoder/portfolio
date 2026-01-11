@@ -1,12 +1,46 @@
+import { useEffect, useRef } from 'react'; // useRef, useEffect 추가
 import Image from 'next/image';
 import clsx from 'clsx';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 
 import styles from '@/styles/components/work-block.module.scss';
 import { LinkButton } from '../Button';
 
+gsap.registerPlugin(ScrollTrigger);
+
 export default function WorkBlock({ workItem, index, isActive, isMobile, onActivate, onDeactivate, onToggle }) {
+  const elementRef = useRef(null);
   const panelId = `work-${workItem.id}-panel`;
   const itemNumber = String(index + 1).padStart(2, '0');
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        elementRef.current,
+        {
+          clipPath: 'inset(0 0 0 100%)',
+          x: 100,
+          opacity: 0,
+        },
+        {
+          clipPath: 'inset(0 0 0 0%)',
+          x: 0,
+          opacity: 1,
+          duration: 1.5,
+          ease: 'expo.out',
+          delay: isMobile ? 0 : index * 0.2,
+          scrollTrigger: {
+            trigger: elementRef.current,
+            start: 'top 90%',
+            toggleActions: 'play none none reverse',
+          },
+        },
+      );
+    });
+
+    return () => ctx.revert();
+  }, [index, isMobile]);
 
   function handleViewBtnClick(e) {
     e.stopPropagation();
@@ -22,7 +56,7 @@ export default function WorkBlock({ workItem, index, isActive, isMobile, onActiv
       };
 
   return (
-    <li className={clsx(styles['work-item'], { [styles['is-active']]: isActive })} {...eventProps}>
+    <li ref={elementRef} className={clsx(styles['work-item'], { [styles['is-active']]: isActive })} {...eventProps}>
       <header className={styles.header}>
         {isMobile ? (
           <button type="button" onClick={onToggle} aria-expanded={isActive ? 'true' : 'false'} aria-controls={panelId}>

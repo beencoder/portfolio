@@ -1,6 +1,8 @@
 @use '../../base/mixins' as *;
 
 .contact {
+  overflow: visible;
+
   &::before {
     background-color: #eee1cf;
   }
@@ -34,6 +36,10 @@
   flex-direction: column;
   gap: 2.5rem;
 
+  & > * {
+    opacity: 0;
+    will-change: transform, opacity;
+  }
   .headline {
     font-family: 'Marck Script';
     @include fluid-step(21, 70);
@@ -178,6 +184,8 @@
 }
 .action-area {
   height: 100%;
+  opacity: 0;
+  will-change: transform, opacity;
 
   .card {
     display: flex;

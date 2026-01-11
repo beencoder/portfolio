@@ -40,14 +40,14 @@ export default function ProjectPreview({ project, position, isVisible }) {
   };
 
   const handleTransitionEnd = (e) => {
-    // 자기 자신 transition만 체크
     if (e.target !== e.currentTarget) return;
-    if (e.propertyName !== 'opacity') return;
 
-    // 비활성 상태에서 opacity 트랜지션 끝났으면 언마운트
-    if (!isActive) {
-      setIsMounted(false);
-      setCurrentProject(null);
+    // opacity, filter 트랜지션 끝나는 거 감지
+    if (e.propertyName === 'opacity' || e.propertyName === 'filter') {
+      if (!isActive) {
+        setIsMounted(false);
+        setCurrentProject(null);
+      }
     }
   };
 

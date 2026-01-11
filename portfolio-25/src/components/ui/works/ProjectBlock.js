@@ -1,8 +1,43 @@
+import { useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 
 import styles from '@/styles/components/project-block.module.scss';
 
-export default function ProjectBlock({ projectItem, isMobile, onActivate, onDeactivate }) {
+gsap.registerPlugin(ScrollTrigger);
+
+export default function ProjectBlock({ projectItem, index, isMobile, onActivate, onDeactivate }) {
+  const elementRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        elementRef.current,
+        {
+          clipPath: 'inset(0 0 0 100%)',
+          x: 40,
+          opacity: 0,
+        },
+        {
+          clipPath: 'inset(0 0 0 0%)',
+          x: 0,
+          opacity: 1,
+          duration: 1.2,
+          ease: 'expo.out',
+          delay: isMobile ? 0 : index * 0.1,
+          scrollTrigger: {
+            trigger: elementRef.current,
+            start: 'top 95%',
+            toggleActions: 'play none none reverse',
+          },
+        },
+      );
+    });
+
+    return () => ctx.revert();
+  }, [index, isMobile]);
+
   function handleLinkClick(e) {
     e.stopPropagation();
   }
@@ -17,7 +52,7 @@ export default function ProjectBlock({ projectItem, isMobile, onActivate, onDeac
       };
 
   return (
-    <li className={styles['project-item']} {...eventProps}>
+    <li ref={elementRef} className={styles['project-item']} {...eventProps}>
       <Link href={`${projectItem.url.detail}`} onClick={(e) => handleLinkClick(e, projectItem.url.detail)}>
         <div className={styles.inner}>
           <div className={styles['title-wrap']}>

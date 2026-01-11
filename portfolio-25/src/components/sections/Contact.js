@@ -1,14 +1,66 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { Mail, MailPlus, Github, Linkedin, FileText } from 'lucide-react';
 
 import styles from '@/styles/pages/home/contact.module.scss';
 import SectionTitle from '../ui/SectionTitle';
 import { Button, LinkButton } from '../ui/Button';
 
+gsap.registerPlugin(ScrollTrigger);
+
 export default function ContactSection({ id }) {
+  const sectionRef = useRef(null);
+  const infoRef = useRef(null);
+  const actionRef = useRef(null);
   const [isCopied, setIsCopied] = useState(false);
   const email = 'dabeen888@gmail.com';
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        infoRef.current.children,
+        {
+          y: 40,
+          opacity: 0,
+        },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          stagger: 0.2,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: infoRef.current,
+            start: 'top 80%',
+            toggleActions: 'play none none reverse',
+          },
+        },
+      );
+
+      gsap.fromTo(
+        actionRef.current,
+        {
+          x: 100,
+          opacity: 0,
+        },
+        {
+          x: 0,
+          opacity: 1,
+          duration: 1.2,
+          ease: 'power4.out',
+          scrollTrigger: {
+            trigger: actionRef.current,
+            start: 'top 80%',
+            toggleActions: 'play none none reverse',
+          },
+        },
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
 
   const handleCopyEmail = async () => {
     try {
@@ -21,14 +73,19 @@ export default function ContactSection({ id }) {
   };
 
   return (
-    <section id={id} className={clsx('section', styles.contact)} aria-labelledby={`${id}-title`} tabIndex={-1}>
+    <section
+      ref={sectionRef}
+      id={id}
+      className={clsx('section', styles.contact)}
+      aria-labelledby={`${id}-title`}
+      tabIndex={-1}>
       <div className="container">
         <SectionTitle id={`${id}-title`} className={styles.title}>
           Let's Talk
         </SectionTitle>
 
         <div className={styles.contents}>
-          <div className={styles['info-area']}>
+          <div ref={infoRef} className={styles['info-area']}>
             <h2 className={styles.headline}>
               Let’s build a solid <strong>experience, </strong>starting from the <strong>structure.</strong>
             </h2>
@@ -87,7 +144,7 @@ export default function ContactSection({ id }) {
             </div>
           </div>
 
-          <div className={styles['action-area']}>
+          <div ref={actionRef} className={styles['action-area']}>
             <div className={styles.card}>
               <h3 className={styles['card-title']}>Guestbook</h3>
               <div className={styles['card-text']}>

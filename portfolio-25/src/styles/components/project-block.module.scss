@@ -1,7 +1,11 @@
 @use '../base/mixins' as *;
 
 .project-item {
+  position: relative;
   overflow: hidden;
+  opacity: 0;
+  clip-path: inset(0 0 0 100%);
+  will-change: transform, opacity, clip-path;
 
   &:focus-within {
     @include focus-ring;

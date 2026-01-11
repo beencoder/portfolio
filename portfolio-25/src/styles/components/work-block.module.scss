@@ -8,6 +8,9 @@
   border-right: 1px solid var(--color-on-surface);
   overflow: hidden;
   transition: flex 0.8s var(--transition-main);
+  opacity: 0;
+  clip-path: inset(0 0 0 100%);
+  will-change: transform, opacity, clip-path;
 
   &:last-of-type {
     border-right: none;
