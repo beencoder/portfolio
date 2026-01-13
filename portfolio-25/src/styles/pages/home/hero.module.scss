@@ -120,22 +120,14 @@
   }
 }
 
-@keyframes tagline-fill {
-  0% {
-    transform: scaleX(0);
-  }
-  100% {
-    transform: scaleX(1);
-  }
-}
-
 @include respond(max, lg) {
   .title-inner {
     width: 90vw;
   }
   .tagline {
     margin-top: 0;
-    font-size: 12px;
+    padding: 3px 7px;
+    font-size: 10px;
   }
   .sub-title {
     font-size: 14px;
@@ -159,9 +151,6 @@
     .title {
       font-size: clamp(40px, 11.5vw, 12vw);
     }
-  }
-  .tagline {
-    padding: 2px 10px;
   }
 }
 
