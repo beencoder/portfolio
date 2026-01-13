@@ -155,7 +155,7 @@ export default function ContactSection({ id }) {
                 <p>
                   <strong>따끔한 조언도, 가벼운 인사</strong>도 뭐든 좋아요.
                 </p>
-                <p>겸허히 듣고 쑥쑥 자라겠습니다. 🌱💙</p>
+                <p>열린 마음으로 듣고 쑥쑥 자라겠습니다. 🌱💙</p>
               </div>
               <LinkButton href="/guestbook" label="Say Hi!" size="md" />
             </div>
