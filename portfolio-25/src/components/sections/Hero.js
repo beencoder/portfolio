@@ -89,7 +89,7 @@ export default function HeroSection({ id }) {
           </div>
 
           <p ref={taglineRef} className={styles.tagline}>
-            사용자 경험을 기반으로 UI를 설계하고 구현합니다.
+            사용자 경험을 기준으로 UI를 설계하고 디테일까지 구현합니다.
           </p>
         </div>
 
